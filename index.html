@@ -44,7 +44,7 @@
       overflow-x: hidden;
     }
 
-    /* ========== Decorative Background ========== */
+    /* ========== Decorative Background Glows ========== */
     body::before {
       content: '';
       position: fixed;
@@ -71,7 +71,7 @@
       pointer-events: none;
     }
 
-    /* ========== Navigation ========== */
+    /* ========== Navigation (Glassmorphism) ========== */
     .navbar {
       position: fixed;
       top: 0;
@@ -190,13 +190,6 @@
       font-weight: 400;
     }
 
-    .hero .school {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      opacity: 0.8;
-      margin-bottom: 32px;
-    }
-
     .hero-desc {
       max-width: 600px;
       margin: 0 auto 48px;
@@ -262,7 +255,7 @@
     /* ========== Course Cards Grid ========== */
     .courses-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 28px;
     }
 
@@ -278,6 +271,7 @@
       border: 1px solid rgba(255, 182, 193, 0.1);
     }
 
+    /* Gradient top bar on hover */
     .course-card::before {
       content: '';
       position: absolute;
@@ -340,6 +334,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 16px;
     }
 
     .tag {
@@ -360,9 +355,73 @@
       color: #C4A000;
     }
 
+    /* ========== Expandable Course Chapters ========== */
+    .card-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--pink-deep);
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      padding: 8px 0 0;
+      border: none;
+      background: none;
+      transition: var(--transition);
+    }
+
+    .card-toggle:hover {
+      color: var(--text-primary);
+    }
+
+    .card-toggle .toggle-icon {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      font-size: 0.7rem;
+    }
+
+    .card-toggle.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .card-chapters {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .card-chapters.open {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    .chapters-list {
+      list-style: none;
+      padding: 12px 0 4px;
+      margin: 0;
+    }
+
+    .chapters-list li {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .chapters-list li .check {
+      color: var(--pink-deep);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
     .card-arrow {
       position: absolute;
-      bottom: 28px;
+      top: 32px;
       right: 28px;
       width: 32px;
       height: 32px;
@@ -499,7 +558,7 @@
       color: var(--pink-deep);
     }
 
-    /* ========== Scroll to Top ========== */
+    /* ========== Scroll to Top Button ========== */
     .scroll-top {
       position: fixed;
       bottom: 32px;
@@ -608,7 +667,7 @@
 
     <div class="stats">
       <div class="stat-item">
-        <div class="stat-number">5+</div>
+        <div class="stat-number">6+</div>
         <div class="stat-label">专业课程</div>
       </div>
       <div class="stat-item">
@@ -631,64 +690,150 @@
 
     <div class="courses-grid">
 
-      <!-- Course 1 -->
-      <div class="course-card" onclick="void(0)">
+      <!-- Course 1: Python基础 -->
+      <div class="course-card">
+        <div class="card-arrow">→</div>
         <div class="card-icon pink">🐍</div>
         <h3>Python基础</h3>
         <p class="desc">Python编程语言的基础知识和应用，掌握编程思维与核心语法。</p>
         <div class="card-tags">
           <span class="tag pink">Python语法</span>
           <span class="tag yellow">数据结构</span>
+          <span class="tag pink">函数与模块</span>
         </div>
-        <div class="card-arrow">→</div>
+        <button class="card-toggle" onclick="toggleChapters(this)">
+          📌 课程章节与成果 <span class="toggle-icon">▼</span>
+        </button>
+        <div class="card-chapters">
+          <ul class="chapters-list">
+            <li><span class="check">✅</span> 学习变量与数据类型</li>
+            <li><span class="check">✅</span> 掌握条件判断与循环</li>
+            <li><span class="check">✅</span> 函数定义与文件操作</li>
+            <li><span class="check">✅</span> 数据科学常用库入门</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Course 2 -->
-      <div class="course-card" onclick="void(0)">
+      <!-- Course 2: 数据分析技术 -->
+      <div class="course-card">
+        <div class="card-arrow">→</div>
         <div class="card-icon yellow">📊</div>
         <h3>数据分析技术</h3>
         <p class="desc">数据分析的基本方法和工具，培养数据驱动的决策能力。</p>
         <div class="card-tags">
           <span class="tag pink">数据清洗</span>
           <span class="tag yellow">统计分析</span>
+          <span class="tag pink">可视化</span>
+          <span class="tag yellow">Pandas</span>
         </div>
-        <div class="card-arrow">→</div>
+        <button class="card-toggle" onclick="toggleChapters(this)">
+          📌 课程章节与成果 <span class="toggle-icon">▼</span>
+        </button>
+        <div class="card-chapters">
+          <ul class="chapters-list">
+            <li><span class="check">✅</span> 数据预处理技术</li>
+            <li><span class="check">✅</span> 描述性统计与推断</li>
+            <li><span class="check">✅</span> 图表洞察与报告撰写</li>
+            <li><span class="check">✅</span> 真实数据集案例实战</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Course 3 -->
-      <div class="course-card" onclick="void(0)">
+      <!-- Course 3: 数据采集与处理 -->
+      <div class="course-card">
+        <div class="card-arrow">→</div>
         <div class="card-icon mixed">🔍</div>
         <h3>数据采集与处理</h3>
         <p class="desc">数据采集和预处理的技术，学习从多渠道获取并整理数据。</p>
         <div class="card-tags">
           <span class="tag pink">网络爬虫</span>
           <span class="tag yellow">API调用</span>
+          <span class="tag pink">数据解析</span>
+          <span class="tag yellow">ETL</span>
         </div>
-        <div class="card-arrow">→</div>
+        <button class="card-toggle" onclick="toggleChapters(this)">
+          📌 课程章节与成果 <span class="toggle-icon">▼</span>
+        </button>
+        <div class="card-chapters">
+          <ul class="chapters-list">
+            <li><span class="check">✅</span> Requests/BeautifulSoup爬虫</li>
+            <li><span class="check">✅</span> API认证与数据抓取</li>
+            <li><span class="check">✅</span> 数据清洗与格式统一</li>
+            <li><span class="check">✅</span> 大规模数据采集策略</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Course 4 -->
-      <div class="course-card" onclick="void(0)">
+      <!-- Course 4: 供应链数据分析 -->
+      <div class="course-card">
+        <div class="card-arrow">→</div>
         <div class="card-icon pink">🚚</div>
         <h3>供应链数据分析</h3>
         <p class="desc">供应链管理中的数据分析应用，提升运营效率与决策水平。</p>
         <div class="card-tags">
           <span class="tag pink">供应链管理</span>
           <span class="tag yellow">需求预测</span>
+          <span class="tag pink">库存优化</span>
         </div>
-        <div class="card-arrow">→</div>
+        <button class="card-toggle" onclick="toggleChapters(this)">
+          📌 课程章节与成果 <span class="toggle-icon">▼</span>
+        </button>
+        <div class="card-chapters">
+          <ul class="chapters-list">
+            <li><span class="check">✅</span> 预测方法与时间序列</li>
+            <li><span class="check">✅</span> 安全库存与服务水平</li>
+            <li><span class="check">✅</span> 物流路径规划</li>
+            <li><span class="check">✅</span> 供应链KPI设计</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Course 5 -->
-      <div class="course-card" onclick="void(0)">
+      <!-- Course 5: 数据库原理与应用 -->
+      <div class="course-card">
+        <div class="card-arrow">→</div>
         <div class="card-icon yellow">💾</div>
         <h3>数据库原理与应用</h3>
         <p class="desc">数据库的基本原理和应用，掌握数据存储与管理的核心技术。</p>
         <div class="card-tags">
           <span class="tag pink">SQL语言</span>
           <span class="tag yellow">数据库设计</span>
+          <span class="tag pink">事务管理</span>
         </div>
+        <button class="card-toggle" onclick="toggleChapters(this)">
+          📌 课程章节与成果 <span class="toggle-icon">▼</span>
+        </button>
+        <div class="card-chapters">
+          <ul class="chapters-list">
+            <li><span class="check">✅</span> MySQL/PostgreSQL基础</li>
+            <li><span class="check">✅</span> 多表联查与索引优化</li>
+            <li><span class="check">✅</span> 范式与建模案例</li>
+            <li><span class="check">✅</span> 数据库备份与权限</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Course 6: 财务数据分析 -->
+      <div class="course-card">
         <div class="card-arrow">→</div>
+        <div class="card-icon mixed">💰</div>
+        <h3>财务数据分析</h3>
+        <p class="desc">财务数据的分析方法和应用，理解业务经营状况。</p>
+        <div class="card-tags">
+          <span class="tag pink">财务报表分析</span>
+          <span class="tag yellow">财务指标</span>
+          <span class="tag pink">数据可视化</span>
+        </div>
+        <button class="card-toggle" onclick="toggleChapters(this)">
+          📌 课程章节与成果 <span class="toggle-icon">▼</span>
+        </button>
+        <div class="card-chapters">
+          <ul class="chapters-list">
+            <li><span class="check">✅</span> 三大报表解读与分析</li>
+            <li><span class="check">✅</span> 偿债、盈利、营运能力</li>
+            <li><span class="check">✅</span> Power BI/Excel 仪表板</li>
+            <li><span class="check">✅</span> 财务风险识别</li>
+          </ul>
+        </div>
       </div>
 
     </div>
@@ -748,7 +893,14 @@
   <button class="scroll-top" id="scrollTopBtn" title="回到顶部">↑</button>
 
   <script>
-    // Navbar scroll effect
+    // ========== Toggle Course Chapters ==========
+    function toggleChapters(btn) {
+      btn.classList.toggle('active');
+      const chapters = btn.nextElementSibling;
+      chapters.classList.toggle('open');
+    }
+
+    // ========== Navbar scroll effect ==========
     const navbar = document.getElementById('navbar');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
@@ -770,7 +922,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Smooth scroll for nav links
+    // ========== Smooth scroll for nav links ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
