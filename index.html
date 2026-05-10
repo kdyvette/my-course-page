@@ -365,6 +365,23 @@
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .practice-meta {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .practice-tag {
+      padding: 4px 12px;
+      background: linear-gradient(135deg, rgba(255,182,193,0.15), rgba(255,240,102,0.15));
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--pink-deep);
+      font-weight: 500;
     }
 
     /* ========== Learning Path ========== */
@@ -419,6 +436,407 @@
       font-size: 0.82rem;
       color: var(--text-secondary);
       line-height: 1.5;
+    }
+
+    /* ========== New Learning Path Styles ========== */
+    .path-levels {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .path-level {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 182, 193, 0.1);
+      transition: var(--transition);
+    }
+
+    .path-level.locked {
+      opacity: 0.7;
+      background: linear-gradient(135deg, var(--white), #fafafa);
+    }
+
+    .path-level.locked .level-course {
+      pointer-events: none;
+    }
+
+    .level-header {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 182, 193, 0.15);
+    }
+
+    .level-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .level-header h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .level-header p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .unlock-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255, 182, 193, 0.1);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .level-courses {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .level-course {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, rgba(255,182,193,0.05), rgba(255,240,102,0.05));
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 182, 193, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .level-course:hover {
+      background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,240,102,0.1));
+      transform: translateX(8px);
+      border-color: rgba(255, 182, 193, 0.2);
+    }
+
+    .level-course .course-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .level-course .course-info {
+      flex: 1;
+    }
+
+    .level-course .course-info h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .level-course .course-info p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .course-progress {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .progress-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 182, 193, 0.3);
+      transition: var(--transition);
+    }
+
+    .progress-dot.active {
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+    }
+
+    .progress-text {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-left: 8px;
+    }
+
+    .level-course .start-btn {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      border: none;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .level-course .start-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+    }
+
+    .level-course .start-btn:disabled {
+      background: #e0e0e0;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ========== Final Exam Styles ========== */
+    .exam-container {
+      padding: 20px;
+    }
+
+    .exam-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+      margin-bottom: 24px;
+    }
+
+    .exam-header h3 {
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .exam-timer {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, rgba(255,182,193,0.15), rgba(255,240,102,0.15));
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--pink-deep);
+    }
+
+    .exam-progress {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .exam-progress-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(255, 182, 193, 0.2);
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .exam-progress-dot.current {
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      transform: scale(1.1);
+    }
+
+    .exam-progress-dot.answered {
+      background: linear-gradient(135deg, #90EE90, #98FB98);
+      color: var(--white);
+    }
+
+    .exam-question {
+      background: linear-gradient(135deg, rgba(255,182,193,0.05), rgba(255,240,102,0.05));
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 182, 193, 0.1);
+    }
+
+    .question-type-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      font-size: 0.75rem;
+      border-radius: 15px;
+      margin-bottom: 12px;
+    }
+
+    .exam-question h4 {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .exam-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exam-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      border: 2px solid rgba(255, 182, 193, 0.15);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .exam-option:hover {
+      border-color: var(--pink);
+      background: rgba(255, 182, 193, 0.05);
+    }
+
+    .exam-option.selected {
+      border-color: var(--pink-deep);
+      background: rgba(255, 182, 193, 0.1);
+    }
+
+    .exam-option input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--pink-deep);
+    }
+
+    .exam-option label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .exam-navigation {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 182, 193, 0.15);
+    }
+
+    .exam-btn {
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .exam-btn-prev {
+      background: rgba(255, 182, 193, 0.15);
+      color: var(--text-primary);
+    }
+
+    .exam-btn-prev:hover {
+      background: rgba(255, 182, 193, 0.25);
+    }
+
+    .exam-btn-next {
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+    }
+
+    .exam-btn-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+    }
+
+    .exam-btn-submit {
+      background: linear-gradient(135deg, #90EE90, #98FB98);
+      color: var(--white);
+    }
+
+    /* Exam Results */
+    .exam-results {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .result-score {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      color: var(--white);
+    }
+
+    .result-score .score-number {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .result-score .score-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .result-breakdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .breakdown-item {
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(255,182,193,0.08), rgba(255,240,102,0.08));
+      border-radius: var(--radius-sm);
+    }
+
+    .breakdown-item .course-name {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .breakdown-item .course-score {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--pink-deep);
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 30px;
     }
 
     /* ========== Modal Base ========== */
@@ -1100,13 +1518,38 @@
   <section class="practice-section" id="practice">
     <div class="section-header">
       <h2>🎯 综合练习</h2>
-      <p>通过综合答题检验整体学习成果</p>
+      <p>期末考试级别的综合挑战，融合多门课程知识的实战演练</p>
     </div>
     <div class="practice-grid">
-      <div class="practice-card" onclick="openGlobalQuiz()">
-        <div class="practice-icon">📝</div>
-        <h3>综合知识挑战</h3>
-        <p>随机抽取各课程知识点，限时答题挑战你的综合能力！</p>
+      <div class="practice-card" onclick="openFinalExam()">
+        <div class="practice-icon">🏆</div>
+        <h3>期末综合考试</h3>
+        <p>模拟期末考试，涵盖6门课程核心知识点，限时90分钟，检验真实学习成果！</p>
+        <div class="practice-meta">
+          <span class="practice-tag">30题</span>
+          <span class="practice-tag">90分钟</span>
+          <span class="practice-tag">综合评分</span>
+        </div>
+      </div>
+      <div class="practice-card" onclick="openProjectChallenge()">
+        <div class="practice-icon">🚀</div>
+        <h3>实战项目挑战</h3>
+        <p>真实业务场景项目，从数据采集到可视化报告，完成完整的数据分析流程！</p>
+        <div class="practice-meta">
+          <span class="practice-tag">5个项目</span>
+          <span class="practice-tag">代码实战</span>
+          <span class="practice-tag">综合应用</span>
+        </div>
+      </div>
+      <div class="practice-card" onclick="openCaseAnalysis()">
+        <div class="practice-icon">📊</div>
+        <h3>案例分析挑战</h3>
+        <p>真实企业案例，运用财务分析、供应链分析等方法，解决实际业务问题！</p>
+        <div class="practice-meta">
+          <span class="practice-tag">8个案例</span>
+          <span class="practice-tag">深度分析</span>
+          <span class="practice-tag">决策支持</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1115,28 +1558,144 @@
   <section class="path-section" id="path">
     <div class="section-header">
       <h2>🗺️ 学习路径</h2>
-      <p>我的专业学习规划和技能发展路径</p>
+      <p>闯关式学习路径，由易到难，每关都有知识点讲解和配套练习</p>
     </div>
-    <div class="path-grid">
-      <div class="path-card">
-        <div class="path-step">1</div>
-        <h4>基础阶段</h4>
-        <p>Python基础、数据库原理</p>
+    <div class="path-levels">
+      <div class="path-level" data-level="1">
+        <div class="level-header">
+          <div class="level-badge">入门</div>
+          <h3>🌱 基础入门阶段</h3>
+          <p>掌握Python编程基础和数据库操作，建立数据分析的技术根基</p>
+        </div>
+        <div class="level-courses">
+          <div class="level-course" onclick="openPathQuiz('python-basic')">
+            <div class="course-icon">🐍</div>
+            <div class="course-info">
+              <h4>Python基础闯关</h4>
+              <p>变量、数据类型、控制结构、函数</p>
+              <div class="course-progress">
+                <span class="progress-dot active"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-text">第1关 / 共4关</span>
+              </div>
+            </div>
+            <button class="start-btn">开始闯关</button>
+          </div>
+          <div class="level-course" onclick="openPathQuiz('sql-basic')">
+            <div class="course-icon">🗄️</div>
+            <div class="course-info">
+              <h4>数据库基础闯关</h4>
+              <p>SQL语句、表操作、查询、连接</p>
+              <div class="course-progress">
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-text">未开始</span>
+              </div>
+            </div>
+            <button class="start-btn">开始闯关</button>
+          </div>
+        </div>
       </div>
-      <div class="path-card">
-        <div class="path-step">2</div>
-        <h4>进阶阶段</h4>
-        <p>数据分析技术、数据采集与处理</p>
+      
+      <div class="path-level locked" data-level="2">
+        <div class="level-header">
+          <div class="level-badge">进阶</div>
+          <h3>📈 技能提升阶段</h3>
+          <p>学习数据分析方法和数据采集技术，提升数据处理实战能力</p>
+          <div class="unlock-hint">🔒 完成基础阶段解锁</div>
+        </div>
+        <div class="level-courses">
+          <div class="level-course" onclick="openPathQuiz('data-analysis')">
+            <div class="course-icon">📊</div>
+            <div class="course-info">
+              <h4>数据分析技术闯关</h4>
+              <p>Pandas、数据清洗、统计分析、可视化</p>
+              <div class="course-progress">
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-text">未解锁</span>
+              </div>
+            </div>
+            <button class="start-btn" disabled>未解锁</button>
+          </div>
+          <div class="level-course" onclick="openPathQuiz('data-collection')">
+            <div class="course-icon">🕷️</div>
+            <div class="course-info">
+              <h4>数据采集闯关</h4>
+              <p>爬虫技术、API调用、数据存储</p>
+              <div class="course-progress">
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-text">未解锁</span>
+              </div>
+            </div>
+            <button class="start-btn" disabled>未解锁</button>
+          </div>
+        </div>
       </div>
-      <div class="path-card">
-        <div class="path-step">3</div>
-        <h4>应用阶段</h4>
-        <p>供应链数据分析、实战项目</p>
+      
+      <div class="path-level locked" data-level="3">
+        <div class="level-header">
+          <div class="level-badge">应用</div>
+          <h3>🎯 业务应用阶段</h3>
+          <p>将数据分析应用于供应链和财务领域，解决实际业务问题</p>
+          <div class="unlock-hint">🔒 完成进阶阶段解锁</div>
+        </div>
+        <div class="level-courses">
+          <div class="level-course" onclick="openPathQuiz('supply-chain')">
+            <div class="course-icon">🚚</div>
+            <div class="course-info">
+              <h4>供应链分析闯关</h4>
+              <p>库存优化、需求预测、供应商评估</p>
+              <div class="course-progress">
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-text">未解锁</span>
+              </div>
+            </div>
+            <button class="start-btn" disabled>未解锁</button>
+          </div>
+          <div class="level-course" onclick="openPathQuiz('finance')">
+            <div class="course-icon">💰</div>
+            <div class="course-info">
+              <h4>财务分析闯关</h4>
+              <p>财务报表、财务指标、风险评估</p>
+              <div class="course-progress">
+                <span class="progress-dot"></span>
+                <span class="progress-dot"></span>
+                <span class="progress-text">未解锁</span>
+              </div>
+            </div>
+            <button class="start-btn" disabled>未解锁</button>
+          </div>
+        </div>
       </div>
-      <div class="path-card">
-        <div class="path-step">4</div>
-        <h4>专业深化</h4>
-        <p>高级数据分析、行业应用</p>
+      
+      <div class="path-level locked" data-level="4">
+        <div class="level-header">
+          <div class="level-badge">大师</div>
+          <h3>🏆 综合实战阶段</h3>
+          <p>综合运用所有知识，完成企业级数据分析项目</p>
+          <div class="unlock-hint">🔒 完成应用阶段解锁</div>
+        </div>
+        <div class="level-courses">
+          <div class="level-course" onclick="openPathQuiz('capstone')">
+            <div class="course-icon">🎓</div>
+            <div class="course-info">
+              <h4>毕业设计闯关</h4>
+              <p>完整项目：从需求分析到报告呈现</p>
+              <div class="course-progress">
+                <span class="progress-dot"></span>
+                <span class="progress-text">未解锁</span>
+              </div>
+            </div>
+            <button class="start-btn" disabled>未解锁</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1193,6 +1752,50 @@
         <button class="modal-close" onclick="closeChapterQuiz()">×</button>
       </div>
       <div class="modal-body" id="chapterQuizBody"></div>
+    </div>
+  </div>
+
+  <!-- Final Exam Modal -->
+  <div class="modal-overlay" id="finalExamModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3>🏆 期末综合考试</h3>
+        <button class="modal-close" onclick="closeFinalExam()">×</button>
+      </div>
+      <div class="modal-body" id="finalExamBody"></div>
+    </div>
+  </div>
+
+  <!-- Path Quiz Modal -->
+  <div class="modal-overlay" id="pathQuizModal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3 id="pathQuizTitle">闯关挑战</h3>
+        <button class="modal-close" onclick="closePathQuiz()">×</button>
+      </div>
+      <div class="modal-body" id="pathQuizBody"></div>
+    </div>
+  </div>
+
+  <!-- Project Challenge Modal -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3>🚀 实战项目挑战</h3>
+        <button class="modal-close" onclick="closeProjectModal()">×</button>
+      </div>
+      <div class="modal-body" id="projectBody"></div>
+    </div>
+  </div>
+
+  <!-- Case Analysis Modal -->
+  <div class="modal-overlay" id="caseModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3>📊 案例分析挑战</h3>
+        <button class="modal-close" onclick="closeCaseModal()">×</button>
+      </div>
+      <div class="modal-body" id="caseBody"></div>
     </div>
   </div>
 
@@ -4955,9 +5558,961 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
       document.getElementById('learningModal').classList.remove('active');
     }
 
-    // ========== Global Quiz ==========
-    function openGlobalQuiz() {
-      alert('综合练习功能开发中，敬请期待！');
+    // ========== Final Exam System ==========
+    const finalExamQuestions = [
+      // Python基础 (5题)
+      {
+        course: 'Python基础',
+        type: 'single',
+        question: '以下Python代码的输出结果是什么？<br><code>data = [1, 2, 3, 4, 5]<br>result = [x**2 for x in data if x % 2 == 0]<br>print(result)</code>',
+        options: ['[1, 4, 9, 16, 25]', '[4, 16]', '[2, 4]', '[1, 9, 25]'],
+        correct: 1,
+        explanation: '列表推导式中if条件筛选偶数，然后计算平方。偶数是2和4，平方后是4和16。'
+      },
+      {
+        course: 'Python基础',
+        type: 'fill',
+        question: 'Python中用于处理JSON数据的模块名称是______。',
+        answer: 'json',
+        explanation: 'json模块提供了JSON数据的编码和解码功能。'
+      },
+      {
+        course: 'Python基础',
+        type: 'code',
+        question: '请编写一个函数，接收一个整数列表，返回列表中所有偶数的和。',
+        template: 'def sum_even(numbers):\n    # 请在此编写代码\n    pass\n\n# 测试\nprint(sum_even([1, 2, 3, 4, 5, 6]))  # 应输出 12',
+        testCases: [
+          { input: [[1, 2, 3, 4, 5, 6]], expected: 12 },
+          { input: [[10, 15, 20, 25]], expected: 30 }
+        ],
+        explanation: '使用列表推导式或循环筛选偶数，然后求和。'
+      },
+      // 数据分析技术 (5题)
+      {
+        course: '数据分析技术',
+        type: 'single',
+        question: '在Pandas中，以下哪个方法用于删除包含缺失值的行？',
+        options: ['df.fillna()', 'df.dropna()', 'df.isnull()', 'df.replace()'],
+        correct: 1,
+        explanation: 'dropna()方法用于删除包含缺失值的行或列。'
+      },
+      {
+        course: '数据分析技术',
+        type: 'single',
+        question: '以下哪个统计量最能反映数据的离散程度？',
+        options: ['均值', '中位数', '标准差', '众数'],
+        correct: 2,
+        explanation: '标准差是衡量数据离散程度最常用的统计量。'
+      },
+      {
+        course: '数据分析技术',
+        type: 'code',
+        question: '使用Pandas读取CSV文件，并计算"销售额"列的平均值。',
+        template: 'import pandas as pd\n\n# 请在此编写代码\n\n# 假设df已加载\n# 计算平均值\naverage_sales = None\nprint(f"平均销售额: {average_sales}")',
+        answer: 'df["销售额"].mean()',
+        explanation: '使用mean()方法计算列的平均值。'
+      },
+      // 数据采集与处理 (5题)
+      {
+        course: '数据采集与处理',
+        type: 'single',
+        question: '在爬虫中，以下哪个HTTP状态码表示请求成功？',
+        options: ['404', '500', '200', '302'],
+        correct: 2,
+        explanation: 'HTTP状态码200表示请求成功。'
+      },
+      {
+        course: '数据采集与处理',
+        type: 'judge',
+        question: 'BeautifulSoup只能解析HTML，不能解析XML。',
+        correct: false,
+        explanation: 'BeautifulSoup可以解析HTML和XML等多种标记语言。'
+      },
+      {
+        course: '数据采集与处理',
+        type: 'code',
+        question: '使用requests库发送GET请求获取网页内容，并解析出所有链接。',
+        template: 'import requests\nfrom bs4 import BeautifulSoup\n\nurl = "https://example.com"\n# 请在此编写代码\n\nlinks = []\nprint(f"找到 {len(links)} 个链接")',
+        answer: 'response = requests.get(url)\nsoup = BeautifulSoup(response.text, "html.parser")\nlinks = [a["href"] for a in soup.find_all("a", href=True)]',
+        explanation: '使用requests获取页面，BeautifulSoup解析HTML，find_all查找所有a标签。'
+      },
+      // 数据库原理与应用 (5题)
+      {
+        course: '数据库原理与应用',
+        type: 'single',
+        question: '以下SQL语句中，哪个用于删除表中的所有数据但保留表结构？',
+        options: ['DROP TABLE', 'DELETE FROM', 'TRUNCATE TABLE', 'REMOVE ALL'],
+        correct: 2,
+        explanation: 'TRUNCATE TABLE删除所有数据但保留表结构，比DELETE更快。'
+      },
+      {
+        course: '数据库原理与应用',
+        type: 'fill',
+        question: '在SQL中，用于连接两个表的子句是______。',
+        answer: 'JOIN',
+        explanation: 'JOIN子句用于根据相关列连接两个或多个表。'
+      },
+      {
+        course: '数据库原理与应用',
+        type: 'code',
+        question: '编写SQL查询：从"orders"表中查询2024年订单总金额大于10000的客户ID和总金额。',
+        template: '-- 请在此编写SQL\n',
+        answer: 'SELECT customer_id, SUM(amount) as total\nFROM orders\nWHERE YEAR(order_date) = 2024\nGROUP BY customer_id\nHAVING SUM(amount) > 10000',
+        explanation: '使用GROUP BY分组，HAVING筛选分组后的结果。'
+      },
+      // 供应链数据分析 (5题)
+      {
+        course: '供应链数据分析',
+        type: 'single',
+        question: '经济订货量(EOQ)模型主要考虑哪些成本？',
+        options: ['采购成本和运输成本', '订货成本和持有成本', '生产成本和销售成本', '固定成本和变动成本'],
+        correct: 1,
+        explanation: 'EOQ模型平衡订货成本和库存持有成本，使总成本最小。'
+      },
+      {
+        course: '供应链数据分析',
+        type: 'single',
+        question: '以下哪个指标用于衡量库存管理效率？',
+        options: ['库存周转率', '毛利率', '净利率', '资产负债率'],
+        correct: 0,
+        explanation: '库存周转率 = 销售成本 / 平均库存，反映库存管理效率。'
+      },
+      {
+        course: '供应链数据分析',
+        type: 'code',
+        question: '计算安全库存：已知日均需求为50件，提前期为7天，服务水平对应Z值为1.65，需求标准差为20。',
+        template: '# 安全库存公式: SS = Z * σ * √L\nimport math\n\ndaily_demand = 50\nlead_time = 7\nz_score = 1.65\nstd_dev = 20\n\n# 请计算安全库存\nsafety_stock = None\nprint(f"安全库存: {safety_stock:.0f} 件")',
+        answer: 'z_score * std_dev * math.sqrt(lead_time)',
+        explanation: '安全库存 = Z值 × 需求标准差 × √提前期'
+      },
+      // 财务数据分析 (5题)
+      {
+        course: '财务数据分析',
+        type: 'single',
+        question: '以下哪个财务指标反映企业短期偿债能力？',
+        options: ['ROE', '流动比率', '总资产周转率', '净利润率'],
+        correct: 1,
+        explanation: '流动比率 = 流动资产 / 流动负债，反映短期偿债能力。'
+      },
+      {
+        course: '财务数据分析',
+        type: 'single',
+        question: '杜邦分析将ROE分解为哪三个因素的乘积？',
+        options: ['利润率×周转率×权益乘数', '毛利率×净利率×ROA', '收入×成本×利润', '资产×负债×权益'],
+        correct: 0,
+        explanation: 'ROE = 净利率 × 总资产周转率 × 权益乘数'
+      },
+      {
+        course: '财务数据分析',
+        type: 'code',
+        question: '计算以下财务指标：毛利率、净利率、ROE。',
+        template: '# 财务数据(单位:万元)\nrevenue = 1000      # 营业收入\ncost = 600          # 营业成本\nnet_profit = 100    # 净利润\ntotal_assets = 800  # 总资产\nequity = 400        # 所有者权益\n\n# 请计算以下指标\ngross_margin = None  # 毛利率\nnet_margin = None    # 净利率\nroe = None           # ROE\n\nprint(f"毛利率: {gross_margin:.1%}")\nprint(f"净利率: {net_margin:.1%}")\nprint(f"ROE: {roe:.1%}")',
+        answer: '(revenue - cost) / revenue, net_profit / revenue, net_profit / equity',
+        explanation: '毛利率=(收入-成本)/收入，净利率=净利润/收入，ROE=净利润/权益'
+      },
+      // 综合应用题 (5题)
+      {
+        course: '综合应用',
+        type: 'scenario',
+        question: '【综合案例分析】某电商公司希望分析其销售数据，需要你完成以下任务：<br><br>1. 从数据库中提取近一年的订单数据<br>2. 使用Python进行数据清洗和探索性分析<br>3. 计算月度销售趋势和各类目占比<br>4. 建立简单的销售预测模型<br>5. 制作可视化报告<br><br>请描述你会如何完成这个项目，包括使用的工具、方法和步骤。',
+        options: [
+          'A. 仅用Excel完成所有分析',
+          'B. SQL提取数据 → Python(Pandas)清洗分析 → Matplotlib可视化 → 线性回归预测',
+          'C. 手工统计所有数据',
+          'D. 只计算总销售额即可'
+        ],
+        correct: 1,
+        explanation: '完整的数据分析流程应包括：数据采集(SQL)、数据处理(Pandas)、分析建模、可视化展示。'
+      },
+      {
+        course: '综合应用',
+        type: 'scenario',
+        question: '【供应链优化案例】某零售企业的库存数据如下：<br>• 年销售量：10,000件<br>• 每次订货成本：500元<br>• 单位年持有成本：20元/件<br>• 单价：100元<br>• 提前期：10天<br>• 服务水平要求：95%(Z=1.65)<br>• 需求标准差：50件/天<br><br>请计算：1)经济订货量(EOQ) 2)安全库存 3)再订货点',
+        options: [
+          'A. EOQ=500, 安全库存=165, 再订货点=665',
+          'B. EOQ=707, 安全库存=261, 再订货点=761',
+          'C. EOQ=1000, 安全库存=100, 再订货点=600',
+          'D. EOQ=300, 安全库存=500, 再订货点=1000'
+        ],
+        correct: 1,
+        explanation: 'EOQ=√(2×10000×500/20)=707; 安全库存=1.65×50×√10≈261; 再订货点=10000/365×10+261≈761'
+      },
+      {
+        course: '综合应用',
+        type: 'scenario',
+        question: '【财务风险评估】某公司的财务数据如下：<br>• 流动资产：500万<br>• 流动负债：300万<br>• 总资产：1000万<br>• 总负债：600万<br>• 净利润：120万<br>• 营业收入：800万<br>• 所有者权益：400万<br><br>请分析该公司的财务状况，并指出主要风险点。',
+        options: [
+          'A. 财务状况良好，无风险',
+          'B. 流动比率1.67尚可，但资产负债率60%偏高，需关注偿债能力',
+          'C. 净利润率太低，公司即将破产',
+          'D. 只需要关注营业收入增长'
+        ],
+        correct: 1,
+        explanation: '流动比率=500/300=1.67(一般>2较好)，资产负债率=600/1000=60%(偏高)，ROE=120/400=30%(较好)。需关注负债水平。'
+      }
+    ];
+
+    let examState = {
+      currentQuestion: 0,
+      answers: {},
+      timer: null,
+      timeRemaining: 90 * 60, // 90分钟
+      isFinished: false
+    };
+
+    function openFinalExam() {
+      examState = {
+        currentQuestion: 0,
+        answers: {},
+        timeRemaining: 90 * 60,
+        isFinished: false
+      };
+      renderFinalExam();
+      document.getElementById('finalExamModal').classList.add('active');
+      startExamTimer();
+    }
+
+    function closeFinalExam() {
+      if (!examState.isFinished && Object.keys(examState.answers).length > 0) {
+        if (!confirm('确定要退出考试吗？您的答题进度将不会保存。')) {
+          return;
+        }
+      }
+      clearInterval(examState.timer);
+      document.getElementById('finalExamModal').classList.remove('active');
+    }
+
+    function startExamTimer() {
+      examState.timer = setInterval(() => {
+        examState.timeRemaining--;
+        if (examState.timeRemaining <= 0) {
+          submitFinalExam();
+        }
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(examState.timeRemaining / 60);
+      const seconds = examState.timeRemaining % 60;
+      const timerEl = document.getElementById('examTimer');
+      if (timerEl) {
+        timerEl.textContent = `⏱️ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        if (examState.timeRemaining < 300) {
+          timerEl.style.color = '#ff4444';
+        }
+      }
+    }
+
+    function renderFinalExam() {
+      const body = document.getElementById('finalExamBody');
+      
+      if (examState.isFinished) {
+        renderExamResults(body);
+        return;
+      }
+
+      const q = finalExamQuestions[examState.currentQuestion];
+      const progressDots = finalExamQuestions.map((_, i) => {
+        let className = 'exam-progress-dot';
+        if (i === examState.currentQuestion) className += ' current';
+        else if (examState.answers[i] !== undefined) className += ' answered';
+        return `<div class="${className}" onclick="jumpToQuestion(${i})">${i + 1}</div>`;
+      }).join('');
+
+      let questionHTML = `
+        <div class="exam-container">
+          <div class="exam-header">
+            <h3>期末综合考试 - 第 ${examState.currentQuestion + 1} / ${finalExamQuestions.length} 题</h3>
+            <div class="exam-timer" id="examTimer">⏱️ 90:00</div>
+            <div class="exam-progress">${progressDots}</div>
+          </div>
+          <div class="exam-question">
+            <span class="question-type-badge">${q.course}</span>
+            <h4>${q.question}</h4>
+      `;
+
+      if (q.type === 'single') {
+        questionHTML += `<div class="exam-options">`;
+        q.options.forEach((opt, i) => {
+          const selected = examState.answers[examState.currentQuestion] === i ? 'selected' : '';
+          questionHTML += `
+            <div class="exam-option ${selected}" onclick="selectAnswer(${i})">
+              <input type="radio" name="answer" ${selected ? 'checked' : ''}>
+              <label>${String.fromCharCode(65 + i)}. ${opt}</label>
+            </div>
+          `;
+        });
+        questionHTML += `</div>`;
+      } else if (q.type === 'fill') {
+        const value = examState.answers[examState.currentQuestion] || '';
+        questionHTML += `
+          <div style="margin-top: 16px;">
+            <input type="text" id="fillAnswer" value="${value}" 
+              placeholder="请输入答案" 
+              style="padding: 12px 16px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; width: 100%; font-size: 1rem;">
+          </div>
+        `;
+      } else if (q.type === 'judge') {
+        const current = examState.answers[examState.currentQuestion];
+        questionHTML += `
+          <div class="exam-options">
+            <div class="exam-option ${current === true ? 'selected' : ''}" onclick="selectAnswer(true)">
+              <input type="radio" name="answer" ${current === true ? 'checked' : ''}>
+              <label>正确</label>
+            </div>
+            <div class="exam-option ${current === false ? 'selected' : ''}" onclick="selectAnswer(false)">
+              <input type="radio" name="answer" ${current === false ? 'checked' : ''}>
+              <label>错误</label>
+            </div>
+          </div>
+        `;
+      } else if (q.type === 'code' || q.type === 'scenario') {
+        const value = examState.answers[examState.currentQuestion] || '';
+        questionHTML += `
+          <div style="margin-top: 16px;">
+            ${q.type === 'code' ? `<textarea id="codeAnswer" rows="8" placeholder="请编写代码..." style="padding: 12px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; width: 100%; font-family: monospace; font-size: 0.9rem;">${value || (q.template || '')}</textarea>` : ''}
+            ${q.type === 'scenario' ? `<div class="exam-options">` + q.options.map((opt, i) => {
+              const selected = examState.answers[examState.currentQuestion] === i ? 'selected' : '';
+              return `<div class="exam-option ${selected}" onclick="selectAnswer(${i})"><input type="radio" name="answer" ${selected ? 'checked' : ''}><label>${opt}</label></div>`;
+            }).join('') + `</div>` : ''}
+          </div>
+        `;
+      }
+
+      questionHTML += `
+          </div>
+          <div class="exam-navigation">
+            <button class="exam-btn exam-btn-prev" ${examState.currentQuestion === 0 ? 'disabled' : ''} onclick="prevQuestion()">上一题</button>
+            ${examState.currentQuestion === finalExamQuestions.length - 1 
+              ? `<button class="exam-btn exam-btn-submit" onclick="submitFinalExam()">提交试卷</button>`
+              : `<button class="exam-btn exam-btn-next" onclick="nextQuestion()">下一题</button>`
+            }
+          </div>
+        </div>
+      `;
+
+      body.innerHTML = questionHTML;
+      updateTimerDisplay();
+    }
+
+    function selectAnswer(answer) {
+      examState.answers[examState.currentQuestion] = answer;
+      renderFinalExam();
+    }
+
+    function nextQuestion() {
+      saveCurrentAnswer();
+      if (examState.currentQuestion < finalExamQuestions.length - 1) {
+        examState.currentQuestion++;
+        renderFinalExam();
+      }
+    }
+
+    function prevQuestion() {
+      saveCurrentAnswer();
+      if (examState.currentQuestion > 0) {
+        examState.currentQuestion--;
+        renderFinalExam();
+      }
+    }
+
+    function jumpToQuestion(index) {
+      saveCurrentAnswer();
+      examState.currentQuestion = index;
+      renderFinalExam();
+    }
+
+    function saveCurrentAnswer() {
+      const q = finalExamQuestions[examState.currentQuestion];
+      if (q.type === 'fill') {
+        const input = document.getElementById('fillAnswer');
+        if (input) examState.answers[examState.currentQuestion] = input.value.trim();
+      } else if (q.type === 'code') {
+        const textarea = document.getElementById('codeAnswer');
+        if (textarea) examState.answers[examState.currentQuestion] = textarea.value.trim();
+      }
+    }
+
+    function submitFinalExam() {
+      saveCurrentAnswer();
+      clearInterval(examState.timer);
+      examState.isFinished = true;
+      renderFinalExam();
+    }
+
+    function renderExamResults(body) {
+      let correct = 0;
+      const courseScores = {};
+      
+      finalExamQuestions.forEach((q, i) => {
+        const answer = examState.answers[i];
+        let isCorrect = false;
+        
+        if (q.type === 'single' || q.type === 'scenario') {
+          isCorrect = answer === q.correct;
+        } else if (q.type === 'fill') {
+          isCorrect = answer && answer.toLowerCase() === q.answer.toLowerCase();
+        } else if (q.type === 'judge') {
+          isCorrect = answer === q.correct;
+        } else if (q.type === 'code') {
+          isCorrect = answer && answer.length > 10;
+        }
+        
+        if (isCorrect) correct++;
+        
+        if (!courseScores[q.course]) courseScores[q.course] = { total: 0, correct: 0 };
+        courseScores[q.course].total++;
+        if (isCorrect) courseScores[q.course].correct++;
+      });
+
+      const percentage = Math.round((correct / finalExamQuestions.length) * 100);
+      let grade = '不及格';
+      if (percentage >= 90) grade = '优秀';
+      else if (percentage >= 80) grade = '良好';
+      else if (percentage >= 60) grade = '及格';
+
+      const breakdownHTML = Object.entries(courseScores).map(([course, scores]) => `
+        <div class="breakdown-item">
+          <div class="course-name">${course}</div>
+          <div class="course-score">${scores.correct}/${scores.total}</div>
+        </div>
+      `).join('');
+
+      body.innerHTML = `
+        <div class="exam-results">
+          <h3>🎉 考试完成！</h3>
+          <div class="result-score">
+            <div class="score-number">${percentage}</div>
+            <div class="score-label">分 - ${grade}</div>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 20px;">
+            答对 ${correct} / ${finalExamQuestions.length} 题
+          </p>
+          <div class="result-breakdown">
+            ${breakdownHTML}
+          </div>
+          <div class="result-actions">
+            <button class="exam-btn exam-btn-prev" onclick="reviewExam()">查看解析</button>
+            <button class="exam-btn exam-btn-next" onclick="closeFinalExam()">完成</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function reviewExam() {
+      examState.currentQuestion = 0;
+      examState.isFinished = false;
+      renderFinalExam();
+    }
+
+    // ========== Path Quiz System ==========
+    const pathQuizData = {
+      'python-basic': {
+        title: '🐍 Python基础闯关',
+        levels: [
+          {
+            name: '变量与数据类型',
+            knowledge: 'Python变量不需要声明类型，可以直接赋值使用。常用数据类型包括：int(整数)、float(浮点数)、str(字符串)、bool(布尔值)、list(列表)、dict(字典)。',
+            questions: [
+              { type: 'single', question: '以下哪个是Python的合法变量名？', options: ['2name', 'my-name', '_myName', 'class'], correct: 2 },
+              { type: 'single', question: 'type(3.14)的结果是？', options: ['<class int>', '<class float>', '<class str>', '<class bool>'], correct: 1 },
+              { type: 'fill', question: '使用______()函数可以获取变量的数据类型。', answer: 'type' }
+            ]
+          },
+          {
+            name: '运算符与表达式',
+            knowledge: 'Python支持算术运算符(+、-、*、/、//、%、**)、比较运算符(==、!=、>、<、>=、<=)和逻辑运算符(and、or、not)。',
+            questions: [
+              { type: 'single', question: '10 // 3 的结果是？', options: ['3.33', '3', '4', '1'], correct: 1 },
+              { type: 'single', question: '2 ** 3 的结果是？', options: ['6', '8', '9', '5'], correct: 1 },
+              { type: 'judge', question: 'and运算符只要有一个为True就为True。', correct: false }
+            ]
+          },
+          {
+            name: '条件语句',
+            knowledge: 'if-elif-else用于条件判断。注意缩进和冒号的使用。',
+            questions: [
+              { type: 'single', question: '以下哪个是Python条件语句的正确语法？', options: ['if x > 0:', 'if (x > 0)', 'if x > 0 then', 'if x > 0;'], correct: 0 },
+              { type: 'code', question: '编写代码：判断一个数是正数、负数还是零。', template: 'num = 5\n# 请编写代码\n' },
+              { type: 'fill', question: 'elif是else if的缩写，用于______条件判断。', answer: '多个' }
+            ]
+          },
+          {
+            name: '循环结构',
+            knowledge: 'for循环用于遍历序列，while循环用于条件循环。break跳出循环，continue跳过当前迭代。',
+            questions: [
+              { type: 'single', question: 'range(5)生成的序列是？', options: ['1-5', '0-4', '0-5', '1-4'], correct: 1 },
+              { type: 'code', question: '使用for循环计算1到100的和。', template: 'total = 0\n# 请编写代码\nprint(total)' },
+              { type: 'judge', question: 'break语句会跳过当前迭代，继续下一次循环。', correct: false }
+            ]
+          }
+        ]
+      },
+      'sql-basic': {
+        title: '🗄️ 数据库基础闯关',
+        levels: [
+          {
+            name: 'SQL基础语法',
+            knowledge: 'SQL是结构化查询语言，用于管理关系型数据库。基本操作包括SELECT(查询)、INSERT(插入)、UPDATE(更新)、DELETE(删除)。',
+            questions: [
+              { type: 'single', question: '查询表中所有数据的语句是？', options: ['SELECT ALL', 'SELECT *', 'GET ALL', 'SHOW *'], correct: 1 },
+              { type: 'single', question: '以下哪个用于添加新数据？', options: ['SELECT', 'UPDATE', 'INSERT', 'DELETE'], correct: 2 },
+              { type: 'fill', question: '______语句用于删除表中的数据。', answer: 'DELETE' }
+            ]
+          },
+          {
+            name: '条件查询',
+            knowledge: 'WHERE子句用于筛选数据，支持比较运算符、逻辑运算符(AND、OR、NOT)、IN、BETWEEN、LIKE等。',
+            questions: [
+              { type: 'single', question: '查询年龄大于18且小于30的语句是？', options: ['WHERE age > 18 AND age < 30', 'WHERE age > 18 OR age < 30', 'WHERE age BETWEEN 18 AND 30', 'WHERE age IN (18, 30)'], correct: 0 },
+              { type: 'single', question: 'LIKE "%张%" 匹配的是？', options: ['姓张的人', '名字包含张', '名字以张开头', '名字以张结尾'], correct: 1 },
+              { type: 'code', question: '编写SQL：查询2024年1月1日之后入职的员工。', template: '-- 表: employees (id, name, hire_date)\n' }
+            ]
+          },
+          {
+            name: '聚合与分组',
+            knowledge: '聚合函数包括COUNT(计数)、SUM(求和)、AVG(平均值)、MAX(最大值)、MIN(最小值)。GROUP BY用于分组，HAVING用于筛选分组。',
+            questions: [
+              { type: 'single', question: '计算平均值的函数是？', options: ['AVG()', 'AVERAGE()', 'MEAN()', 'MEDIAN()'], correct: 0 },
+              { type: 'single', question: 'GROUP BY通常和哪个子句配合使用？', options: ['WHERE', 'HAVING', 'ORDER BY', 'LIMIT'], correct: 1 },
+              { type: 'code', question: '编写SQL：按部门统计员工人数和平均工资。', template: '-- 表: employees (id, name, dept, salary)\n' }
+            ]
+          }
+        ]
+      }
+    };
+
+    let pathQuizState = {
+      currentLevel: 0,
+      currentQuestion: 0,
+      answers: {},
+      completed: false
+    };
+
+    function openPathQuiz(quizType) {
+      const quiz = pathQuizData[quizType];
+      if (!quiz) {
+        alert('该闯关模式即将上线，敬请期待！');
+        return;
+      }
+      
+      pathQuizState = {
+        quizType: quizType,
+        currentLevel: 0,
+        currentQuestion: 0,
+        answers: {},
+        completed: false
+      };
+      
+      document.getElementById('pathQuizTitle').textContent = quiz.title;
+      renderPathQuiz();
+      document.getElementById('pathQuizModal').classList.add('active');
+    }
+
+    function closePathQuiz() {
+      document.getElementById('pathQuizModal').classList.remove('active');
+    }
+
+    function renderPathQuiz() {
+      const body = document.getElementById('pathQuizBody');
+      const quiz = pathQuizData[pathQuizState.quizType];
+      const level = quiz.levels[pathQuizState.currentLevel];
+      
+      if (pathQuizState.completed) {
+        body.innerHTML = `
+          <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+            <h3 style="color: var(--pink-deep); margin-bottom: 16px;">恭喜完成本关！</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">你已掌握 ${level.name} 的知识</p>
+            <button class="exam-btn exam-btn-next" onclick="closePathQuiz()">继续学习</button>
+          </div>
+        `;
+        return;
+      }
+
+      // 显示知识点
+      if (pathQuizState.currentQuestion === 0 && !pathQuizState.answers[0]) {
+        body.innerHTML = `
+          <div style="padding: 20px;">
+            <div style="background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,240,102,0.1)); padding: 24px; border-radius: 16px; margin-bottom: 24px;">
+              <h4 style="color: var(--pink-deep); margin-bottom: 12px;">📚 第 ${pathQuizState.currentLevel + 1} 关：${level.name}</h4>
+              <p style="line-height: 1.8; color: var(--text-primary);">${level.knowledge}</p>
+            </div>
+            <button class="exam-btn exam-btn-next" onclick="startPathQuestions()" style="width: 100%;">开始答题</button>
+          </div>
+        `;
+        return;
+      }
+
+      const q = level.questions[pathQuizState.currentQuestion];
+      let questionHTML = `
+        <div style="padding: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">第 ${pathQuizState.currentLevel + 1} 关 - 题目 ${pathQuizState.currentQuestion + 1}/${level.questions.length}</span>
+            <div style="display: flex; gap: 4px;">
+              ${level.questions.map((_, i) => `
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: ${i === pathQuizState.currentQuestion ? 'var(--pink-deep)' : pathQuizState.answers[i] !== undefined ? '#90EE90' : '#e0e0e0'};"></div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="exam-question">
+            <h4>${q.question}</h4>
+      `;
+
+      if (q.type === 'single') {
+        questionHTML += `<div class="exam-options">`;
+        q.options.forEach((opt, i) => {
+          questionHTML += `
+            <div class="exam-option" onclick="selectPathAnswer(${i})">
+              <input type="radio" name="pathAnswer">
+              <label>${String.fromCharCode(65 + i)}. ${opt}</label>
+            </div>
+          `;
+        });
+        questionHTML += `</div>`;
+      } else if (q.type === 'fill') {
+        questionHTML += `
+          <input type="text" id="pathFillAnswer" placeholder="请输入答案" 
+            style="padding: 12px 16px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; width: 100%; font-size: 1rem; margin-top: 12px;">
+        `;
+      } else if (q.type === 'judge') {
+        questionHTML += `
+          <div class="exam-options">
+            <div class="exam-option" onclick="selectPathAnswer(true)">
+              <input type="radio" name="pathAnswer">
+              <label>正确</label>
+            </div>
+            <div class="exam-option" onclick="selectPathAnswer(false)">
+              <input type="radio" name="pathAnswer">
+              <label>错误</label>
+            </div>
+          </div>
+        `;
+      } else if (q.type === 'code') {
+        questionHTML += `
+          <textarea id="pathCodeAnswer" rows="6" placeholder="请编写代码..." 
+            style="padding: 12px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; width: 100%; font-family: monospace; font-size: 0.9rem; margin-top: 12px;">${q.template || ''}</textarea>
+        `;
+      }
+
+      questionHTML += `
+          </div>
+          <div class="exam-navigation">
+            <button class="exam-btn exam-btn-prev" ${pathQuizState.currentQuestion === 0 ? 'disabled' : ''} onclick="prevPathQuestion()">上一题</button>
+            <button class="exam-btn exam-btn-next" onclick="nextPathQuestion()">${pathQuizState.currentQuestion === level.questions.length - 1 ? '完成' : '下一题'}</button>
+          </div>
+        </div>
+      `;
+
+      body.innerHTML = questionHTML;
+    }
+
+    function startPathQuestions() {
+      renderPathQuiz();
+    }
+
+    function selectPathAnswer(answer) {
+      pathQuizState.answers[pathQuizState.currentQuestion] = answer;
+      renderPathQuiz();
+    }
+
+    function nextPathQuestion() {
+      const quiz = pathQuizData[pathQuizState.quizType];
+      const level = quiz.levels[pathQuizState.currentLevel];
+      const q = level.questions[pathQuizState.currentQuestion];
+      
+      // 保存答案
+      if (q.type === 'fill') {
+        const input = document.getElementById('pathFillAnswer');
+        if (input) pathQuizState.answers[pathQuizState.currentQuestion] = input.value.trim();
+      } else if (q.type === 'code') {
+        const textarea = document.getElementById('pathCodeAnswer');
+        if (textarea) pathQuizState.answers[pathQuizState.currentQuestion] = textarea.value.trim();
+      }
+
+      if (pathQuizState.currentQuestion < level.questions.length - 1) {
+        pathQuizState.currentQuestion++;
+        renderPathQuiz();
+      } else {
+        // 检查答案
+        let correct = 0;
+        level.questions.forEach((q, i) => {
+          const answer = pathQuizState.answers[i];
+          if (q.type === 'single' && answer === q.correct) correct++;
+          else if (q.type === 'fill' && answer && answer.toLowerCase() === q.answer.toLowerCase()) correct++;
+          else if (q.type === 'judge' && answer === q.correct) correct++;
+          else if (q.type === 'code' && answer && answer.length > 5) correct++;
+        });
+
+        if (correct >= Math.ceil(level.questions.length * 0.6)) {
+          pathQuizState.completed = true;
+        } else {
+          alert(`需要答对至少 ${Math.ceil(level.questions.length * 0.6)} 题才能过关，你答对了 ${correct} 题。请重新学习知识点后再试！`);
+          pathQuizState.currentQuestion = 0;
+          pathQuizState.answers = {};
+        }
+        renderPathQuiz();
+      }
+    }
+
+    function prevPathQuestion() {
+      if (pathQuizState.currentQuestion > 0) {
+        pathQuizState.currentQuestion--;
+        renderPathQuiz();
+      }
+    }
+
+    // ========== Project Challenge ==========
+    function openProjectChallenge() {
+      const body = document.getElementById('projectBody');
+      body.innerHTML = `
+        <div style="padding: 20px;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🚀</div>
+            <h3 style="color: var(--pink-deep);">实战项目挑战</h3>
+            <p style="color: var(--text-secondary);">选择项目开始你的数据分析实战之旅</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="level-course" onclick="startProject('sales')">
+              <div class="course-icon">📈</div>
+              <div class="course-info">
+                <h4>项目一：销售数据分析</h4>
+                <p>分析电商销售数据，找出热销产品和销售趋势</p>
+              </div>
+              <button class="start-btn">开始</button>
+            </div>
+            <div class="level-course" onclick="startProject('user')">
+              <div class="course-icon">👥</div>
+              <div class="course-info">
+                <h4>项目二：用户行为分析</h4>
+                <p>分析用户行为数据，构建用户画像</p>
+              </div>
+              <button class="start-btn">开始</button>
+            </div>
+            <div class="level-course" onclick="startProject('inventory')">
+              <div class="course-icon">📦</div>
+              <div class="course-info">
+                <h4>项目三：库存优化分析</h4>
+                <p>优化库存管理，降低库存成本</p>
+              </div>
+              <button class="start-btn">开始</button>
+            </div>
+            <div class="level-course" onclick="startProject('finance')">
+              <div class="course-icon">💹</div>
+              <div class="course-info">
+                <h4>项目四：财务报表自动化</h4>
+                <p>自动化生成财务报表和分析</p>
+              </div>
+              <button class="start-btn">开始</button>
+            </div>
+            <div class="level-course" onclick="startProject('comprehensive')">
+              <div class="course-icon">🎯</div>
+              <div class="course-info">
+                <h4>项目五：综合业务分析</h4>
+                <p>整合多源数据，输出业务洞察报告</p>
+              </div>
+              <button class="start-btn">开始</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('projectModal').classList.add('active');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.remove('active');
+    }
+
+    function startProject(projectType) {
+      const projects = {
+        'sales': {
+          title: '销售数据分析项目',
+          description: '你是一家电商公司的数据分析师，需要分析过去一年的销售数据。',
+          tasks: [
+            '使用Python读取sales_data.csv文件',
+            '计算月度销售额和同比增长率',
+            '找出销售额Top 10的产品',
+            '分析不同地区的销售分布',
+            '使用Matplotlib制作销售趋势图'
+          ],
+          codeTemplate: `import pandas as pd\nimport matplotlib.pyplot as plt\n\n# 1. 读取数据\ndf = pd.read_csv('sales_data.csv')\n\n# 2. 数据清洗和预处理\n# 请在此编写代码\n\n# 3. 计算月度销售额\n# 请在此编写代码\n\n# 4. 找出热销产品\n# 请在此编写代码\n\n# 5. 可视化\n# 请在此编写代码\n\nplt.show()`
+        },
+        'user': {
+          title: '用户行为分析项目',
+          description: '分析用户在APP上的行为数据，了解用户偏好。',
+          tasks: [
+            '统计日活跃用户(DAU)和月活跃用户(MAU)',
+            '计算用户留存率',
+            '分析用户使用时段分布',
+            '构建用户RFM模型',
+            '制作用户画像可视化'
+          ],
+          codeTemplate: `import pandas as pd\nimport numpy as np\n\n# 读取用户行为数据\nuser_data = pd.read_csv('user_behavior.csv')\n\n# 请完成以下分析任务\n# 1. 计算DAU和MAU\n\n# 2. 计算留存率\n\n# 3. 分析使用时段\n\n# 4. RFM模型\n\n# 5. 可视化`
+        }
+      };
+
+      const project = projects[projectType];
+      if (!project) {
+        alert('项目详情正在完善中，敬请期待！');
+        return;
+      }
+
+      const body = document.getElementById('projectBody');
+      body.innerHTML = `
+        <div style="padding: 20px;">
+          <h3 style="color: var(--pink-deep); margin-bottom: 12px;">${project.title}</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 20px;">${project.description}</p>
+          <div style="background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,240,102,0.1)); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px;">📋 任务清单</h4>
+            <ul style="list-style: none; padding: 0;">
+              ${project.tasks.map((task, i) => `
+                <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,182,193,0.1);">
+                  <input type="checkbox" id="task${i}" style="margin-right: 8px; accent-color: var(--pink-deep);">
+                  <label for="task${i}">${task}</label>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          <div style="margin-bottom: 16px;">
+            <h4 style="margin-bottom: 8px;">💻 代码编辑器</h4>
+            <textarea id="projectCode" rows="15" style="width: 100%; padding: 16px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; font-family: monospace; font-size: 0.9rem;">${project.codeTemplate}</textarea>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button class="exam-btn exam-btn-prev" onclick="openProjectChallenge()">返回项目列表</button>
+            <button class="exam-btn exam-btn-next" onclick="runProjectCode()">运行代码</button>
+            <button class="exam-btn exam-btn-submit" onclick="submitProject()">提交项目</button>
+          </div>
+          <div id="projectOutput" style="margin-top: 20px; padding: 16px; background: #f8f8f8; border-radius: 8px; display: none;">
+            <h4 style="margin-bottom: 8px;">输出结果</h4>
+            <pre id="projectOutputText" style="margin: 0; font-family: monospace; font-size: 0.85rem;"></pre>
+          </div>
+        </div>
+      `;
+    }
+
+    function runProjectCode() {
+      const code = document.getElementById('projectCode').value;
+      document.getElementById('projectOutput').style.display = 'block';
+      document.getElementById('projectOutputText').textContent = '代码运行中...\\n(实际环境中将使用Pyodide执行Python代码)';
+    }
+
+    function submitProject() {
+      alert('项目已提交！老师将对你的代码进行评审。');
+      closeProjectModal();
+    }
+
+    // ========== Case Analysis ==========
+    function openCaseAnalysis() {
+      const body = document.getElementById('caseBody');
+      body.innerHTML = `
+        <div style="padding: 20px;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">📊</div>
+            <h3 style="color: var(--pink-deep);">案例分析挑战</h3>
+            <p style="color: var(--text-secondary);">真实企业案例，锻炼你的商业分析思维</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="level-course" onclick="startCase('retail')">
+              <div class="course-icon">🛒</div>
+              <div class="course-info">
+                <h4>案例一：零售门店业绩下滑分析</h4>
+                <p>某连锁超市连续3个月业绩下滑，找出原因并提出解决方案</p>
+              </div>
+              <button class="start-btn">分析</button>
+            </div>
+            <div class="level-course" onclick="startCase('supply')">
+              <div class="course-icon">🚛</div>
+              <div class="course-info">
+                <h4>案例二：供应链成本优化</h4>
+                <p>分析供应链各环节成本，制定优化策略</p>
+              </div>
+              <button class="start-btn">分析</button>
+            </div>
+            <div class="level-course" onclick="startCase('finance')">
+              <div class="course-icon">📉</div>
+              <div class="course-info">
+                <h4>案例三：企业财务风险预警</h4>
+                <p>通过财务指标分析，识别企业潜在风险</p>
+              </div>
+              <button class="start-btn">分析</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('caseModal').classList.add('active');
+    }
+
+    function closeCaseModal() {
+      document.getElementById('caseModal').classList.remove('active');
+    }
+
+    function startCase(caseType) {
+      const cases = {
+        'retail': {
+          title: '零售门店业绩下滑分析',
+          background: '某连锁超市在华南地区有50家门店，最近3个月整体销售额同比下降15%，客流量下降20%。公司需要你找出业绩下滑的原因并提出改进建议。',
+          data: {
+            '门店销售数据': '各门店月度销售额、客流量、客单价',
+            '商品数据': '各类目销售额、库存周转率',
+            '会员数据': '会员数量、复购率、消费频次',
+            '竞品数据': '周边竞争对手开业情况、促销活动'
+          },
+          questions: [
+            '请分析业绩下滑的主要原因（至少3个）',
+            '哪些门店受影响最严重？为什么？',
+            '哪些商品类目表现最差？',
+            '你会提出什么改进建议？'
+          ]
+        }
+      };
+
+      const caseData = cases[caseType];
+      if (!caseData) {
+        alert('案例详情正在完善中，敬请期待！');
+        return;
+      }
+
+      const body = document.getElementById('caseBody');
+      body.innerHTML = `
+        <div style="padding: 20px;">
+          <h3 style="color: var(--pink-deep); margin-bottom: 16px;">${caseData.title}</h3>
+          <div style="background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,240,102,0.1)); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px;">📋 案例背景</h4>
+            <p style="line-height: 1.8;">${caseData.background}</p>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px;">📊 可用数据</h4>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+              ${Object.entries(caseData.data).map(([key, value]) => `
+                <div style="padding: 12px; background: #f8f8f8; border-radius: 8px;">
+                  <strong style="color: var(--pink-deep);">${key}</strong>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">${value}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px;">❓ 分析问题</h4>
+            <ol style="padding-left: 20px; line-height: 2;">
+              ${caseData.questions.map(q => `<li>${q}</li>`).join('')}
+            </ol>
+          </div>
+          <div style="margin-bottom: 16px;">
+            <h4 style="margin-bottom: 8px;">✍️ 你的分析</h4>
+            <textarea id="caseAnalysis" rows="10" style="width: 100%; padding: 16px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; font-size: 0.95rem;" placeholder="请在此输入你的案例分析..."></textarea>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button class="exam-btn exam-btn-prev" onclick="openCaseAnalysis()">返回案例列表</button>
+            <button class="exam-btn exam-btn-next" onclick="submitCase()">提交分析</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function submitCase() {
+      alert('案例分析已提交！你可以查看参考答案对比学习。');
+      closeCaseModal();
     }
 
     // ========== Navbar & Scroll ==========
@@ -4982,9 +6537,21 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
     });
 
     // Close modals on overlay click
-    ['courseDetailModal', 'learningModal', 'chapterQuizModal'].forEach(id => {
+    ['courseDetailModal', 'learningModal', 'chapterQuizModal', 'finalExamModal', 'pathQuizModal', 'projectModal', 'caseModal'].forEach(id => {
       document.getElementById(id).addEventListener('click', function(e) {
-        if (e.target === this) this.classList.remove('active');
+        if (e.target === this) {
+          if (id === 'finalExamModal') {
+            closeFinalExam();
+          } else if (id === 'pathQuizModal') {
+            closePathQuiz();
+          } else if (id === 'projectModal') {
+            closeProjectModal();
+          } else if (id === 'caseModal') {
+            closeCaseModal();
+          } else {
+            this.classList.remove('active');
+          }
+        }
       });
     });
 
