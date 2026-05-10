@@ -113,14 +113,14 @@
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 24px;
       list-style: none;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       transition: var(--transition);
       position: relative;
@@ -271,7 +271,6 @@
       border: 1px solid rgba(255, 182, 193, 0.1);
     }
 
-    /* Gradient top bar on hover */
     .course-card::before {
       content: '';
       position: absolute;
@@ -355,7 +354,6 @@
       color: #C4A000;
     }
 
-    /* ========== Expandable Course Chapters ========== */
     .card-toggle {
       display: flex;
       align-items: center;
@@ -499,6 +497,402 @@
       line-height: 1.5;
     }
 
+    /* ========== Practice Section ========== */
+    .practice-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .practice-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 182, 193, 0.1);
+      cursor: pointer;
+    }
+
+    .practice-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .practice-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+
+    .practice-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .practice-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ========== Quiz Modal ========== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: var(--pink);
+      color: var(--white);
+    }
+
+    .modal-body {
+      padding: 28px;
+    }
+
+    /* ========== Quiz Styles ========== */
+    .quiz-timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--pink-deep);
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: var(--pink-light);
+      border-radius: 50px;
+    }
+
+    .quiz-timer.warning {
+      background: #FFE4E1;
+      color: #FF6B6B;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .quiz-progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 182, 193, 0.3);
+      transition: var(--transition);
+    }
+
+    .progress-dot.active {
+      background: var(--pink);
+      transform: scale(1.2);
+    }
+
+    .progress-dot.correct {
+      background: #90EE90;
+    }
+
+    .progress-dot.wrong {
+      background: #FFB6C1;
+    }
+
+    .quiz-question {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-option {
+      padding: 16px 20px;
+      background: var(--pink-light);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      text-align: left;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--pink);
+      transform: translateX(4px);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--pink-deep);
+      background: rgba(255, 182, 193, 0.2);
+    }
+
+    .quiz-option.correct {
+      border-color: #90EE90;
+      background: rgba(144, 238, 144, 0.2);
+    }
+
+    .quiz-option.wrong {
+      border-color: #FFB6C1;
+      background: rgba(255, 182, 193, 0.3);
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 182, 193, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--pink-light);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--pink);
+      color: var(--white);
+    }
+
+    .quiz-result {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .result-score {
+      font-size: 4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--pink-deep), var(--yellow-deep));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .result-message {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .result-detail {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    /* ========== Code Editor Styles ========== */
+    .code-editor-container {
+      background: #1E1E1E;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .code-editor-header {
+      background: #2D2D2D;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .code-dot.red { background: #FF5F56; }
+    .code-dot.yellow { background: #FFBD2E; }
+    .code-dot.green { background: #27C93F; }
+
+    .code-editor {
+      width: 100%;
+      min-height: 200px;
+      max-height: 300px;
+      background: #1E1E1E;
+      color: #D4D4D4;
+      border: none;
+      padding: 16px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+    }
+
+    .code-output {
+      background: #252526;
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      min-height: 100px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #D4D4D4;
+      white-space: pre-wrap;
+    }
+
+    .code-output.error {
+      color: #F48771;
+    }
+
+    .code-output.success {
+      color: #89D185;
+    }
+
+    .code-hint {
+      background: var(--yellow-light);
+      border-left: 4px solid var(--yellow-deep);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .code-hint strong {
+      color: var(--text-primary);
+    }
+
+    .loading-pyodide {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+
+    .loading-pyodide .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--pink-light);
+      border-top-color: var(--pink-deep);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* ========== Footer ========== */
     .footer {
       position: relative;
@@ -605,22 +999,30 @@
         font-size: 1.8rem;
       }
 
-      .courses-grid {
+      .courses-grid, .practice-grid {
         grid-template-columns: 1fr;
       }
 
       .nav-links {
-        gap: 20px;
+        gap: 16px;
       }
 
       .nav-links a {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
       }
 
       .footer-links {
         flex-direction: column;
         align-items: center;
         gap: 12px;
+      }
+
+      .modal-content {
+        max-height: 95vh;
+      }
+
+      .quiz-actions {
+        flex-direction: column;
       }
     }
 
@@ -636,6 +1038,14 @@
       .path-grid {
         grid-template-columns: 1fr;
       }
+
+      .modal-header {
+        padding: 20px;
+      }
+
+      .modal-body {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -648,6 +1058,7 @@
       <ul class="nav-links">
         <li><a href="#hero">首页</a></li>
         <li><a href="#courses">课程</a></li>
+        <li><a href="#practice">练习</a></li>
         <li><a href="#path">学习路径</a></li>
         <li><a href="#contact">联系</a></li>
       </ul>
@@ -839,6 +1250,27 @@
     </div>
   </section>
 
+  <!-- Practice Section -->
+  <section class="practice-section" id="practice">
+    <div class="section-header">
+      <h2>🎯 期末练习</h2>
+      <p>通过答题挑战和代码实践来检验你的学习成果</p>
+    </div>
+
+    <div class="practice-grid">
+      <div class="practice-card" onclick="openQuiz()">
+        <div class="practice-icon">📝</div>
+        <h3>知识答题挑战</h3>
+        <p>限时答题，检验对课程知识的掌握程度，挑战你的反应速度！</p>
+      </div>
+      <div class="practice-card" onclick="openCodeEditor()">
+        <div class="practice-icon">💻</div>
+        <h3>代码编程实践</h3>
+        <p>在线编写和运行Python代码，实时查看执行结果，提升编程能力！</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Learning Path Section -->
   <section class="path-section" id="path">
     <div class="section-header">
@@ -892,7 +1324,303 @@
   <!-- Scroll to Top Button -->
   <button class="scroll-top" id="scrollTopBtn" title="回到顶部">↑</button>
 
+  <!-- Quiz Modal -->
+  <div class="modal-overlay" id="quizModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📝 知识答题挑战</h3>
+        <button class="modal-close" onclick="closeQuiz()">×</button>
+      </div>
+      <div class="modal-body" id="quizBody">
+        <!-- Quiz content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Code Editor Modal -->
+  <div class="modal-overlay" id="codeModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3>💻 Python 代码编辑器</h3>
+        <button class="modal-close" onclick="closeCodeEditor()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="code-hint">
+          <strong>💡 提示：</strong>在下方编辑器中编写 Python 代码，点击"运行代码"按钮查看执行结果。支持基础的 Python 语法和常用库。
+        </div>
+        <div class="code-editor-container">
+          <div class="code-editor-header">
+            <div class="code-dot red"></div>
+            <div class="code-dot yellow"></div>
+            <div class="code-dot green"></div>
+            <span style="color: #888; margin-left: 8px; font-size: 0.85rem;">main.py</span>
+          </div>
+          <textarea class="code-editor" id="codeEditor" placeholder="# 在这里编写你的 Python 代码
+print('Hello, World!')
+
+# 示例：计算1到10的和
+total = 0
+for i in range(1, 11):
+    total += i
+print(f'1到10的和是: {total}')"># 在这里编写你的 Python 代码
+print('Hello, World!')
+
+# 示例：计算1到10的和
+total = 0
+for i in range(1, 11):
+    total += i
+print(f'1到10的和是: {total}')</textarea>
+        </div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="runPythonCode()">▶ 运行代码</button>
+          <button class="btn btn-secondary" onclick="clearCode()">🗑 清空代码</button>
+        </div>
+        <div style="margin-top: 16px;">
+          <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">📤 输出结果：</div>
+          <div class="code-output" id="codeOutput">点击"运行代码"按钮查看执行结果...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pyodide Script -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  
   <script>
+    // ========== Quiz Data ==========
+    const quizQuestions = [
+      {
+        question: "在 Python 中，以下哪个函数用于获取列表的长度？",
+        options: ["size()", "length()", "len()", "count()"],
+        correct: 2
+      },
+      {
+        question: "Pandas 中用于读取 CSV 文件的函数是？",
+        options: ["read_csv()", "load_csv()", "import_csv()", "open_csv()"],
+        correct: 0
+      },
+      {
+        question: "在 SQL 中，用于查询数据的关键字是？",
+        options: ["INSERT", "UPDATE", "SELECT", "DELETE"],
+        correct: 2
+      },
+      {
+        question: "以下哪个不是 Python 的基本数据类型？",
+        options: ["int", "str", "array", "float"],
+        correct: 2
+      },
+      {
+        question: "在数据分析中，用于展示数据分布情况的图表是？",
+        options: ["折线图", "饼图", "直方图", "散点图"],
+        correct: 2
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let quizTimer = null;
+    let timeLeft = 60;
+    let answers = [];
+
+    // ========== Quiz Functions ==========
+    function openQuiz() {
+      document.getElementById('quizModal').classList.add('active');
+      startQuiz();
+    }
+
+    function closeQuiz() {
+      document.getElementById('quizModal').classList.remove('active');
+      clearInterval(quizTimer);
+    }
+
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      timeLeft = 60;
+      answers = [];
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const quizBody = document.getElementById('quizBody');
+      const question = quizQuestions[currentQuestion];
+      
+      let progressHTML = '<div class="quiz-progress">';
+      for (let i = 0; i < quizQuestions.length; i++) {
+        let className = 'progress-dot';
+        if (i < currentQuestion) {
+          className += answers[i] === quizQuestions[i].correct ? ' correct' : ' wrong';
+        } else if (i === currentQuestion) {
+          className += ' active';
+        }
+        progressHTML += `<div class="${className}"></div>`;
+      }
+      progressHTML += '</div>';
+
+      let optionsHTML = '<div class="quiz-options">';
+      question.options.forEach((option, index) => {
+        optionsHTML += `<button class="quiz-option" onclick="selectAnswer(${index})">${option}</button>`;
+      });
+      optionsHTML += '</div>';
+
+      quizBody.innerHTML = `
+        <div class="quiz-timer" id="quizTimer">⏱️ ${timeLeft}秒</div>
+        ${progressHTML}
+        <div class="quiz-question">${currentQuestion + 1}. ${question.question}</div>
+        ${optionsHTML}
+        <div class="quiz-actions">
+          <button class="btn btn-secondary" onclick="closeQuiz()">退出</button>
+        </div>
+      `;
+
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(quizTimer);
+      quizTimer = setInterval(() => {
+        timeLeft--;
+        const timerEl = document.getElementById('quizTimer');
+        if (timerEl) {
+          timerEl.textContent = `⏱️ ${timeLeft}秒`;
+          if (timeLeft <= 10) {
+            timerEl.classList.add('warning');
+          }
+        }
+        if (timeLeft <= 0) {
+          selectAnswer(-1);
+        }
+      }, 1000);
+    }
+
+    function selectAnswer(answerIndex) {
+      clearInterval(quizTimer);
+      answers.push(answerIndex);
+      
+      if (answerIndex === quizQuestions[currentQuestion].correct) {
+        score++;
+      }
+
+      // Show correct/wrong feedback
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach((opt, idx) => {
+        if (idx === quizQuestions[currentQuestion].correct) {
+          opt.classList.add('correct');
+        } else if (idx === answerIndex && answerIndex !== quizQuestions[currentQuestion].correct) {
+          opt.classList.add('wrong');
+        }
+      });
+
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < quizQuestions.length) {
+          timeLeft = 60;
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }, 1000);
+    }
+
+    function showResult() {
+      const quizBody = document.getElementById('quizBody');
+      const percentage = Math.round((score / quizQuestions.length) * 100);
+      let message = '';
+      
+      if (percentage >= 80) {
+        message = '🎉 太棒了！你对知识掌握得很好！';
+      } else if (percentage >= 60) {
+        message = '👍 不错！继续加油！';
+      } else {
+        message = '💪 还需要多加练习哦！';
+      }
+
+      quizBody.innerHTML = `
+        <div class="quiz-result">
+          <div class="result-score">${percentage}%</div>
+          <div class="result-message">${message}</div>
+          <div class="result-detail">答对 ${score}/${quizQuestions.length} 题</div>
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="startQuiz()">🔄 再试一次</button>
+            <button class="btn btn-secondary" onclick="closeQuiz()">关闭</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ========== Code Editor Functions ==========
+    let pyodide = null;
+    let pyodideLoading = false;
+
+    async function initPyodide() {
+      if (pyodide) return;
+      if (pyodideLoading) {
+        while (pyodideLoading) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        return;
+      }
+      
+      pyodideLoading = true;
+      const output = document.getElementById('codeOutput');
+      output.innerHTML = '<div class="loading-pyodide"><div class="spinner"></div>正在加载 Python 运行环境...</div>';
+      
+      try {
+        pyodide = await loadPyodide();
+        output.textContent = 'Python 环境已就绪！点击"运行代码"开始编程。';
+      } catch (error) {
+        output.innerHTML = '<span style="color: #F48771;">加载失败，请刷新页面重试</span>';
+      } finally {
+        pyodideLoading = false;
+      }
+    }
+
+    function openCodeEditor() {
+      document.getElementById('codeModal').classList.add('active');
+      initPyodide();
+    }
+
+    function closeCodeEditor() {
+      document.getElementById('codeModal').classList.remove('active');
+    }
+
+    async function runPythonCode() {
+      const code = document.getElementById('codeEditor').value;
+      const output = document.getElementById('codeOutput');
+      
+      if (!pyodide) {
+        output.innerHTML = '<span style="color: #F48771;">Python 环境还在加载中，请稍候...</span>';
+        return;
+      }
+
+      output.className = 'code-output';
+      output.textContent = '运行中...';
+
+      try {
+        // Redirect stdout to capture output
+        pyodide.setStdout({ batched: (text) => {
+          output.textContent += text;
+        }});
+        
+        output.textContent = '';
+        await pyodide.runPythonAsync(code);
+        
+        if (output.textContent === '') {
+          output.textContent = '(代码执行完成，无输出)';
+        }
+        output.classList.add('success');
+      } catch (error) {
+        output.textContent = error.message;
+        output.classList.add('error');
+      }
+    }
+
+    function clearCode() {
+      document.getElementById('codeEditor').value = '';
+      document.getElementById('codeOutput').textContent = '点击"运行代码"按钮查看执行结果...';
+      document.getElementById('codeOutput').className = 'code-output';
+    }
+
     // ========== Toggle Course Chapters ==========
     function toggleChapters(btn) {
       btn.classList.toggle('active');
@@ -931,6 +1659,14 @@
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
+    });
+
+    // ========== Close modals on overlay click ==========
+    document.getElementById('quizModal').addEventListener('click', function(e) {
+      if (e.target === this) closeQuiz();
+    });
+    document.getElementById('codeModal').addEventListener('click', function(e) {
+      if (e.target === this) closeCodeEditor();
     });
   </script>
 
