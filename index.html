@@ -31,9 +31,7 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -71,7 +69,7 @@
       pointer-events: none;
     }
 
-    /* ========== Navigation (Glassmorphism) ========== */
+    /* ========== Navigation ========== */
     .navbar {
       position: fixed;
       top: 0;
@@ -85,9 +83,7 @@
       transition: var(--transition);
     }
 
-    .navbar.scrolled {
-      box-shadow: 0 2px 20px rgba(255, 182, 193, 0.15);
-    }
+    .navbar.scrolled { box-shadow: 0 2px 20px rgba(255, 182, 193, 0.15); }
 
     .nav-container {
       max-width: 1100px;
@@ -107,9 +103,7 @@
       letter-spacing: 0.5px;
     }
 
-    .nav-logo span {
-      color: var(--text-primary);
-    }
+    .nav-logo span { color: var(--text-primary); }
 
     .nav-links {
       display: flex;
@@ -138,13 +132,8 @@
       transition: width 0.3s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--pink-deep);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover { color: var(--pink-deep); }
+    .nav-links a:hover::after { width: 100%; }
 
     /* ========== Hero Section ========== */
     .hero {
@@ -207,9 +196,7 @@
       margin-bottom: 24px;
     }
 
-    .stat-item {
-      text-align: center;
-    }
+    .stat-item { text-align: center; }
 
     .stat-number {
       font-size: 2.2rem;
@@ -226,7 +213,7 @@
       margin-top: 4px;
     }
 
-    /* ========== Section Title ========== */
+    /* ========== Section ========== */
     .section {
       position: relative;
       z-index: 1;
@@ -252,7 +239,7 @@
       color: var(--text-secondary);
     }
 
-    /* ========== Course Cards Grid ========== */
+    /* ========== Course Cards ========== */
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -288,9 +275,7 @@
       box-shadow: var(--shadow-hover);
     }
 
-    .course-card:hover::before {
-      opacity: 1;
-    }
+    .course-card:hover::before { opacity: 1; }
 
     .card-icon {
       width: 56px;
@@ -303,17 +288,9 @@
       margin-bottom: 20px;
     }
 
-    .card-icon.pink {
-      background: linear-gradient(135deg, #FFE4EC, #FFD1DC);
-    }
-
-    .card-icon.yellow {
-      background: linear-gradient(135deg, #FFF8DC, #FFF0B0);
-    }
-
-    .card-icon.mixed {
-      background: linear-gradient(135deg, #FFE4EC, #FFF3B0);
-    }
+    .card-icon.pink { background: linear-gradient(135deg, #FFE4EC, #FFD1DC); }
+    .card-icon.yellow { background: linear-gradient(135deg, #FFF8DC, #FFF0B0); }
+    .card-icon.mixed { background: linear-gradient(135deg, #FFE4EC, #FFF3B0); }
 
     .course-card h3 {
       font-size: 1.15rem;
@@ -354,147 +331,42 @@
       color: #C4A000;
     }
 
-    .card-toggle {
+    .card-actions {
       display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      color: var(--pink-deep);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .card-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
-      user-select: none;
-      padding: 8px 0 0;
-      border: none;
-      background: none;
       transition: var(--transition);
+      font-family: inherit;
     }
 
-    .card-toggle:hover {
-      color: var(--text-primary);
-    }
-
-    .card-toggle .toggle-icon {
-      display: inline-block;
-      transition: transform 0.3s ease;
-      font-size: 0.7rem;
-    }
-
-    .card-toggle.active .toggle-icon {
-      transform: rotate(180deg);
-    }
-
-    .card-chapters {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-      opacity: 0;
-    }
-
-    .card-chapters.open {
-      max-height: 300px;
-      opacity: 1;
-    }
-
-    .chapters-list {
-      list-style: none;
-      padding: 12px 0 4px;
-      margin: 0;
-    }
-
-    .chapters-list li {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      padding: 5px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      line-height: 1.5;
-    }
-
-    .chapters-list li .check {
-      color: var(--pink-deep);
-      font-size: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    .card-arrow {
-      position: absolute;
-      top: 32px;
-      right: 28px;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--pink-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--pink-deep);
-      font-size: 0.85rem;
-      transition: var(--transition);
-      opacity: 0;
-      transform: translateX(-8px);
-    }
-
-    .course-card:hover .card-arrow {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* ========== Learning Path ========== */
-    .path-section {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-
-    .path-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .path-card {
-      background: var(--white);
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(255, 182, 193, 0.12);
-      transition: var(--transition);
-      border: 1px solid rgba(255, 182, 193, 0.08);
-    }
-
-    .path-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 24px rgba(255, 182, 193, 0.2);
-    }
-
-    .path-step {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    .card-btn-primary {
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin: 0 auto 14px;
     }
 
-    .path-card h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 6px;
+    .card-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
     }
 
-    .path-card p {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
+    .card-btn-secondary {
+      background: var(--pink-light);
+      color: var(--pink-deep);
+    }
+
+    .card-btn-secondary:hover {
+      background: var(--pink);
+      color: var(--white);
     }
 
     /* ========== Practice Section ========== */
@@ -554,7 +426,64 @@
       line-height: 1.6;
     }
 
-    /* ========== Quiz Modal ========== */
+    /* ========== Learning Path ========== */
+    .path-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .path-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(255, 182, 193, 0.12);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 182, 193, 0.08);
+    }
+
+    .path-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 24px rgba(255, 182, 193, 0.2);
+    }
+
+    .path-step {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin: 0 auto 14px;
+    }
+
+    .path-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .path-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ========== Modal Base ========== */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -570,9 +499,7 @@
       padding: 20px;
     }
 
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal-overlay.active { display: flex; }
 
     .modal-content {
       background: var(--white);
@@ -586,14 +513,8 @@
     }
 
     @keyframes modalSlideIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .modal-header {
@@ -602,6 +523,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 10;
     }
 
     .modal-header h3 {
@@ -627,8 +552,178 @@
       color: var(--white);
     }
 
-    .modal-body {
-      padding: 28px;
+    .modal-body { padding: 28px; }
+
+    /* ========== Course Detail Modal ========== */
+    .course-detail-modal { max-width: 900px; }
+
+    .course-detail-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .course-detail-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+    }
+
+    .course-detail-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .course-detail-header .subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .course-detail-header .desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .course-tags-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .course-tag {
+      padding: 8px 20px;
+      background: var(--pink-light);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 182, 193, 0.3);
+    }
+
+    .course-section {
+      margin-bottom: 32px;
+    }
+
+    .course-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--pink-light);
+    }
+
+    .chapter-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .chapter-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--pink-light);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .chapter-item:hover {
+      transform: translateX(4px);
+      background: rgba(255, 182, 193, 0.2);
+    }
+
+    .chapter-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .chapter-item h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .objective-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .objective-card {
+      padding: 20px;
+      background: var(--pink-light);
+      border-radius: var(--radius-sm);
+    }
+
+    .objective-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--pink-deep);
+      margin-bottom: 12px;
+    }
+
+    .objective-card ul {
+      list-style: none;
+    }
+
+    .objective-card li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .objective-card li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--pink-deep);
+    }
+
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    .assessment-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--pink-light);
+      border-radius: var(--radius-sm);
+    }
+
+    .assessment-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .assessment-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
     }
 
     /* ========== Quiz Styles ========== */
@@ -677,13 +772,8 @@
       transform: scale(1.2);
     }
 
-    .progress-dot.correct {
-      background: #90EE90;
-    }
-
-    .progress-dot.wrong {
-      background: #FFB6C1;
-    }
+    .progress-dot.correct { background: #90EE90; }
+    .progress-dot.wrong { background: #FFB6C1; }
 
     .quiz-question {
       font-size: 1.1rem;
@@ -709,6 +799,7 @@
       font-size: 0.95rem;
       color: var(--text-primary);
       text-align: left;
+      font-family: inherit;
     }
 
     .quiz-option:hover {
@@ -796,7 +887,7 @@
       margin-bottom: 28px;
     }
 
-    /* ========== Code Editor Styles ========== */
+    /* ========== Code Editor ========== */
     .code-editor-container {
       background: #1E1E1E;
       border-radius: var(--radius-sm);
@@ -851,13 +942,8 @@
       white-space: pre-wrap;
     }
 
-    .code-output.error {
-      color: #F48771;
-    }
-
-    .code-output.success {
-      color: #89D185;
-    }
+    .code-output.error { color: #F48771; }
+    .code-output.success { color: #89D185; }
 
     .code-hint {
       background: var(--yellow-light);
@@ -869,29 +955,7 @@
       color: var(--text-secondary);
     }
 
-    .code-hint strong {
-      color: var(--text-primary);
-    }
-
-    .loading-pyodide {
-      text-align: center;
-      padding: 40px;
-      color: var(--text-secondary);
-    }
-
-    .loading-pyodide .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--pink-light);
-      border-top-color: var(--pink-deep);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 16px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    .code-hint strong { color: var(--text-primary); }
 
     /* ========== Footer ========== */
     .footer {
@@ -948,11 +1012,9 @@
       opacity: 0.6;
     }
 
-    .footer-copy .heart {
-      color: var(--pink-deep);
-    }
+    .footer-copy .heart { color: var(--pink-deep); }
 
-    /* ========== Scroll to Top Button ========== */
+    /* ========== Scroll to Top ========== */
     .scroll-top {
       position: fixed;
       bottom: 32px;
@@ -987,65 +1049,28 @@
 
     /* ========== Responsive ========== */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .stats {
-        gap: 28px;
-      }
-
-      .stat-number {
-        font-size: 1.8rem;
-      }
-
-      .courses-grid, .practice-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        gap: 16px;
-      }
-
-      .nav-links a {
-        font-size: 0.8rem;
-      }
-
+      .hero h1 { font-size: 2.2rem; }
+      .stats { gap: 28px; }
+      .stat-number { font-size: 1.8rem; }
+      .courses-grid, .practice-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.8rem; }
       .footer-links {
         flex-direction: column;
         align-items: center;
         gap: 12px;
       }
-
-      .modal-content {
-        max-height: 95vh;
-      }
-
-      .quiz-actions {
-        flex-direction: column;
-      }
+      .modal-content { max-height: 95vh; }
+      .quiz-actions { flex-direction: column; }
+      .objective-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
-      .hero {
-        padding: 120px 20px 60px;
-      }
-
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .path-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-header {
-        padding: 20px;
-      }
-
-      .modal-body {
-        padding: 20px;
-      }
+      .hero { padding: 120px 20px 60px; }
+      .hero h1 { font-size: 1.8rem; }
+      .path-grid { grid-template-columns: 1fr; }
+      .modal-header { padding: 20px; }
+      .modal-body { padding: 20px; }
     }
   </style>
 </head>
@@ -1075,7 +1100,6 @@
       作为商务数据分析与应用专业的学生，我致力于掌握数据分析的核心技能，<br>
       后续我会不断补充各课程的详细内容和学习成果。
     </p>
-
     <div class="stats">
       <div class="stat-item">
         <div class="stat-number">6+</div>
@@ -1100,153 +1124,7 @@
     </div>
 
     <div class="courses-grid">
-
-      <!-- Course 1: Python基础 -->
-      <div class="course-card">
-        <div class="card-arrow">→</div>
-        <div class="card-icon pink">🐍</div>
-        <h3>Python基础</h3>
-        <p class="desc">Python编程语言的基础知识和应用，掌握编程思维与核心语法。</p>
-        <div class="card-tags">
-          <span class="tag pink">Python语法</span>
-          <span class="tag yellow">数据结构</span>
-          <span class="tag pink">函数与模块</span>
-        </div>
-        <button class="card-toggle" onclick="toggleChapters(this)">
-          📌 课程章节与成果 <span class="toggle-icon">▼</span>
-        </button>
-        <div class="card-chapters">
-          <ul class="chapters-list">
-            <li><span class="check">✅</span> 学习变量与数据类型</li>
-            <li><span class="check">✅</span> 掌握条件判断与循环</li>
-            <li><span class="check">✅</span> 函数定义与文件操作</li>
-            <li><span class="check">✅</span> 数据科学常用库入门</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Course 2: 数据分析技术 -->
-      <div class="course-card">
-        <div class="card-arrow">→</div>
-        <div class="card-icon yellow">📊</div>
-        <h3>数据分析技术</h3>
-        <p class="desc">数据分析的基本方法和工具，培养数据驱动的决策能力。</p>
-        <div class="card-tags">
-          <span class="tag pink">数据清洗</span>
-          <span class="tag yellow">统计分析</span>
-          <span class="tag pink">可视化</span>
-          <span class="tag yellow">Pandas</span>
-        </div>
-        <button class="card-toggle" onclick="toggleChapters(this)">
-          📌 课程章节与成果 <span class="toggle-icon">▼</span>
-        </button>
-        <div class="card-chapters">
-          <ul class="chapters-list">
-            <li><span class="check">✅</span> 数据预处理技术</li>
-            <li><span class="check">✅</span> 描述性统计与推断</li>
-            <li><span class="check">✅</span> 图表洞察与报告撰写</li>
-            <li><span class="check">✅</span> 真实数据集案例实战</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Course 3: 数据采集与处理 -->
-      <div class="course-card">
-        <div class="card-arrow">→</div>
-        <div class="card-icon mixed">🔍</div>
-        <h3>数据采集与处理</h3>
-        <p class="desc">数据采集和预处理的技术，学习从多渠道获取并整理数据。</p>
-        <div class="card-tags">
-          <span class="tag pink">网络爬虫</span>
-          <span class="tag yellow">API调用</span>
-          <span class="tag pink">数据解析</span>
-          <span class="tag yellow">ETL</span>
-        </div>
-        <button class="card-toggle" onclick="toggleChapters(this)">
-          📌 课程章节与成果 <span class="toggle-icon">▼</span>
-        </button>
-        <div class="card-chapters">
-          <ul class="chapters-list">
-            <li><span class="check">✅</span> Requests/BeautifulSoup爬虫</li>
-            <li><span class="check">✅</span> API认证与数据抓取</li>
-            <li><span class="check">✅</span> 数据清洗与格式统一</li>
-            <li><span class="check">✅</span> 大规模数据采集策略</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Course 4: 供应链数据分析 -->
-      <div class="course-card">
-        <div class="card-arrow">→</div>
-        <div class="card-icon pink">🚚</div>
-        <h3>供应链数据分析</h3>
-        <p class="desc">供应链管理中的数据分析应用，提升运营效率与决策水平。</p>
-        <div class="card-tags">
-          <span class="tag pink">供应链管理</span>
-          <span class="tag yellow">需求预测</span>
-          <span class="tag pink">库存优化</span>
-        </div>
-        <button class="card-toggle" onclick="toggleChapters(this)">
-          📌 课程章节与成果 <span class="toggle-icon">▼</span>
-        </button>
-        <div class="card-chapters">
-          <ul class="chapters-list">
-            <li><span class="check">✅</span> 预测方法与时间序列</li>
-            <li><span class="check">✅</span> 安全库存与服务水平</li>
-            <li><span class="check">✅</span> 物流路径规划</li>
-            <li><span class="check">✅</span> 供应链KPI设计</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Course 5: 数据库原理与应用 -->
-      <div class="course-card">
-        <div class="card-arrow">→</div>
-        <div class="card-icon yellow">💾</div>
-        <h3>数据库原理与应用</h3>
-        <p class="desc">数据库的基本原理和应用，掌握数据存储与管理的核心技术。</p>
-        <div class="card-tags">
-          <span class="tag pink">SQL语言</span>
-          <span class="tag yellow">数据库设计</span>
-          <span class="tag pink">事务管理</span>
-        </div>
-        <button class="card-toggle" onclick="toggleChapters(this)">
-          📌 课程章节与成果 <span class="toggle-icon">▼</span>
-        </button>
-        <div class="card-chapters">
-          <ul class="chapters-list">
-            <li><span class="check">✅</span> MySQL/PostgreSQL基础</li>
-            <li><span class="check">✅</span> 多表联查与索引优化</li>
-            <li><span class="check">✅</span> 范式与建模案例</li>
-            <li><span class="check">✅</span> 数据库备份与权限</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Course 6: 财务数据分析 -->
-      <div class="course-card">
-        <div class="card-arrow">→</div>
-        <div class="card-icon mixed">💰</div>
-        <h3>财务数据分析</h3>
-        <p class="desc">财务数据的分析方法和应用，理解业务经营状况。</p>
-        <div class="card-tags">
-          <span class="tag pink">财务报表分析</span>
-          <span class="tag yellow">财务指标</span>
-          <span class="tag pink">数据可视化</span>
-        </div>
-        <button class="card-toggle" onclick="toggleChapters(this)">
-          📌 课程章节与成果 <span class="toggle-icon">▼</span>
-        </button>
-        <div class="card-chapters">
-          <ul class="chapters-list">
-            <li><span class="check">✅</span> 三大报表解读与分析</li>
-            <li><span class="check">✅</span> 偿债、盈利、营运能力</li>
-            <li><span class="check">✅</span> Power BI/Excel 仪表板</li>
-            <li><span class="check">✅</span> 财务风险识别</li>
-          </ul>
-        </div>
-      </div>
-
+      <!-- Course cards will be generated by JavaScript -->
     </div>
   </section>
 
@@ -1324,6 +1202,19 @@
   <!-- Scroll to Top Button -->
   <button class="scroll-top" id="scrollTopBtn" title="回到顶部">↑</button>
 
+  <!-- Course Detail Modal -->
+  <div class="modal-overlay" id="courseDetailModal">
+    <div class="modal-content course-detail-modal">
+      <div class="modal-header">
+        <h3 id="courseDetailTitle">课程详情</h3>
+        <button class="modal-close" onclick="closeCourseDetail()">×</button>
+      </div>
+      <div class="modal-body" id="courseDetailBody">
+        <!-- Course detail content will be injected here -->
+      </div>
+    </div>
+  </div>
+
   <!-- Quiz Modal -->
   <div class="modal-overlay" id="quizModal">
     <div class="modal-content">
@@ -1331,9 +1222,7 @@
         <h3>📝 知识答题挑战</h3>
         <button class="modal-close" onclick="closeQuiz()">×</button>
       </div>
-      <div class="modal-body" id="quizBody">
-        <!-- Quiz content will be injected here -->
-      </div>
+      <div class="modal-body" id="quizBody"></div>
     </div>
   </div>
 
@@ -1346,7 +1235,7 @@
       </div>
       <div class="modal-body">
         <div class="code-hint">
-          <strong>💡 提示：</strong>在下方编辑器中编写 Python 代码，点击"运行代码"按钮查看执行结果。支持基础的 Python 语法和常用库。
+          <strong>💡 提示：</strong>在下方编辑器中编写 Python 代码，点击"运行代码"按钮查看执行结果。
         </div>
         <div class="code-editor-container">
           <div class="code-editor-header">
@@ -1355,14 +1244,7 @@
             <div class="code-dot green"></div>
             <span style="color: #888; margin-left: 8px; font-size: 0.85rem;">main.py</span>
           </div>
-          <textarea class="code-editor" id="codeEditor" placeholder="# 在这里编写你的 Python 代码
-print('Hello, World!')
-
-# 示例：计算1到10的和
-total = 0
-for i in range(1, 11):
-    total += i
-print(f'1到10的和是: {total}')"># 在这里编写你的 Python 代码
+          <textarea class="code-editor" id="codeEditor"># 在这里编写你的 Python 代码
 print('Hello, World!')
 
 # 示例：计算1到10的和
@@ -1385,44 +1267,298 @@ print(f'1到10的和是: {total}')</textarea>
 
   <!-- Pyodide Script -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
-  
+
   <script>
-    // ========== Quiz Data ==========
-    const quizQuestions = [
+    // ========== Course Data ==========
+    const coursesData = [
       {
-        question: "在 Python 中，以下哪个函数用于获取列表的长度？",
-        options: ["size()", "length()", "len()", "count()"],
-        correct: 2
+        id: 'python',
+        icon: '🐍',
+        iconClass: 'pink',
+        title: 'Python基础',
+        subtitle: '商务数据分析与应用专业基础课程',
+        desc: '本课程旨在培养学生掌握Python编程语言的基础知识，为后续的数据分析学习打下坚实的基础，使学生能够使用Python进行简单的数据处理和分析。',
+        tags: ['高职大二', '先修课程：无', '后续课程：数据分析技术'],
+        chapters: [
+          '第一章：Python语言基础',
+          '第二章：控制结构',
+          '第三章：数据结构',
+          '第四章：函数与模块',
+          '第五章：文件操作',
+          '第六章：面向对象编程'
+        ],
+        knowledgeGoals: [
+          '掌握Python语言的基本语法和数据类型',
+          '理解Python的控制结构和数据结构',
+          '熟悉Python的函数和模块系统',
+          '了解面向对象编程的基本概念'
+        ],
+        abilityGoals: [
+          '能够编写基本的Python程序',
+          '能够使用Python处理和分析数据',
+          '能够使用Python读写文件',
+          '能够使用Python的标准库'
+        ],
+        skills: ['Python语法', '数据结构', '函数与模块']
       },
       {
-        question: "Pandas 中用于读取 CSV 文件的函数是？",
-        options: ["read_csv()", "load_csv()", "import_csv()", "open_csv()"],
-        correct: 0
+        id: 'data-analysis',
+        icon: '📊',
+        iconClass: 'yellow',
+        title: '数据分析技术',
+        subtitle: '商务数据分析核心课程',
+        desc: '本课程培养学生运用数据分析方法解决实际问题的能力，掌握数据清洗、统计分析、可视化等核心技能，为商务决策提供数据支持。',
+        tags: ['高职大二', '先修课程：Python基础', '后续课程：供应链数据分析'],
+        chapters: [
+          '第一章：数据分析概述',
+          '第二章：数据预处理技术',
+          '第三章：描述性统计分析',
+          '第四章：推断性统计分析',
+          '第五章：数据可视化',
+          '第六章：数据分析实战'
+        ],
+        knowledgeGoals: [
+          '掌握数据分析的基本流程和方法',
+          '理解统计学的基本原理',
+          '熟悉常用数据分析工具',
+          '了解数据可视化的设计原则'
+        ],
+        abilityGoals: [
+          '能够进行数据清洗和预处理',
+          '能够运用统计方法分析数据',
+          '能够制作专业的数据可视化图表',
+          '能够撰写数据分析报告'
+        ],
+        skills: ['数据清洗', '统计分析', '可视化', 'Pandas']
       },
       {
-        question: "在 SQL 中，用于查询数据的关键字是？",
-        options: ["INSERT", "UPDATE", "SELECT", "DELETE"],
-        correct: 2
+        id: 'data-collection',
+        icon: '🔍',
+        iconClass: 'mixed',
+        title: '数据采集与处理',
+        subtitle: '数据获取与处理技术课程',
+        desc: '本课程教授学生从多种渠道获取数据的方法，包括网络爬虫、API调用等技术，以及数据清洗、转换、存储等处理技术。',
+        tags: ['高职大二', '先修课程：Python基础', '后续课程：数据分析技术'],
+        chapters: [
+          '第一章：数据采集概述',
+          '第二章：网络爬虫基础',
+          '第三章：API数据获取',
+          '第四章：数据清洗技术',
+          '第五章：数据转换与集成',
+          '第六章：数据存储与管理'
+        ],
+        knowledgeGoals: [
+          '掌握网络爬虫的基本原理',
+          '理解API的工作机制',
+          '熟悉数据清洗的常用方法',
+          '了解ETL的基本流程'
+        ],
+        abilityGoals: [
+          '能够编写简单的网络爬虫',
+          '能够调用API获取数据',
+          '能够进行数据清洗和格式转换',
+          '能够设计数据采集方案'
+        ],
+        skills: ['网络爬虫', 'API调用', '数据解析', 'ETL']
       },
       {
-        question: "以下哪个不是 Python 的基本数据类型？",
-        options: ["int", "str", "array", "float"],
-        correct: 2
+        id: 'supply-chain',
+        icon: '🚚',
+        iconClass: 'pink',
+        title: '供应链数据分析',
+        subtitle: '行业应用专业课程',
+        desc: '本课程将数据分析技术应用于供应链管理领域，培养学生运用数据驱动的方法优化供应链决策的能力。',
+        tags: ['高职大三', '先修课程：数据分析技术', '后续课程：毕业设计'],
+        chapters: [
+          '第一章：供应链管理基础',
+          '第二章：需求预测分析',
+          '第三章：库存数据分析',
+          '第四章：物流数据分析',
+          '第五章：供应商数据分析',
+          '第六章：供应链优化案例'
+        ],
+        knowledgeGoals: [
+          '掌握供应链管理的基本概念',
+          '理解需求预测的方法和模型',
+          '熟悉库存管理的分析方法',
+          '了解供应链绩效评估指标'
+        ],
+        abilityGoals: [
+          '能够进行需求预测分析',
+          '能够优化库存管理决策',
+          '能够分析供应链绩效',
+          '能够提出供应链改进建议'
+        ],
+        skills: ['供应链管理', '需求预测', '库存优化']
       },
       {
-        question: "在数据分析中，用于展示数据分布情况的图表是？",
-        options: ["折线图", "饼图", "直方图", "散点图"],
-        correct: 2
+        id: 'database',
+        icon: '💾',
+        iconClass: 'yellow',
+        title: '数据库原理与应用',
+        subtitle: '数据存储与管理基础课程',
+        desc: '本课程教授数据库的基本原理和应用技术，使学生能够设计、创建和管理数据库，掌握SQL语言进行数据操作。',
+        tags: ['高职大二', '先修课程：无', '后续课程：数据分析技术'],
+        chapters: [
+          '第一章：数据库系统概述',
+          '第二章：关系数据库模型',
+          '第三章：SQL语言基础',
+          '第四章：数据库设计',
+          '第五章：数据库管理与维护',
+          '第六章：数据库应用开发'
+        ],
+        knowledgeGoals: [
+          '掌握数据库的基本概念和原理',
+          '理解关系数据库模型',
+          '熟悉SQL语言的语法',
+          '了解数据库设计的方法'
+        ],
+        abilityGoals: [
+          '能够设计规范的数据库',
+          '能够使用SQL进行数据操作',
+          '能够进行数据库的日常管理',
+          '能够优化数据库查询性能'
+        ],
+        skills: ['SQL语言', '数据库设计', '事务管理']
+      },
+      {
+        id: 'finance',
+        icon: '💰',
+        iconClass: 'mixed',
+        title: '财务数据分析',
+        subtitle: '财务分析应用课程',
+        desc: '本课程将数据分析技术应用于财务领域，培养学生分析财务报表、评估企业财务状况、支持财务决策的能力。',
+        tags: ['高职大三', '先修课程：数据分析技术', '后续课程：毕业设计'],
+        chapters: [
+          '第一章：财务分析概述',
+          '第二章：财务报表分析',
+          '第三章：财务指标分析',
+          '第四章：财务预测分析',
+          '第五章：财务风险分析',
+          '第六章：财务可视化报告'
+        ],
+        knowledgeGoals: [
+          '掌握财务报表的基本结构',
+          '理解财务指标的计算方法',
+          '熟悉财务分析的框架',
+          '了解财务风险的类型'
+        ],
+        abilityGoals: [
+          '能够解读和分析财务报表',
+          '能够计算和分析财务指标',
+          '能够进行财务预测',
+          '能够识别和评估财务风险'
+        ],
+        skills: ['财务报表分析', '财务指标', '数据可视化']
       }
     ];
 
-    let currentQuestion = 0;
-    let score = 0;
-    let quizTimer = null;
-    let timeLeft = 60;
-    let answers = [];
+    // ========== Render Course Cards ==========
+    function renderCourseCards() {
+      const grid = document.querySelector('.courses-grid');
+      grid.innerHTML = coursesData.map(course => `
+        <div class="course-card">
+          <div class="card-icon ${course.iconClass}">${course.icon}</div>
+          <h3>${course.title}</h3>
+          <p class="desc">${course.desc.substring(0, 50)}...</p>
+          <div class="card-tags">
+            ${course.skills.map(skill => `<span class="tag ${Math.random() > 0.5 ? 'pink' : 'yellow'}">${skill}</span>`).join('')}
+          </div>
+          <div class="card-actions">
+            <button class="card-btn card-btn-primary" onclick="openCourseDetail('${course.id}')">查看详情</button>
+          </div>
+        </div>
+      `).join('');
+    }
 
-    // ========== Quiz Functions ==========
+    // ========== Course Detail Modal ==========
+    function openCourseDetail(courseId) {
+      const course = coursesData.find(c => c.id === courseId);
+      if (!course) return;
+
+      document.getElementById('courseDetailTitle').textContent = course.title;
+      document.getElementById('courseDetailBody').innerHTML = `
+        <div class="course-detail-header">
+          <div class="course-detail-icon card-icon ${course.iconClass}">${course.icon}</div>
+          <h2>${course.title}</h2>
+          <p class="subtitle">${course.subtitle}</p>
+          <p class="desc">${course.desc}</p>
+          <div class="course-tags-row">
+            ${course.tags.map(tag => `<span class="course-tag">${tag}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h3>📚 课程大纲</h3>
+          <div class="chapter-list">
+            ${course.chapters.map((chapter, index) => `
+              <div class="chapter-item">
+                <div class="chapter-num">${index + 1}</div>
+                <h4>${chapter}</h4>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h3>🎯 学习目标</h3>
+          <div class="objective-grid">
+            <div class="objective-card">
+              <h4>📖 知识目标</h4>
+              <ul>
+                ${course.knowledgeGoals.map(goal => `<li>${goal}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="objective-card">
+              <h4>💪 能力目标</h4>
+              <ul>
+                ${course.abilityGoals.map(goal => `<li>${goal}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h3>📊 评估方式</h3>
+          <div class="assessment-grid">
+            <div class="assessment-item">
+              <div class="assessment-icon">🙋</div>
+              <h4>课堂参与</h4>
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-icon">🔬</div>
+              <h4>实验练习</h4>
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-icon">📝</div>
+              <h4>期中考试</h4>
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-icon">🎯</div>
+              <h4>期末项目</h4>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('courseDetailModal').classList.add('active');
+    }
+
+    function closeCourseDetail() {
+      document.getElementById('courseDetailModal').classList.remove('active');
+    }
+
+    // ========== Quiz Data & Functions ==========
+    const quizQuestions = [
+      { question: "在 Python 中，以下哪个函数用于获取列表的长度？", options: ["size()", "length()", "len()", "count()"], correct: 2 },
+      { question: "Pandas 中用于读取 CSV 文件的函数是？", options: ["read_csv()", "load_csv()", "import_csv()", "open_csv()"], correct: 0 },
+      { question: "在 SQL 中，用于查询数据的关键字是？", options: ["INSERT", "UPDATE", "SELECT", "DELETE"], correct: 2 },
+      { question: "以下哪个不是 Python 的基本数据类型？", options: ["int", "str", "array", "float"], correct: 2 },
+      { question: "在数据分析中，用于展示数据分布情况的图表是？", options: ["折线图", "饼图", "直方图", "散点图"], correct: 2 }
+    ];
+
+    let currentQuestion = 0, score = 0, quizTimer = null, timeLeft = 60, answers = [];
+
     function openQuiz() {
       document.getElementById('quizModal').classList.add('active');
       startQuiz();
@@ -1434,45 +1570,34 @@ print(f'1到10的和是: {total}')</textarea>
     }
 
     function startQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      timeLeft = 60;
-      answers = [];
+      currentQuestion = 0; score = 0; timeLeft = 60; answers = [];
       showQuestion();
     }
 
     function showQuestion() {
       const quizBody = document.getElementById('quizBody');
       const question = quizQuestions[currentQuestion];
-      
+
       let progressHTML = '<div class="quiz-progress">';
       for (let i = 0; i < quizQuestions.length; i++) {
         let className = 'progress-dot';
-        if (i < currentQuestion) {
-          className += answers[i] === quizQuestions[i].correct ? ' correct' : ' wrong';
-        } else if (i === currentQuestion) {
-          className += ' active';
-        }
+        if (i < currentQuestion) className += answers[i] === quizQuestions[i].correct ? ' correct' : ' wrong';
+        else if (i === currentQuestion) className += ' active';
         progressHTML += `<div class="${className}"></div>`;
       }
       progressHTML += '</div>';
-
-      let optionsHTML = '<div class="quiz-options">';
-      question.options.forEach((option, index) => {
-        optionsHTML += `<button class="quiz-option" onclick="selectAnswer(${index})">${option}</button>`;
-      });
-      optionsHTML += '</div>';
 
       quizBody.innerHTML = `
         <div class="quiz-timer" id="quizTimer">⏱️ ${timeLeft}秒</div>
         ${progressHTML}
         <div class="quiz-question">${currentQuestion + 1}. ${question.question}</div>
-        ${optionsHTML}
+        <div class="quiz-options">
+          ${question.options.map((opt, idx) => `<button class="quiz-option" onclick="selectAnswer(${idx})">${opt}</button>`).join('')}
+        </div>
         <div class="quiz-actions">
           <button class="btn btn-secondary" onclick="closeQuiz()">退出</button>
         </div>
       `;
-
       startTimer();
     }
 
@@ -1483,59 +1608,34 @@ print(f'1到10的和是: {total}')</textarea>
         const timerEl = document.getElementById('quizTimer');
         if (timerEl) {
           timerEl.textContent = `⏱️ ${timeLeft}秒`;
-          if (timeLeft <= 10) {
-            timerEl.classList.add('warning');
-          }
+          if (timeLeft <= 10) timerEl.classList.add('warning');
         }
-        if (timeLeft <= 0) {
-          selectAnswer(-1);
-        }
+        if (timeLeft <= 0) selectAnswer(-1);
       }, 1000);
     }
 
     function selectAnswer(answerIndex) {
       clearInterval(quizTimer);
       answers.push(answerIndex);
-      
-      if (answerIndex === quizQuestions[currentQuestion].correct) {
-        score++;
-      }
+      if (answerIndex === quizQuestions[currentQuestion].correct) score++;
 
-      // Show correct/wrong feedback
-      const options = document.querySelectorAll('.quiz-option');
-      options.forEach((opt, idx) => {
-        if (idx === quizQuestions[currentQuestion].correct) {
-          opt.classList.add('correct');
-        } else if (idx === answerIndex && answerIndex !== quizQuestions[currentQuestion].correct) {
-          opt.classList.add('wrong');
-        }
+      document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
+        if (idx === quizQuestions[currentQuestion].correct) opt.classList.add('correct');
+        else if (idx === answerIndex && answerIndex !== quizQuestions[currentQuestion].correct) opt.classList.add('wrong');
       });
 
       setTimeout(() => {
         currentQuestion++;
-        if (currentQuestion < quizQuestions.length) {
-          timeLeft = 60;
-          showQuestion();
-        } else {
-          showResult();
-        }
+        if (currentQuestion < quizQuestions.length) { timeLeft = 60; showQuestion(); }
+        else showResult();
       }, 1000);
     }
 
     function showResult() {
-      const quizBody = document.getElementById('quizBody');
       const percentage = Math.round((score / quizQuestions.length) * 100);
-      let message = '';
-      
-      if (percentage >= 80) {
-        message = '🎉 太棒了！你对知识掌握得很好！';
-      } else if (percentage >= 60) {
-        message = '👍 不错！继续加油！';
-      } else {
-        message = '💪 还需要多加练习哦！';
-      }
+      let message = percentage >= 80 ? '🎉 太棒了！你对知识掌握得很好！' : percentage >= 60 ? '👍 不错！继续加油！' : '💪 还需要多加练习哦！';
 
-      quizBody.innerHTML = `
+      document.getElementById('quizBody').innerHTML = `
         <div class="quiz-result">
           <div class="result-score">${percentage}%</div>
           <div class="result-message">${message}</div>
@@ -1548,31 +1648,21 @@ print(f'1到10的和是: {total}')</textarea>
       `;
     }
 
-    // ========== Code Editor Functions ==========
-    let pyodide = null;
-    let pyodideLoading = false;
+    // ========== Code Editor ==========
+    let pyodide = null, pyodideLoading = false;
 
     async function initPyodide() {
       if (pyodide) return;
-      if (pyodideLoading) {
-        while (pyodideLoading) {
-          await new Promise(resolve => setTimeout(resolve, 100));
-        }
-        return;
-      }
-      
+      if (pyodideLoading) { while (pyodideLoading) await new Promise(r => setTimeout(r, 100)); return; }
       pyodideLoading = true;
       const output = document.getElementById('codeOutput');
-      output.innerHTML = '<div class="loading-pyodide"><div class="spinner"></div>正在加载 Python 运行环境...</div>';
-      
+      output.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-secondary)">正在加载 Python 运行环境...</div>';
       try {
         pyodide = await loadPyodide();
         output.textContent = 'Python 环境已就绪！点击"运行代码"开始编程。';
       } catch (error) {
-        output.innerHTML = '<span style="color: #F48771;">加载失败，请刷新页面重试</span>';
-      } finally {
-        pyodideLoading = false;
-      }
+        output.innerHTML = '<span style="color:#F48771">加载失败，请刷新页面重试</span>';
+      } finally { pyodideLoading = false; }
     }
 
     function openCodeEditor() {
@@ -1587,27 +1677,16 @@ print(f'1到10的和是: {total}')</textarea>
     async function runPythonCode() {
       const code = document.getElementById('codeEditor').value;
       const output = document.getElementById('codeOutput');
-      
-      if (!pyodide) {
-        output.innerHTML = '<span style="color: #F48771;">Python 环境还在加载中，请稍候...</span>';
-        return;
-      }
+      if (!pyodide) { output.innerHTML = '<span style="color:#F48771">Python 环境还在加载中...</span>'; return; }
 
       output.className = 'code-output';
       output.textContent = '运行中...';
 
       try {
-        // Redirect stdout to capture output
-        pyodide.setStdout({ batched: (text) => {
-          output.textContent += text;
-        }});
-        
+        pyodide.setStdout({ batched: (text) => { output.textContent += text; } });
         output.textContent = '';
         await pyodide.runPythonAsync(code);
-        
-        if (output.textContent === '') {
-          output.textContent = '(代码执行完成，无输出)';
-        }
+        if (output.textContent === '') output.textContent = '(代码执行完成，无输出)';
         output.classList.add('success');
       } catch (error) {
         output.textContent = error.message;
@@ -1621,54 +1700,40 @@ print(f'1到10的和是: {total}')</textarea>
       document.getElementById('codeOutput').className = 'code-output';
     }
 
-    // ========== Toggle Course Chapters ==========
-    function toggleChapters(btn) {
-      btn.classList.toggle('active');
-      const chapters = btn.nextElementSibling;
-      chapters.classList.toggle('open');
-    }
-
-    // ========== Navbar scroll effect ==========
+    // ========== Navbar & Scroll ==========
     const navbar = document.getElementById('navbar');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-
-      if (window.scrollY > 400) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+      if (window.scrollY > 400) scrollTopBtn.classList.add('visible');
+      else scrollTopBtn.classList.remove('visible');
     });
 
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // ========== Smooth scroll for nav links ==========
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Close modals on overlay click
+    ['courseDetailModal', 'quizModal', 'codeModal'].forEach(id => {
+      document.getElementById(id).addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          if (quizTimer) clearInterval(quizTimer);
         }
       });
     });
 
-    // ========== Close modals on overlay click ==========
-    document.getElementById('quizModal').addEventListener('click', function(e) {
-      if (e.target === this) closeQuiz();
-    });
-    document.getElementById('codeModal').addEventListener('click', function(e) {
-      if (e.target === this) closeCodeEditor();
-    });
+    // Initialize
+    renderCourseCards();
   </script>
-
 </body>
 </html>
