@@ -6403,6 +6403,502 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
     }
 
     // ========== Case Analysis ==========
+    const caseStudiesData = {
+      'retail': {
+        title: '🛒 案例一：零售门店业绩下滑分析',
+        industry: '零售连锁',
+        difficulty: '⭐⭐⭐',
+        background: `华联超市是华南地区一家拥有50家门店的连锁超市品牌，主要经营生鲜、食品、日用品等品类。2024年以来，公司面临严峻的经营挑战：<br><br>
+        <strong>核心问题：</strong><br>
+        • 连续3个月销售额同比下降15%<br>
+        • 门店客流量下降20%<br>
+        • 会员活跃度降低，复购率从45%降至32%<br>
+        • 库存周转天数从25天延长至35天<br><br>
+        <strong>市场环境：</strong><br>
+        • 社区团购平台快速崛起，分流传统超市客流<br>
+        • 周边3公里内新增2家大型连锁超市<br>
+        • 消费者购物习惯向线上转移`,
+        dataTable: {
+          headers: ['指标', '2023年Q4', '2024年Q1', '2024年Q2', '变化率'],
+          rows: [
+            ['总销售额(万元)', '8500', '7200', '6800', '-20%'],
+            ['客流量(万人次)', '120', '102', '96', '-20%'],
+            ['客单价(元)', '70.8', '70.6', '70.8', '0%'],
+            ['会员数(万人)', '35', '36', '36.5', '+4%'],
+            ['会员消费占比', '55%', '48%', '42%', '-13pts'],
+            ['库存周转天数', '25', '30', '35', '+40%'],
+            ['生鲜损耗率', '8%', '12%', '15%', '+7pts']
+          ]
+        },
+        dataFiles: [
+          { name: '门店销售明细.csv', desc: '50家门店月度销售额、客流量、客单价数据' },
+          { name: '商品销售数据.xlsx', desc: '按品类、SKU的销售数据，包含库存信息' },
+          { name: '会员消费记录.csv', desc: '会员ID、消费时间、金额、商品明细' },
+          { name: '竞品调研报告.pdf', desc: '周边竞争对手价格、促销、客流情况' }
+        ],
+        analysisSteps: [
+          '数据清洗：检查缺失值、异常值，统一数据格式',
+          '描述性分析：计算各指标均值、趋势、同比环比',
+          '门店分层：按业绩表现将门店分为A/B/C/D类',
+          '商品分析：识别滞销品、畅销品，分析品类结构',
+          '会员分析：计算RFM模型，识别高价值流失客户',
+          '竞品对比：价格对比、促销频率分析'
+        ],
+        questions: [
+          { q: '请分析业绩下滑的主要原因（至少3个），并用数据支持你的观点', points: 25 },
+          { q: '哪些门店受影响最严重？请说明筛选标准和具体门店特征', points: 20 },
+          { q: '哪些商品类目表现最差？库存管理存在什么问题？', points: 20 },
+          { q: '会员消费行为发生了什么变化？如何挽回流失会员？', points: 20 },
+          { q: '请制定一套完整的改进方案，包括短期和长期措施', points: 15 }
+        ],
+        hints: [
+          '关注生鲜损耗率上升与客流下降的关联',
+          '分析不同区域门店的差异（社区店vs商圈店）',
+          '会员消费占比下降说明什么问题？',
+          '客单价持平但客流下降，说明核心问题在哪里？'
+        ],
+        sampleAnswer: {
+          mainReasons: [
+            '社区团购冲击：低价策略分流价格敏感型客户，特别是生鲜品类',
+            '会员运营失效：会员消费占比下降13个百分点，缺乏精准营销',
+            '库存管理恶化：周转天数增加40%，滞销品占用资金和货架',
+            '竞争加剧：周边新增竞争对手，未及时调整策略'
+          ],
+          keyMetrics: '应重点关注会员复购率、生鲜损耗率、库存周转天数'
+        }
+      },
+      'supply': {
+        title: '🚛 案例二：供应链成本优化',
+        industry: '制造业',
+        difficulty: '⭐⭐⭐⭐',
+        background: `某家电制造企业年营收50亿元，产品线涵盖空调、冰箱、洗衣机等白色家电。近年来面临原材料价格上涨和市场竞争加剧的双重压力，供应链成本居高不下。<br><br>
+        <strong>成本结构分析：</strong><br>
+        • 原材料成本占总成本65%<br>
+        • 物流运输成本占比12%<br>
+        • 仓储库存成本占比8%<br>
+        • 采购管理成本占比5%<br><br>
+        <strong>核心痛点：</strong><br>
+        • 供应商数量过多，议价能力弱<br>
+        • 库存积压严重，资金占用大<br>
+        • 运输路线规划不合理，空载率高<br>
+        • 需求预测准确率低，频繁紧急采购`,
+        dataTable: {
+          headers: ['成本项目', '2023年(亿元)', '占比', '行业标杆', '差距'],
+          rows: [
+            ['原材料采购', '32.5', '65%', '60%', '+5pts'],
+            ['物流运输', '6.0', '12%', '10%', '+2pts'],
+            ['仓储库存', '4.0', '8%', '6%', '+2pts'],
+            ['采购管理', '2.5', '5%', '4%', '+1pts'],
+            ['其他', '5.0', '10%', '20%', '-10pts']
+          ]
+        },
+        dataFiles: [
+          { name: '供应商清单.xlsx', desc: '500+供应商信息、采购额、交货准时率' },
+          { name: '库存数据.csv', desc: '原材料、半成品、成品库存明细' },
+          { name: '物流运输记录.csv', desc: '运输路线、成本、时效数据' },
+          { name: '需求预测数据.xlsx', desc: '历史销售数据与预测对比' }
+        ],
+        analysisSteps: [
+          '供应商分析：按采购额、质量、交期进行ABC分类',
+          '库存分析：计算安全库存、周转率、呆滞库存',
+          '物流分析：分析运输路线、装载率、配送时效',
+          '需求预测：评估现有预测模型准确率',
+          '成本建模：建立总成本模型，识别优化空间'
+        ],
+        questions: [
+          { q: '请分析当前供应链成本结构，识别主要优化机会点', points: 20 },
+          { q: '如何优化供应商管理？请设计供应商评估和分级方案', points: 20 },
+          { q: '库存管理存在什么问题？如何制定合理的库存策略？', points: 20 },
+          { q: '物流成本如何降低？请提出运输优化方案', points: 20 },
+          { q: '建立需求预测模型，说明使用的方法和预期效果', points: 20 }
+        ],
+        hints: [
+          '考虑集中采购vs分散采购的权衡',
+          'EOQ模型在这个场景如何应用？',
+          'VMI(供应商管理库存)是否适用？',
+          '运输优化可以考虑路线规划算法'
+        ],
+        sampleAnswer: {
+          solutions: [
+            '供应商整合：将500家供应商整合至200家核心供应商，提升议价能力',
+            '智能补货：建立基于AI的需求预测模型，目标准确率85%',
+            '物流优化：采用TMS系统优化路线，降低空载率至15%以下',
+            '库存共享：与核心供应商建立VMI模式，降低安全库存30%'
+          ],
+          expectedSaving: '预计可降低成本8-10%，约4-5亿元'
+        }
+      },
+      'finance': {
+        title: '📉 案例三：企业财务风险预警',
+        industry: '房地产',
+        difficulty: '⭐⭐⭐⭐⭐',
+        background: `某房地产开发商成立于2010年，曾在2015-2019年间快速扩张，土地储备从100万平米增至800万平米。2020年以来，受政策调控和市场下行影响，公司面临严重的流动性危机。<br><br>
+        <strong>财务困境：</strong><br>
+        • 2023年营业收入同比下降40%<br>
+        • 短期借款150亿元，现金仅30亿元<br>
+        • 多笔债务即将到期，存在违约风险<br>
+        • 存货周转天数从800天增至1500天<br><br>
+        <strong>外部压力：</strong><br>
+        • "三道红线"政策限制融资<br>
+        • 购房者观望情绪浓厚，去化困难<br>
+        • 供应商收紧账期，要求现款现货`,
+        dataTable: {
+          headers: ['财务指标', '2021年', '2022年', '2023年', '警戒线'],
+          rows: [
+            ['资产负债率', '78%', '82%', '85%', '70%'],
+            ['流动比率', '1.45', '1.25', '1.10', '1.50'],
+            ['速动比率', '0.45', '0.35', '0.28', '1.00'],
+            ['现金短债比', '0.35', '0.25', '0.20', '1.00'],
+            ['存货周转天数', '900', '1200', '1500', '800'],
+            ['ROE', '12%', '5%', '-8%', '10%'],
+            ['利息保障倍数', '2.5', '1.2', '0.5', '3.0']
+          ]
+        },
+        dataFiles: [
+          { name: '资产负债表.xlsx', desc: '近三年资产负债表详细数据' },
+          { name: '现金流量表.csv', desc: '经营、投资、筹资现金流明细' },
+          { name: '债务到期表.pdf', desc: '未来3年债务到期时间表' },
+          { name: '项目销售数据.xlsx', desc: '各项目去化率、回款情况' }
+        ],
+        analysisSteps: [
+          '偿债能力分析：计算流动比率、速动比率、现金比率',
+          '资本结构分析：资产负债率、权益乘数、产权比率',
+          '盈利能力分析：ROE、ROA、毛利率、净利率',
+          '营运能力分析：存货周转率、应收账款周转率',
+          '现金流分析：经营现金流、自由现金流',
+          'Z-score模型：计算破产风险概率'
+        ],
+        questions: [
+          { q: '请全面分析该公司的财务状况，识别主要风险点', points: 25 },
+          { q: '计算Altman Z-score，评估破产风险等级', points: 20 },
+          { q: '现金流存在什么问题？如何改善经营性现金流？', points: 20 },
+          { q: '债务结构是否合理？请提出债务重组建议', points: 20 },
+          { q: '如果你是CFO，会采取哪些措施化解危机？', points: 15 }
+        ],
+        hints: [
+          '速动比率低于1意味着什么？',
+          '现金短债比是衡量短期偿债能力的关键指标',
+          '存货周转天数1500天说明什么？',
+          '利息保障倍数小于1代表什么？'
+        ],
+        sampleAnswer: {
+          riskLevel: '极高风险 - Z-score计算结果低于1.81危险区',
+          keyRisks: [
+            '流动性危机：现金短债比仅0.2，无法覆盖短期债务',
+            '资不抵债风险：资产负债率85%，接近资不抵债',
+            '持续经营风险：ROE为负，无法创造正向收益',
+            '违约风险：利息保障倍数0.5，无法覆盖利息支出'
+          ],
+          solutions: [
+            '资产处置：出售非核心资产，回笼资金100亿',
+            '债务重组：与债权人协商展期，降低利率',
+            '降价促销：加快存货去化，缩短回款周期',
+            '引入战投：寻求国有资本或优质民企战略投资'
+          ]
+        }
+      },
+      'ecommerce': {
+        title: '🛍️ 案例四：电商平台用户增长策略',
+        industry: '电商',
+        difficulty: '⭐⭐⭐',
+        background: `某垂直类电商平台主营美妆护肤产品，成立5年，累计注册用户500万。2024年以来，用户增长陷入瓶颈，获客成本持续攀升。<br><br>
+        <strong>增长困境：</strong><br>
+        • 月活跃用户(MAU)停滞在80万，增长乏力<br>
+        • 新客获取成本(CAC)从50元涨至120元<br>
+        • 用户7日留存率从35%降至22%<br>
+        • 老客复购率下降，LTV持续走低<br><br>
+        <strong>市场背景：</strong><br>
+        • 综合电商平台加码美妆品类，竞争激烈<br>
+        • 直播带货、短视频种草成为新流量入口<br>
+        • Z世代成为美妆消费主力，偏好个性化`,
+        dataTable: {
+          headers: ['指标', '2023年Q1', '2024年Q1', '变化'],
+          rows: [
+            ['MAU(万)', '75', '80', '+6.7%'],
+            ['新增用户(万)', '15', '8', '-46.7%'],
+            ['CAC(元)', '50', '120', '+140%'],
+            ['7日留存率', '35%', '22%', '-13pts'],
+            ['30日留存率', '18%', '10%', '-8pts'],
+            ['客单价(元)', '280', '260', '-7.1%'],
+            ['复购率', '45%', '32%', '-13pts']
+          ]
+        },
+        dataFiles: [
+          { name: '用户行为日志.csv', desc: '用户浏览、点击、加购、购买行为数据' },
+          { name: '用户画像表.xlsx', desc: '用户年龄、性别、地域、消费能力标签' },
+          { name: '渠道投放数据.csv', desc: '各渠道投放成本、转化数据' },
+          { name: '商品销售数据.xlsx', desc: 'SKU销售数据、评价数据' }
+        ],
+        analysisSteps: [
+          '用户分层：基于RFM模型进行用户价值分层',
+          '留存分析：计算各阶段留存率，绘制留存曲线',
+          '渠道分析：评估各渠道ROI，识别优质渠道',
+          '漏斗分析：分析注册→首购→复购转化漏斗',
+          '用户画像：分析高价值用户特征',
+          'Aha时刻：寻找用户留存的关键行为'
+        ],
+        questions: [
+          { q: '用户增长停滞的根本原因是什么？请用数据说明', points: 25 },
+          { q: '如何降低获客成本？请提出渠道优化方案', points: 20 },
+          { q: '留存率下降的原因是什么？如何提升7日留存？', points: 20 },
+          { q: '设计一套用户召回机制，提升老客复购率', points: 20 },
+          { q: '如何挖掘用户终身价值(LTV)？请制定增长策略', points: 15 }
+        ],
+        hints: [
+          '分析不同获客渠道的用户质量差异',
+          '找出新用户流失的关键时间点',
+          '对比留存用户和流失用户的行为差异',
+          '考虑私域流量运营的价值'
+        ],
+        sampleAnswer: {
+          rootCause: '获客渠道单一依赖付费投放，缺乏自然增长机制；产品体验未形成差异化优势',
+          strategies: [
+            '内容营销：建立美妆社区，通过UGC内容吸引自然流量',
+            '私域运营：搭建企业微信社群，提升用户粘性和复购',
+            '会员体系：推出付费会员，锁定高价值用户',
+            'KOL合作：与腰部美妆博主合作，降低获客成本'
+          ]
+        }
+      },
+      'inventory': {
+        title: '📦 案例五：库存优化与需求预测',
+        industry: '快消品',
+        difficulty: '⭐⭐⭐⭐',
+        background: `某快消品企业主营饮料产品，SKU超过200个，销售覆盖全国。由于需求波动大、季节性强，库存管理面临巨大挑战。<br><br>
+        <strong>库存问题：</strong><br>
+        • 总库存金额8亿元，库存周转率仅4次/年<br>
+        • 畅销品经常缺货，缺货率达15%<br>
+        • 滞销品积压严重，呆滞库存占比25%<br>
+        • 需求预测准确率仅60%，频繁调整生产计划<br><br>
+        <strong>业务特点：</strong><br>
+        • 产品保质期短（6-12个月）<br>
+        • 季节性明显（夏季销量是冬季3倍）<br>
+        • 促销活动频繁，影响需求波动<br>
+        • 新品推出速度快，老品淘汰率高`,
+        dataTable: {
+          headers: ['指标', '当前值', '行业标杆', '差距'],
+          rows: [
+            ['库存周转率', '4次', '8次', '-50%'],
+            ['库存天数', '90天', '45天', '+100%'],
+            ['缺货率', '15%', '5%', '+10pts'],
+            ['呆滞库存占比', '25%', '10%', '+15pts'],
+            ['预测准确率', '60%', '80%', '-20pts'],
+            ['库存持有成本', '8000万', '4000万', '+100%']
+          ]
+        },
+        dataFiles: [
+          { name: '历史销售数据.csv', desc: '3年日度销售数据，按SKU、区域、渠道' },
+          { name: '库存数据.xlsx', desc: '各仓库库存明细，含库龄信息' },
+          { name: '促销日历.pdf', desc: '历史促销活动安排和效果' },
+          { name: '新品上市记录.xlsx', desc: '新品上市时间、销量曲线' }
+        ],
+        analysisSteps: [
+          'SKU分类：按销售额、利润贡献进行ABC分类',
+          '需求分析：分析历史需求模式、季节性、趋势',
+          '预测建模：建立时间序列预测模型（ARIMA/Prophet）',
+          '库存优化：计算各SKU安全库存、再订货点',
+          '补货策略：设计动态补货机制',
+          '呆滞处理：制定呆滞库存清理方案'
+        ],
+        questions: [
+          { q: '请分析库存问题的根本原因，识别主要问题SKU', points: 20 },
+          { q: '建立需求预测模型，说明选择的算法和理由', points: 25 },
+          { q: '如何设置安全库存和再订货点？请给出计算公式', points: 20 },
+          { q: '设计补货策略，平衡缺货风险和库存成本', points: 20 },
+          { q: '如何处理呆滞库存？请制定清理计划', points: 15 }
+        ],
+        hints: [
+          'ABC分类后不同类别应采用不同策略',
+          '考虑促销、节假日等外部因素的影响',
+          '安全库存需要考虑需求波动和提前期',
+          '新品和老品的预测方法可能不同'
+        ],
+        sampleAnswer: {
+          model: '采用Prophet模型结合促销因子，预期准确率提升至80%',
+          strategies: [
+            'A类SKU：每日监控，自动补货，安全库存设为2周',
+            'B类SKU：每周监控，定期补货，安全库存设为3周',
+            'C类SKU：每月监控，按需补货，安全库存设为4周',
+            '呆滞品：打折清仓、捆绑销售、捐赠抵税'
+          ]
+        }
+      },
+      'customer': {
+        title: '👥 案例六：客户细分与精准营销',
+        industry: '金融',
+        difficulty: '⭐⭐⭐',
+        background: `某商业银行信用卡中心拥有1000万持卡用户，但营销转化率低，客户投诉率高。传统的"一刀切"营销模式效果越来越差。<br><br>
+        <strong>营销困境：</strong><br>
+        • 营销短信打开率仅2%，转化率0.1%<br>
+        • 客户投诉营销骚扰，品牌口碑受损<br>
+        • 高价值客户流失率上升<br>
+        • 营销活动ROI难以衡量<br><br>
+        <strong>数据资产：</strong><br>
+        • 客户基本信息：年龄、性别、职业、收入<br>
+        • 交易数据：消费金额、频次、场景、时间<br>
+        • 行为数据：APP使用、网页浏览、客服记录<br>
+        • 外部数据：征信数据、社交数据`,
+        dataTable: {
+          headers: ['客户层级', '客户数', '贡献利润', '流失率'],
+          rows: [
+            ['钻石客户', '5万', '40%', '8%'],
+            ['白金客户', '20万', '30%', '12%'],
+            ['金卡客户', '75万', '20%', '18%'],
+            ['普通客户', '900万', '10%', '25%']
+          ]
+        },
+        dataFiles: [
+          { name: '客户信息表.xlsx', desc: '客户 demographics 和账户信息' },
+          { name: '交易流水.csv', desc: '2年信用卡交易明细数据' },
+          { name: '营销活动记录.xlsx', desc: '历史营销活动、触达、转化数据' },
+          { name: '客服工单.csv', desc: '客户投诉、咨询记录' }
+        ],
+        analysisSteps: [
+          '数据预处理：清洗、归一化、特征工程',
+          '客户分群：使用K-means或RFM模型进行聚类',
+          '画像构建：为每个客群构建标签画像',
+          '价值评估：计算各客群的LTV、流失风险',
+          '策略制定：针对不同客群设计营销策略',
+          '效果评估：建立A/B测试机制评估效果'
+        ],
+        questions: [
+          { q: '如何进行客户细分？请说明使用的方法和细分维度', points: 25 },
+          { q: '为每个客群构建用户画像，描述其特征和需求', points: 20 },
+          { q: '设计差异化营销策略，提升营销转化率', points: 25 },
+          { q: '如何识别高流失风险客户？设计挽留方案', points: 20 },
+          { q: '建立营销效果评估体系，说明关键指标', points: 10 }
+        ],
+        hints: [
+          'RFM模型是客户分群的常用方法',
+          '考虑客户生命周期价值(CLV)',
+          '不同客群对营销渠道的偏好可能不同',
+          '流失预警模型可以使用逻辑回归或XGBoost'
+        ],
+        sampleAnswer: {
+          segments: [
+            '高价值活跃客：高频高消费，推荐高端权益和理财产品',
+            '价格敏感客：关注优惠，推送折扣活动和积分兑换',
+            '潜在流失客：活跃度下降，主动关怀+专属优惠挽留',
+            '睡眠客户：长期无交易，唤醒活动+首刷礼'
+          ],
+          expectedResult: '营销转化率提升至0.5%，客户满意度提升20%'
+        }
+      },
+      'pricing': {
+        title: '💰 案例七：动态定价策略优化',
+        industry: '出行',
+        difficulty: '⭐⭐⭐⭐',
+        background: `某网约车平台在一线城市运营，面临司机供给不足、乘客需求波动大的双重挑战。现有的定价策略过于简单，无法有效平衡供需。<br><br>
+        <strong>定价痛点：</strong><br>
+        • 高峰期打车难，乘客等待时间超过10分钟<br>
+        • 平峰期车辆空驶率高，司机收入不稳定<br>
+        • 简单倍数溢价引发乘客投诉<br>
+        • 竞争对手价格战，用户流失严重<br><br>
+        <strong>数据情况：</strong><br>
+        • 日均订单量500万单，司机50万名<br>
+        • 需求波动大：早高峰是平峰期的5倍<br>
+        • 价格弹性：乘客对价格敏感度-1.5<br>
+        • 司机弹性：司机对收入敏感度0.8`,
+        dataTable: {
+          headers: ['时段', '需求(万单)', '供给(万车)', '供需比', '当前溢价'],
+          rows: [
+            ['早高峰(7-9点)', '120', '60', '2.0', '1.5x'],
+            ['平峰(10-16点)', '30', '80', '0.38', '0.8x'],
+            ['晚高峰(17-19点)', '150', '70', '2.14', '1.8x'],
+            ['夜间(22-24点)', '20', '25', '0.8', '1.2x']
+          ]
+        },
+        dataFiles: [
+          { name: '订单数据.csv', desc: '历史订单时间、地点、价格、等待时长' },
+          { name: '司机GPS数据.csv', desc: '司机位置、状态、接单记录' },
+          { name: '竞品价格.xlsx', desc: '竞争对手各时段定价' },
+          { name: '用户调研.pdf', desc: '乘客价格敏感度调研结果' }
+        ],
+        analysisSteps: [
+          '需求预测：基于时间、地点、天气预测未来需求',
+          '供给预测：预测在线司机数量和分布',
+          '供需匹配：计算各区域供需缺口',
+          '价格弹性：估计不同客群的价格敏感度',
+          '动态定价：建立最优定价模型',
+          '效果仿真：模拟不同策略下的GMV和满意度'
+        ],
+        questions: [
+          { q: '分析当前定价策略的问题，说明供需失衡的原因', points: 20 },
+          { q: '建立需求预测模型，说明特征选择和算法', points: 25 },
+          { q: '设计动态定价算法，平衡司机收入和乘客体验', points: 25 },
+          { q: '如何应对竞争对手的价格战？制定竞争策略', points: 20 },
+          { q: '设计定价策略的评估指标体系', points: 10 }
+        ],
+        hints: [
+          '考虑时空维度的供需差异',
+          '价格弹性可以分段估计',
+          '可以参考Uber的surge pricing机制',
+          '长期和短期策略可能需要不同'
+        ],
+        sampleAnswer: {
+          solution: '基于实时供需比的动态定价算法，结合机器学习预测',
+          keyFormula: '溢价倍数 = f(供需比, 价格弹性, 竞争因子, 时间因子)',
+          expectedResult: '高峰期等待时间降低30%，司机收入提升15%，乘客满意度提升'
+        }
+      },
+      'fraud': {
+        title: '🔒 案例八：金融欺诈检测',
+        industry: '金融科技',
+        difficulty: '⭐⭐⭐⭐⭐',
+        background: `某互联网金融平台主营消费信贷业务，近年来欺诈案件频发，坏账率持续上升。传统的规则引擎已无法应对新型欺诈手段。<br><br>
+        <strong>欺诈现状：</strong><br>
+        • 年度欺诈损失达2亿元，占贷款余额的3%<br>
+        • 团伙欺诈占比60%，单户欺诈金额大<br>
+        • 黑产手段升级：AI换脸、虚假资料、养号等<br>
+        • 误杀率高：正常用户被误判，影响体验<br><br>
+        <strong>数据挑战：</strong><br>
+        • 欺诈样本极少，正负样本比例1:1000<br>
+        • 欺诈模式快速演变，模型需要快速迭代<br>
+        • 实时性要求高，审批需在3秒内完成`,
+        dataTable: {
+          headers: ['欺诈类型', '占比', '平均金额', '识别难度'],
+          rows: [
+            ['身份冒用', '35%', '8000元', '中等'],
+            ['团伙欺诈', '40%', '50000元', '高'],
+            ['资料造假', '15%', '20000元', '低'],
+            ['恶意骗贷', '10%', '30000元', '高']
+          ]
+        },
+        dataFiles: [
+          { name: '申请数据.csv', desc: '用户申请信息、设备信息、行为轨迹' },
+          { name: '历史标签.xlsx', desc: '已确认的欺诈案例标签' },
+          { name: '关系网络.csv', desc: '用户关联关系（设备、IP、联系人）' },
+          { name: '外部征信.csv', desc: '第三方征信数据、黑名单' }
+        ],
+        analysisSteps: [
+          '特征工程：构建用户画像、行为特征、关系特征',
+          '样本处理：处理类别不平衡（SMOTE/欠采样）',
+          '模型选择：对比逻辑回归、XGBoost、神经网络',
+          '关系挖掘：使用图算法识别团伙欺诈',
+          '规则优化：补充专家规则，提升可解释性',
+          '实时监控：建立欺诈预警和拦截机制'
+        ],
+        questions: [
+          { q: '分析欺诈案例的特征，构建欺诈用户画像', points: 20 },
+          { q: '如何处理类别不平衡问题？说明采用的方法', points: 20 },
+          { q: '设计反欺诈模型，说明特征选择和算法', points: 25 },
+          { q: '如何使用图算法识别团伙欺诈？', points: 20 },
+          { q: '建立实时风控系统架构，说明关键组件', points: 15 }
+        ],
+        hints: [
+          '特征可以包括设备指纹、行为序列、社交网络等',
+          '考虑集成学习提升模型稳定性',
+          '团伙欺诈可以通过社区发现算法识别',
+          '模型需要平衡精准率和召回率'
+        ],
+        sampleAnswer: {
+          model: 'XGBoost + 图神经网络(GNN)集成模型',
+          keyFeatures: ['设备聚集度', '申请行为异常', '关系网络密度', '征信多头借贷'],
+          expectedResult: '欺诈识别率提升至85%，误杀率控制在5%以内'
+        }
+      }
+    };
+
     function openCaseAnalysis() {
       const body = document.getElementById('caseBody');
       body.innerHTML = `
@@ -6410,33 +6906,19 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
           <div style="text-align: center; margin-bottom: 30px;">
             <div style="font-size: 3rem; margin-bottom: 12px;">📊</div>
             <h3 style="color: var(--pink-deep);">案例分析挑战</h3>
-            <p style="color: var(--text-secondary);">真实企业案例，锻炼你的商业分析思维</p>
+            <p style="color: var(--text-secondary);">8个真实企业案例，从零售到金融，全面提升商业分析能力</p>
           </div>
           <div style="display: flex; flex-direction: column; gap: 16px;">
-            <div class="level-course" onclick="startCase('retail')">
-              <div class="course-icon">🛒</div>
-              <div class="course-info">
-                <h4>案例一：零售门店业绩下滑分析</h4>
-                <p>某连锁超市连续3个月业绩下滑，找出原因并提出解决方案</p>
+            ${Object.entries(caseStudiesData).map(([key, caseItem]) => `
+              <div class="level-course" onclick="startCase('${key}')">
+                <div class="course-icon">${caseItem.title.split(' ')[0]}</div>
+                <div class="course-info">
+                  <h4>${caseItem.title.split(' ').slice(1).join(' ')}</h4>
+                  <p>${caseItem.industry} · 难度${caseItem.difficulty}</p>
+                </div>
+                <button class="start-btn">开始分析</button>
               </div>
-              <button class="start-btn">分析</button>
-            </div>
-            <div class="level-course" onclick="startCase('supply')">
-              <div class="course-icon">🚛</div>
-              <div class="course-info">
-                <h4>案例二：供应链成本优化</h4>
-                <p>分析供应链各环节成本，制定优化策略</p>
-              </div>
-              <button class="start-btn">分析</button>
-            </div>
-            <div class="level-course" onclick="startCase('finance')">
-              <div class="course-icon">📉</div>
-              <div class="course-info">
-                <h4>案例三：企业财务风险预警</h4>
-                <p>通过财务指标分析，识别企业潜在风险</p>
-              </div>
-              <button class="start-btn">分析</button>
-            </div>
+            `).join('')}
           </div>
         </div>
       `;
@@ -6448,70 +6930,211 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
     }
 
     function startCase(caseType) {
-      const cases = {
-        'retail': {
-          title: '零售门店业绩下滑分析',
-          background: '某连锁超市在华南地区有50家门店，最近3个月整体销售额同比下降15%，客流量下降20%。公司需要你找出业绩下滑的原因并提出改进建议。',
-          data: {
-            '门店销售数据': '各门店月度销售额、客流量、客单价',
-            '商品数据': '各类目销售额、库存周转率',
-            '会员数据': '会员数量、复购率、消费频次',
-            '竞品数据': '周边竞争对手开业情况、促销活动'
-          },
-          questions: [
-            '请分析业绩下滑的主要原因（至少3个）',
-            '哪些门店受影响最严重？为什么？',
-            '哪些商品类目表现最差？',
-            '你会提出什么改进建议？'
-          ]
-        }
-      };
-
-      const caseData = cases[caseType];
+      const caseData = caseStudiesData[caseType];
       if (!caseData) {
-        alert('案例详情正在完善中，敬请期待！');
+        alert('案例不存在！');
         return;
       }
 
       const body = document.getElementById('caseBody');
       body.innerHTML = `
-        <div style="padding: 20px;">
-          <h3 style="color: var(--pink-deep); margin-bottom: 16px;">${caseData.title}</h3>
-          <div style="background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,240,102,0.1)); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-            <h4 style="margin-bottom: 12px;">📋 案例背景</h4>
-            <p style="line-height: 1.8;">${caseData.background}</p>
+        <div style="padding: 20px; max-height: 80vh; overflow-y: auto;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="color: var(--pink-deep); margin: 0;">${caseData.title}</h3>
+            <span style="background: linear-gradient(135deg, var(--pink), var(--yellow)); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">${caseData.industry} · 难度${caseData.difficulty}</span>
           </div>
+          
+          <div style="background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,240,102,0.1)); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px; color: var(--pink-deep);">📋 案例背景</h4>
+            <div style="line-height: 1.8; color: var(--text-primary);">${caseData.background}</div>
+          </div>
+
           <div style="margin-bottom: 20px;">
-            <h4 style="margin-bottom: 12px;">📊 可用数据</h4>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              ${Object.entries(caseData.data).map(([key, value]) => `
-                <div style="padding: 12px; background: #f8f8f8; border-radius: 8px;">
-                  <strong style="color: var(--pink-deep);">${key}</strong>
-                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">${value}</p>
+            <h4 style="margin-bottom: 12px; color: var(--pink-deep);">📊 关键数据</h4>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                <thead>
+                  <tr style="background: linear-gradient(135deg, rgba(255,182,193,0.2), rgba(255,240,102,0.2));">
+                    ${caseData.dataTable.headers.map(h => `<th style="padding: 10px; text-align: left; border-bottom: 2px solid rgba(255,182,193,0.3);">${h}</th>`).join('')}
+                  </tr>
+                </thead>
+                <tbody>
+                  ${caseData.dataTable.rows.map((row, i) => `
+                    <tr style="background: ${i % 2 === 0 ? 'white' : 'rgba(255,182,193,0.05)'};">
+                      ${row.map(cell => `<td style="padding: 10px; border-bottom: 1px solid rgba(255,182,193,0.1);">${cell}</td>`).join('')}
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px; color: var(--pink-deep);">📁 可用数据文件</h4>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              ${caseData.dataFiles.map(file => `
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f8f8f8; border-radius: 8px;">
+                  <span style="font-size: 1.5rem;">📄</span>
+                  <div>
+                    <strong style="color: var(--pink-deep);">${file.name}</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 4px 0 0 0;">${file.desc}</p>
+                  </div>
                 </div>
               `).join('')}
             </div>
           </div>
+
           <div style="margin-bottom: 20px;">
-            <h4 style="margin-bottom: 12px;">❓ 分析问题</h4>
-            <ol style="padding-left: 20px; line-height: 2;">
-              ${caseData.questions.map(q => `<li>${q}</li>`).join('')}
+            <h4 style="margin-bottom: 12px; color: var(--pink-deep);">🔍 建议分析步骤</h4>
+            <ol style="padding-left: 20px; line-height: 2; color: var(--text-primary);">
+              ${caseData.analysisSteps.map(step => `<li>${step}</li>`).join('')}
             </ol>
           </div>
-          <div style="margin-bottom: 16px;">
-            <h4 style="margin-bottom: 8px;">✍️ 你的分析</h4>
-            <textarea id="caseAnalysis" rows="10" style="width: 100%; padding: 16px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; font-size: 0.95rem;" placeholder="请在此输入你的案例分析..."></textarea>
+
+          <div style="margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px; color: var(--pink-deep);">❓ 分析问题 <span style="font-size: 0.8rem; color: var(--text-secondary);">(总分100分)</span></h4>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              ${caseData.questions.map((q, i) => `
+                <div style="padding: 16px; background: linear-gradient(135deg, rgba(255,182,193,0.05), rgba(255,240,102,0.05)); border-radius: 8px; border-left: 4px solid var(--pink);">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <strong style="color: var(--text-primary);">问题 ${i + 1}</strong>
+                    <span style="color: var(--pink-deep); font-size: 0.85rem;">${q.points}分</span>
+                  </div>
+                  <p style="margin: 0; color: var(--text-primary); line-height: 1.6;">${q.q}</p>
+                </div>
+              `).join('')}
+            </div>
           </div>
-          <div style="display: flex; gap: 12px;">
+
+          <div style="background: rgba(255,240,102,0.15); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px; color: #DAA520;">💡 分析提示</h4>
+            <ul style="padding-left: 20px; margin: 0; color: var(--text-primary); line-height: 1.8;">
+              ${caseData.hints.map(hint => `<li>${hint}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <h4 style="margin-bottom: 12px; color: var(--pink-deep);">✍️ 你的分析报告</h4>
+            <textarea id="caseAnalysis" rows="12" style="width: 100%; padding: 16px; border: 2px solid rgba(255,182,193,0.3); border-radius: 8px; font-size: 0.95rem; line-height: 1.6; resize: vertical;" placeholder="请在此输入你的完整案例分析报告...&#10;&#10;建议结构：&#10;1. 问题概述&#10;2. 数据分析与发现&#10;3. 根因分析&#10;4. 解决方案&#10;5. 预期效果"></textarea>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-bottom: 20px;">
             <button class="exam-btn exam-btn-prev" onclick="openCaseAnalysis()">返回案例列表</button>
             <button class="exam-btn exam-btn-next" onclick="submitCase()">提交分析</button>
+            <button class="exam-btn" style="background: linear-gradient(135deg, #98FB98, #90EE90); color: white;" onclick="showSampleAnswer('${caseType}')">查看参考答案</button>
           </div>
         </div>
       `;
     }
 
+    function showSampleAnswer(caseType) {
+      const caseData = caseStudiesData[caseType];
+      const answer = caseData.sampleAnswer;
+      
+      let answerHTML = `
+        <div style="background: linear-gradient(135deg, rgba(144,238,144,0.1), rgba(152,251,152,0.1)); padding: 20px; border-radius: 12px; margin: 20px 0; border: 2px solid rgba(144,238,144,0.3);">
+          <h4 style="color: #228B22; margin-bottom: 16px;">✅ 参考答案要点</h4>
+      `;
+
+      if (answer.mainReasons) {
+        answerHTML += `
+          <div style="margin-bottom: 16px;">
+            <strong style="color: var(--text-primary);">主要原因：</strong>
+            <ul style="margin: 8px 0; padding-left: 20px; line-height: 1.8;">
+              ${answer.mainReasons.map(r => `<li>${r}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      if (answer.keyMetrics) {
+        answerHTML += `<p style="margin-bottom: 16px;"><strong>关键指标：</strong>${answer.keyMetrics}</p>`;
+      }
+
+      if (answer.solutions) {
+        answerHTML += `
+          <div style="margin-bottom: 16px;">
+            <strong style="color: var(--text-primary);">解决方案：</strong>
+            <ul style="margin: 8px 0; padding-left: 20px; line-height: 1.8;">
+              ${answer.solutions.map(s => `<li>${s}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      if (answer.expectedSaving) {
+        answerHTML += `<p style="margin-bottom: 16px;"><strong>预期效果：</strong>${answer.expectedSaving}</p>`;
+      }
+
+      if (answer.riskLevel) {
+        answerHTML += `<p style="margin-bottom: 16px; color: #ff4444;"><strong>风险等级：</strong>${answer.riskLevel}</p>`;
+      }
+
+      if (answer.keyRisks) {
+        answerHTML += `
+          <div style="margin-bottom: 16px;">
+            <strong style="color: #ff4444;">关键风险：</strong>
+            <ul style="margin: 8px 0; padding-left: 20px; line-height: 1.8;">
+              ${answer.keyRisks.map(r => `<li>${r}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      if (answer.model) {
+        answerHTML += `<p style="margin-bottom: 16px;"><strong>推荐模型：</strong>${answer.model}</p>`;
+      }
+
+      if (answer.strategies) {
+        answerHTML += `
+          <div style="margin-bottom: 16px;">
+            <strong style="color: var(--text-primary);">实施策略：</strong>
+            <ul style="margin: 8px 0; padding-left: 20px; line-height: 1.8;">
+              ${answer.strategies.map(s => `<li>${s}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      if (answer.segments) {
+        answerHTML += `
+          <div style="margin-bottom: 16px;">
+            <strong style="color: var(--text-primary);">客户分群策略：</strong>
+            <ul style="margin: 8px 0; padding-left: 20px; line-height: 1.8;">
+              ${answer.segments.map(s => `<li>${s}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      answerHTML += `</div>`;
+      
+      // 在当前页面插入参考答案
+      const existingAnswer = document.getElementById('sampleAnswerSection');
+      if (existingAnswer) {
+        existingAnswer.remove();
+      }
+      
+      const answerSection = document.createElement('div');
+      answerSection.id = 'sampleAnswerSection';
+      answerSection.innerHTML = answerHTML;
+      
+      const textarea = document.getElementById('caseAnalysis');
+      if (textarea) {
+        textarea.parentNode.insertBefore(answerSection, textarea.nextSibling);
+      }
+      
+      // 滚动到参考答案
+      answerSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
     function submitCase() {
-      alert('案例分析已提交！你可以查看参考答案对比学习。');
+      const analysis = document.getElementById('caseAnalysis');
+      if (analysis && analysis.value.trim().length < 50) {
+        alert('请至少输入50字的分析内容后再提交！');
+        return;
+      }
+      alert('案例分析已提交！建议对比参考答案，查漏补缺。');
       closeCaseModal();
     }
 
