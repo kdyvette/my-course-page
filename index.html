@@ -2478,10 +2478,328 @@ for p in paragraphs:
               { type: 'judge', question: 'BeautifulSoup需要指定解析器。', correct: true }
             ]
           },
-          { title: '第三章：API数据获取', knowledge: [], quiz: [] },
-          { title: '第四章：数据清洗技术', knowledge: [], quiz: [] },
-          { title: '第五章：数据转换与集成', knowledge: [], quiz: [] },
-          { title: '第六章：数据存储与管理', knowledge: [], quiz: [] }
+          {
+            title: '第三章：API数据获取',
+            knowledge: [
+              {
+                title: '3.1 API基础概念',
+                content: `<p>API（Application Programming Interface）是应用程序接口。</p>
+                <p><strong>RESTful API特点：</strong></p>
+                <p>• 使用HTTP协议</p>
+                <p>• 资源以URL标识</p>
+                <p>• 使用JSON/XML传输</p>
+                <p>• 无状态设计</p>`,
+                code: `# API请求示例
+import requests
+
+# GET请求获取数据
+url = "https://api.example.com/users"
+headers = {"Authorization": "Bearer token123"}
+response = requests.get(url, headers=headers)
+
+# 解析响应
+if response.status_code == 200:
+    data = response.json()
+    print(data)`,
+                tips: 'API文档是使用API的重要参考资料。'
+              },
+              {
+                title: '3.2 API认证方式',
+                content: `<p>常见的API认证方式：</p>
+                <p>• API Key：简单密钥认证</p>
+                <p>• OAuth 2.0：授权框架</p>
+                <p>• JWT：JSON Web Token</p>
+                <p>• Basic Auth：用户名密码</p>`,
+                code: `# API Key认证
+headers = {"X-API-Key": "your_api_key"}
+response = requests.get(url, headers=headers)
+
+# Bearer Token认证
+headers = {"Authorization": "Bearer your_token"}
+response = requests.get(url, headers=headers)`,
+                tips: 'API密钥要妥善保管，不要硬编码在代码中。'
+              },
+              {
+                title: '3.3 分页与限流处理',
+                content: `<p>API通常有分页和限流机制。</p>
+                <p><strong>分页方式：</strong></p>
+                <p>• 页码分页：page, limit</p>
+                <p>• 游标分页：cursor, after</p>
+                <p><strong>限流处理：</strong></p>
+                <p>• 检查响应头中的限流信息</p>
+                <p>• 实现重试机制</p>`,
+                code: `# 分页获取数据
+all_data = []
+page = 1
+while True:
+    params = {"page": page, "limit": 100}
+    response = requests.get(url, params=params)
+    data = response.json()
+    
+    if not data:
+        break
+    
+    all_data.extend(data)
+    page += 1
+    
+    # 添加延迟避免限流
+    time.sleep(0.5)
+
+print(f"共获取 {len(all_data)} 条数据")`,
+                tips: '遵守API的速率限制，避免被封禁。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'RESTful API常用什么格式传输数据？', options: ['HTML', 'JSON', 'PDF', 'Word'], correct: 1 },
+              { type: 'single', question: 'API Key应该放在哪里？', options: ['URL参数', '请求头', '请求体', '随便放'], correct: 1 },
+              { type: 'judge', question: 'API限流是为了保护服务器资源。', correct: true },
+              { type: 'fill', question: 'OAuth是一种______框架。', answer: '授权' },
+              { type: 'single', question: '处理API分页时应该？', options: ['一次性获取所有', '循环分页获取', '只获取第一页', '忽略分页'], correct: 1 },
+              { type: 'judge', question: 'Bearer Token是一种API认证方式。', correct: true }
+            ]
+          },
+          {
+            title: '第四章：数据清洗技术',
+            knowledge: [
+              {
+                title: '4.1 数据质量评估',
+                content: `<p>数据质量评估是数据清洗的第一步。</p>
+                <p><strong>数据质量维度：</strong></p>
+                <p>• 完整性：数据是否完整</p>
+                <p>• 准确性：数据是否正确</p>
+                <p>• 一致性：数据是否一致</p>
+                <p>• 及时性：数据是否最新</p>`,
+                code: `import pandas as pd
+
+# 评估数据质量
+df = pd.read_csv("data.csv")
+
+# 完整性检查
+completeness = 1 - df.isnull().sum().sum() / df.size
+print(f"数据完整率: {completeness:.2%}")
+
+# 唯一性检查
+duplicates = df.duplicated().sum()
+print(f"重复记录数: {duplicates}")`,
+                tips: '数据质量直接影响分析结果的可靠性。'
+              },
+              {
+                title: '4.2 数据标准化与规范化',
+                content: `<p>数据标准化使数据格式统一。</p>
+                <p><strong>常见标准化：</strong></p>
+                <p>• 日期格式统一</p>
+                <p>• 文本大小写统一</p>
+                <p>• 数值精度统一</p>
+                <p>• 编码格式统一</p>`,
+                code: `# 数据标准化示例
+df['date'] = pd.to_datetime(df['date'])
+df['name'] = df['name'].str.strip().str.title()
+df['price'] = df['price'].round(2)
+
+# 文本清洗
+df['phone'] = df['phone'].str.replace(r'\\D', '', regex=True)
+df['email'] = df['email'].str.lower()`,
+                tips: '标准化规则应在数据采集阶段就确定。'
+              },
+              {
+                title: '4.3 数据去重与合并',
+                content: `<p>去重和合并是数据清洗的重要步骤。</p>
+                <p><strong>去重方法：</strong></p>
+                <p>• 完全匹配去重</p>
+                <p>• 模糊匹配去重</p>
+                <p>• 基于关键字段去重</p>`,
+                code: `# 数据去重
+df_unique = df.drop_duplicates()
+
+# 基于特定列去重
+df_unique = df.drop_duplicates(subset=['id'])
+
+# 数据合并
+df_merged = pd.merge(df1, df2, on='id', how='left')
+
+# 纵向合并
+df_concat = pd.concat([df1, df2], ignore_index=True)`,
+                tips: '去重前要确认重复数据的判断标准。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '数据完整率如何计算？', options: ['缺失值/总数', '1-缺失值/总数', '重复值/总数', '正确值/总数'], correct: 1 },
+              { type: 'single', question: 'Pandas去重用什么方法？', options: ['drop_na()', 'drop_duplicates()', 'remove_dup()', 'unique()'], correct: 1 },
+              { type: 'judge', question: '数据清洗只需要处理缺失值。', correct: false },
+              { type: 'fill', question: 'pd.______()用于合并两个DataFrame。', answer: 'merge' },
+              { type: 'single', question: '文本清洗通常包括？', options: ['只转大写', '去除空格和统一格式', '只转小写', '不处理'], correct: 1 },
+              { type: 'judge', question: '数据质量评估是数据清洗的第一步。', correct: true }
+            ]
+          },
+          {
+            title: '第五章：数据转换与集成',
+            knowledge: [
+              {
+                title: '5.1 数据格式转换',
+                content: `<p>不同系统间数据格式转换是ETL的重要环节。</p>
+                <p><strong>常见转换：</strong></p>
+                <p>• CSV ↔ JSON</p>
+                <p>• Excel ↔ DataFrame</p>
+                <p>• XML ↔ JSON</p>
+                <p>• 数据库 ↔ CSV</p>`,
+                code: `import pandas as pd
+
+# CSV转JSON
+df = pd.read_csv('data.csv')
+df.to_json('data.json', orient='records', force_ascii=False)
+
+# JSON转CSV
+df = pd.read_json('data.json')
+df.to_csv('output.csv', index=False)
+
+# Excel处理
+df = pd.read_excel('data.xlsx', sheet_name='Sheet1')
+df.to_excel('output.xlsx', index=False)`,
+                tips: '转换时注意编码格式，中文推荐UTF-8。'
+              },
+              {
+                title: '5.2 数据映射与转换',
+                content: `<p>数据映射是将源数据转换为目标格式。</p>
+                <p><strong>映射类型：</strong></p>
+                <p>• 字段映射：字段名对应</p>
+                <p>• 值映射：枚举值转换</p>
+                <p>• 类型映射：数据类型转换</p>`,
+                code: `# 字段映射
+mapping = {'姓名': 'name', '年龄': 'age', '城市': 'city'}
+df = df.rename(columns=mapping)
+
+# 值映射
+gender_map = {'男': 'M', '女': 'F'}
+df['gender'] = df['gender'].map(gender_map)
+
+# 自定义转换函数
+def convert_status(x):
+    return 1 if x == 'active' else 0
+
+df['status'] = df['status'].apply(convert_status)`,
+                tips: '建立映射文档，便于维护和追溯。'
+              },
+              {
+                title: '5.3 多源数据集成',
+                content: `<p>多源数据集成是将不同来源的数据合并。</p>
+                <p><strong>集成方式：</strong></p>
+                <p>• 纵向合并：相同结构数据追加</p>
+                <p>• 横向合并：不同字段数据关联</p>
+                <p>• 联合查询：数据库层面关联</p>`,
+                code: `# 多源数据集成
+import pandas as pd
+
+# 读取多个数据源
+df1 = pd.read_csv('source1.csv')
+df2 = pd.read_csv('source2.csv')
+df3 = pd.read_excel('source3.xlsx')
+
+# 纵向合并
+df_all = pd.concat([df1, df2], ignore_index=True)
+
+# 横向合并（关联）
+df_merged = pd.merge(df_all, df3, on='id', how='left')
+
+# 数据源标记
+df_merged['source'] = 'integrated'`,
+                tips: '集成前确保各数据源的字段含义一致。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'CSV转JSON用Pandas的什么方法？', options: ['to_json()', 'to_csv()', 'to_excel()', 'to_dict()'], correct: 0 },
+              { type: 'single', question: '字段映射用什么方法？', options: ['map()', 'rename()', 'apply()', 'transform()'], correct: 1 },
+              { type: 'judge', question: '数据映射只需要处理字段名。', correct: false },
+              { type: 'fill', question: 'pd.______()用于纵向合并多个DataFrame。', answer: 'concat' },
+              { type: 'single', question: '多源数据集成前应该？', options: ['直接合并', '确认字段含义一致', '删除重复数据', '转换格式'], correct: 1 },
+              { type: 'judge', question: 'ETL是Extract-Transform-Load的缩写。', correct: true }
+            ]
+          },
+          {
+            title: '第六章：数据存储与管理',
+            knowledge: [
+              {
+                title: '6.1 数据存储方案',
+                content: `<p>选择合适的数据存储方案很重要。</p>
+                <p><strong>存储类型：</strong></p>
+                <p>• 文件存储：CSV、JSON、Excel</p>
+                <p>• 数据库存储：MySQL、PostgreSQL</p>
+                <p>• NoSQL：MongoDB、Redis</p>
+                <p>• 数据仓库：Hive、ClickHouse</p>`,
+                code: `# 文件存储
+df.to_csv('data.csv', index=False, encoding='utf-8')
+df.to_json('data.json', orient='records')
+
+# 数据库存储
+from sqlalchemy import create_engine
+engine = create_engine('mysql://user:pass@localhost/db')
+df.to_sql('table_name', engine, if_exists='replace', index=False)`,
+                tips: '根据数据量、查询需求选择存储方案。'
+              },
+              {
+                title: '6.2 数据备份策略',
+                content: `<p>数据备份是数据安全的重要保障。</p>
+                <p><strong>备份类型：</strong></p>
+                <p>• 全量备份：完整数据副本</p>
+                <p>• 增量备份：仅备份变化部分</p>
+                <p>• 差异备份：相对于上次全量备份</p>`,
+                code: `# 数据备份示例
+import shutil
+from datetime import datetime
+
+# 文件备份
+backup_name = f"data_backup_{datetime.now().strftime('%Y%m%d')}.csv"
+shutil.copy('data.csv', f'backup/{backup_name}')
+
+# 自动备份脚本
+def backup_data():
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    backup_file = f"backup/data_{timestamp}.csv"
+    df.to_csv(backup_file, index=False)
+    print(f"备份完成: {backup_file}")`,
+                tips: '定期备份，并验证备份数据的可恢复性。'
+              },
+              {
+                title: '6.3 数据生命周期管理',
+                content: `<p>数据生命周期管理确保数据的有效利用。</p>
+                <p><strong>生命周期阶段：</strong></p>
+                <p>• 创建：数据产生</p>
+                <p>• 存储：数据保存</p>
+                <p>• 使用：数据应用</p>
+                <p>• 归档：数据存档</p>
+                <p>• 销毁：数据删除</p>`,
+                code: `# 数据生命周期管理
+import os
+from datetime import datetime, timedelta
+
+# 清理过期数据
+def clean_old_data(directory, days=30):
+    cutoff = datetime.now() - timedelta(days=days)
+    
+    for file in os.listdir(directory):
+        filepath = os.path.join(directory, file)
+        mtime = datetime.fromtimestamp(os.path.getmtime(filepath))
+        
+        if mtime < cutoff:
+            os.remove(filepath)
+            print(f"已删除: {file}")
+
+# 数据归档
+def archive_data(df, archive_path):
+    timestamp = datetime.now().strftime('%Y%m%d')
+    archive_file = f"{archive_path}/archive_{timestamp}.csv"
+    df.to_csv(archive_file, index=False)`,
+                tips: '建立数据保留策略，平衡存储成本和数据价值。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '小规模数据适合用什么存储？', options: ['Hadoop', 'CSV文件', 'ClickHouse', 'Hive'], correct: 1 },
+              { type: 'single', question: '全量备份的特点是？', options: ['速度快', '完整副本', '占用空间小', '只备份变化'], correct: 1 },
+              { type: 'judge', question: '数据备份只需要做一次。', correct: false },
+              { type: 'fill', question: '数据生命周期包括创建、存储、使用、归档和______。', answer: '销毁' },
+              { type: 'single', question: 'Pandas存储到MySQL用什么方法？', options: ['to_csv()', 'to_sql()', 'to_json()', 'save()'], correct: 1 },
+              { type: 'judge', question: '数据生命周期管理有助于控制存储成本。', correct: true }
+            ]
+          }
         ],
         knowledgeGoals: ['掌握网络爬虫的基本原理', '理解API的工作机制', '熟悉数据清洗的常用方法', '了解ETL的基本流程'],
         abilityGoals: ['能够编写简单的网络爬虫', '能够调用API获取数据', '能够进行数据清洗和格式转换', '能够设计数据采集方案']
@@ -2492,16 +2810,495 @@ for p in paragraphs:
         iconClass: 'pink',
         title: '供应链数据分析',
         subtitle: '行业应用专业课程',
-        desc: '本课程将数据分析技术应用于供应链管理领域。',
+        desc: '本课程将数据分析技术应用于供应链管理领域，培养学生运用数据驱动的方法优化供应链决策的能力。',
         tags: ['高职大三', '先修课程：数据分析技术', '后续课程：毕业设计'],
         skills: ['供应链管理', '需求预测', '库存优化'],
         chapters: [
-          { title: '第一章：供应链管理基础', knowledge: [], quiz: [] },
-          { title: '第二章：需求预测分析', knowledge: [], quiz: [] },
-          { title: '第三章：库存数据分析', knowledge: [], quiz: [] },
-          { title: '第四章：物流数据分析', knowledge: [], quiz: [] },
-          { title: '第五章：供应商数据分析', knowledge: [], quiz: [] },
-          { title: '第六章：供应链优化案例', knowledge: [], quiz: [] }
+          {
+            title: '第一章：供应链管理基础',
+            knowledge: [
+              {
+                title: '1.1 供应链概述',
+                content: `<p>供应链是从原材料到最终产品的整个流程网络。</p>
+                <p><strong>供应链组成：</strong></p>
+                <p>• 供应商：提供原材料</p>
+                <p>• 制造商：生产加工</p>
+                <p>• 分销商：产品分销</p>
+                <p>• 零售商：终端销售</p>
+                <p>• 消费者：最终用户</p>`,
+                code: `# 供应链节点模拟
+supply_chain = {
+    '供应商': ['原材料采购', '质量检验'],
+    '制造商': ['生产计划', '加工制造', '成品检验'],
+    '分销商': ['仓储管理', '物流配送'],
+    '零售商': ['库存管理', '销售服务']
+}
+
+for node, functions in supply_chain.items():
+    print(f"{node}: {', '.join(functions)}")`,
+                tips: '供应链管理目标是降低成本、提高效率、满足客户需求。'
+              },
+              {
+                title: '1.2 供应链数据分析价值',
+                content: `<p>数据分析在供应链中的应用价值：</p>
+                <p><strong>核心价值：</strong></p>
+                <p>• 需求预测：准确预测市场需求</p>
+                <p>• 库存优化：降低库存成本</p>
+                <p>• 物流优化：提高配送效率</p>
+                <p>• 风险管理：识别和应对风险</p>`,
+                code: `# 供应链数据分析场景
+scenarios = {
+    '需求预测': ['时间序列分析', '机器学习预测'],
+    '库存管理': ['安全库存计算', '补货策略优化'],
+    '物流优化': ['路径规划', '配送调度'],
+    '供应商管理': ['绩效评估', '风险预警']
+}
+
+for area, methods in scenarios.items():
+    print(f"{area}: {methods}")`,
+                tips: '数据驱动的供应链决策能显著提升运营效率。'
+              },
+              {
+                title: '1.3 供应链KPI指标',
+                content: `<p>供应链绩效评估的关键指标：</p>
+                <p><strong>运营指标：</strong></p>
+                <p>• 订单履行率：按时交付订单比例</p>
+                <p>• 库存周转率：库存流动效率</p>
+                <p>• 准时交付率：按时交付比例</p>
+                <p>• 订单周期时间：订单处理时间</p>`,
+                code: `# 计算供应链KPI
+def calculate_kpi():
+    # 订单履行率
+    total_orders = 1000
+    fulfilled_orders = 950
+    fulfillment_rate = fulfilled_orders / total_orders
+    
+    # 库存周转率
+    cogs = 5000000  # 销售成本
+    avg_inventory = 1000000  # 平均库存
+    turnover_rate = cogs / avg_inventory
+    
+    # 准时交付率
+    on_time = 900
+    on_time_rate = on_time / fulfilled_orders
+    
+    return {
+        '订单履行率': f'{fulfillment_rate:.1%}',
+        '库存周转率': f'{turnover_rate:.1f}次',
+        '准时交付率': f'{on_time_rate:.1%}'
+    }
+
+print(calculate_kpi())`,
+                tips: 'KPI指标应与业务目标对齐，定期监控和改进。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '供应链的起点是？', options: ['制造商', '供应商', '零售商', '消费者'], correct: 1 },
+              { type: 'single', question: '库存周转率越高说明？', options: ['库存积压', '库存流动效率高', '库存不足', '销售下降'], correct: 1 },
+              { type: 'judge', question: '供应链管理只关注成本控制。', correct: false },
+              { type: 'fill', question: '订单履行率=______订单数/总订单数。', answer: '按时交付' },
+              { type: 'single', question: '供应链数据分析的核心价值是？', options: ['增加库存', '数据驱动决策', '减少供应商', '降低质量'], correct: 1 },
+              { type: 'judge', question: '准时交付率是供应链重要KPI指标。', correct: true }
+            ]
+          },
+          {
+            title: '第二章：需求预测分析',
+            knowledge: [
+              {
+                title: '2.1 需求预测方法',
+                content: `<p>需求预测是供应链规划的基础。</p>
+                <p><strong>预测方法分类：</strong></p>
+                <p>• 定性方法：专家判断、市场调研</p>
+                <p>• 定量方法：时间序列、因果模型</p>
+                <p>• 混合方法：综合多种方法</p>`,
+                code: `# 简单移动平均预测
+import numpy as np
+
+def moving_average(data, window=3):
+    """计算移动平均"""
+    return np.convolve(data, np.ones(window)/window, mode='valid')
+
+# 示例数据
+sales = [100, 120, 110, 130, 125, 140, 135]
+forecast = moving_average(sales, window=3)
+print(f"移动平均预测: {forecast}")`,
+                tips: '选择预测方法要考虑数据特点、预测周期和精度要求。'
+              },
+              {
+                title: '2.2 时间序列分析',
+                content: `<p>时间序列分析是需求预测的常用方法。</p>
+                <p><strong>时间序列组成：</strong></p>
+                <p>• 趋势(T)：长期变化方向</p>
+                <p>• 季节性(S)：周期性波动</p>
+                <p>• 周期性(C)：非固定周期波动</p>
+                <p>• 随机性(I)：不规则变动</p>`,
+                code: `# 时间序列分解示例
+import pandas as pd
+import numpy as np
+from statsmodels.tsa.seasonal import seasonal_decompose
+
+# 创建示例数据
+dates = pd.date_range('2023-01', periods=24, freq='M')
+values = np.random.randn(24) * 10 + 100 + np.sin(np.arange(24)) * 20
+ts = pd.Series(values, index=dates)
+
+# 分解时间序列（简化示例）
+print("时间序列分解：趋势 + 季节性 + 残差")`,
+                tips: '理解时间序列的组成有助于选择合适的预测模型。'
+              },
+              {
+                title: '2.3 预测精度评估',
+                content: `<p>评估预测模型的准确性很重要。</p>
+                <p><strong>常用评估指标：</strong></p>
+                <p>• MAE：平均绝对误差</p>
+                <p>• RMSE：均方根误差</p>
+                <p>• MAPE：平均绝对百分比误差</p>`,
+                code: `import numpy as np
+
+def evaluate_forecast(actual, predicted):
+    """评估预测精度"""
+    mae = np.mean(np.abs(actual - predicted))
+    rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+    mape = np.mean(np.abs((actual - predicted) / actual)) * 100
+    
+    return {
+        'MAE': round(mae, 2),
+        'RMSE': round(rmse, 2),
+        'MAPE': f'{mape:.1f}%'
+    }
+
+# 示例
+actual = np.array([100, 120, 110, 130])
+predicted = np.array([105, 115, 115, 125])
+print(evaluate_forecast(actual, predicted))`,
+                tips: 'MAPE是最直观的误差指标，便于业务理解。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '移动平均法属于什么预测方法？', options: ['定性方法', '时间序列方法', '因果方法', '专家判断'], correct: 1 },
+              { type: 'single', question: 'MAPE表示什么？', options: ['平均绝对误差', '均方根误差', '平均绝对百分比误差', '总误差'], correct: 2 },
+              { type: 'judge', question: '时间序列只包含趋势成分。', correct: false },
+              { type: 'fill', question: '时间序列的四个组成是趋势、季节性、周期性和______。', answer: '随机性' },
+              { type: 'single', question: '预测误差越小，预测精度？', options: ['越低', '越高', '不变', '无法判断'], correct: 1 },
+              { type: 'judge', question: '需求预测是供应链规划的基础。', correct: true }
+            ]
+          },
+          {
+            title: '第三章：库存数据分析',
+            knowledge: [
+              {
+                title: '3.1 库存管理基础',
+                content: `<p>库存管理是供应链的核心环节。</p>
+                <p><strong>库存类型：</strong></p>
+                <p>• 原材料库存：生产原料</p>
+                <p>• 在制品库存：半成品</p>
+                <p>• 成品库存：待销售商品</p>
+                <p>• 安全库存：应对不确定性</p>`,
+                code: `# 库存分类统计
+inventory = {
+    '原材料': {'数量': 5000, '价值': 100000},
+    '在制品': {'数量': 1000, '价值': 50000},
+    '成品': {'数量': 2000, '价值': 200000},
+    '安全库存': {'数量': 500, '价值': 30000}
+}
+
+total_value = sum(item['价值'] for item in inventory.values())
+print(f"库存总价值: ¥{total_value:,}")`,
+                tips: '库存成本包括采购成本、持有成本和缺货成本。'
+              },
+              {
+                title: '3.2 安全库存计算',
+                content: `<p>安全库存用于应对需求和供应的不确定性。</p>
+                <p><strong>计算公式：</strong></p>
+                <p>安全库存 = Z × σd × √L</p>
+                <p>Z：服务水平对应的Z值</p>
+                <p>σd：需求标准差</p>
+                <p>L：提前期</p>`,
+                code: `import scipy.stats as stats
+import math
+
+def calculate_safety_stock(service_level, demand_std, lead_time):
+    """计算安全库存"""
+    z = stats.norm.ppf(service_level)
+    safety_stock = z * demand_std * math.sqrt(lead_time)
+    return round(safety_stock)
+
+# 服务水平95%，需求标准差50，提前期7天
+ss = calculate_safety_stock(0.95, 50, 7)
+print(f"安全库存: {ss} 件")`,
+                tips: '服务水平越高，安全库存越大。'
+              },
+              {
+                title: '3.3 补货策略分析',
+                content: `<p>合理的补货策略能降低库存成本。</p>
+                <p><strong>常见策略：</strong></p>
+                <p>• 定量订货：库存降到订货点就订货</p>
+                <p>• 定期订货：固定周期检查订货</p>
+                <p>• EOQ模型：经济订货批量</p>`,
+                code: `import math
+
+def calculate_eoq(demand, order_cost, holding_cost):
+    """计算经济订货批量"""
+    eoq = math.sqrt(2 * demand * order_cost / holding_cost)
+    return round(eoq)
+
+# 年需求10000，订货成本100，持有成本5
+eoq = calculate_eoq(10000, 100, 5)
+print(f"经济订货批量: {eoq} 件")
+
+# 订货次数
+orders_per_year = 10000 / eoq
+print(f"年订货次数: {orders_per_year:.0f} 次")`,
+                tips: 'EOQ模型假设需求稳定、提前期固定。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '安全库存的作用是？', options: ['降低成本', '应对不确定性', '增加销售', '减少订货'], correct: 1 },
+              { type: 'single', question: 'EOQ表示什么？', options: ['安全库存', '经济订货批量', '最大库存', '最小库存'], correct: 1 },
+              { type: 'judge', question: '库存持有成本越高，EOQ越大。', correct: false },
+              { type: 'fill', question: '服务水平95%对应的Z值约为______。', answer: '1.65' },
+              { type: 'single', question: '定量订货的特点是？', options: ['固定周期', '库存降到订货点就订货', '固定数量', '不设订货点'], correct: 1 },
+              { type: 'judge', question: '库存周转率越高越好。', correct: false }
+            ]
+          },
+          {
+            title: '第四章：物流数据分析',
+            knowledge: [
+              {
+                title: '4.1 物流网络分析',
+                content: `<p>物流网络是产品从生产到消费的路径。</p>
+                <p><strong>网络要素：</strong></p>
+                <p>• 仓库/配送中心</p>
+                <p>• 运输路线</p>
+                <p>• 运输方式</p>
+                <p>• 服务区域</p>`,
+                code: `# 物流网络模拟
+logistics_network = {
+    '仓库A': {'位置': '北京', '覆盖区域': ['北京', '天津', '河北']},
+    '仓库B': {'位置': '上海', '覆盖区域': ['上海', '江苏', '浙江']},
+    '仓库C': {'位置': '广州', '覆盖区域': ['广东', '广西', '福建']}
+}
+
+for warehouse, info in logistics_network.items():
+    print(f"{warehouse}({info['位置']}): 覆盖{', '.join(info['覆盖区域'])}")`,
+                tips: '合理的物流网络能降低运输成本、提高响应速度。'
+              },
+              {
+                title: '4.2 运输成本分析',
+                content: `<p>运输成本是物流成本的主要组成部分。</p>
+                <p><strong>成本构成：</strong></p>
+                <p>• 固定成本：车辆、仓库折旧</p>
+                <p>• 变动成本：燃油、人工</p>
+                <p>• 间接成本：管理、保险</p>`,
+                code: `# 运输成本计算
+def calculate_transport_cost(distance, weight, rate=0.5):
+    """计算运输成本"""
+    base_cost = 50  # 基础费用
+    distance_cost = distance * rate
+    weight_cost = weight * 0.1
+    return base_cost + distance_cost + weight_cost
+
+cost = calculate_transport_cost(distance=100, weight=500)
+print(f"运输成本: ¥{cost}")`,
+                tips: '选择运输方式要平衡成本和时效。'
+              },
+              {
+                title: '4.3 配送路径优化',
+                content: `<p>配送路径优化能降低运输成本。</p>
+                <p><strong>优化目标：</strong></p>
+                <p>• 最短路径</p>
+                <p>• 最低成本</p>
+                <p>• 最少时间</p>
+                <p>• 最大装载率</p>`,
+                code: `# 简单路径规划示例
+locations = ['仓库', 'A点', 'B点', 'C点', '仓库']
+distances = {
+    ('仓库', 'A点'): 10, ('A点', 'B点'): 15,
+    ('B点', 'C点'): 8, ('C点', '仓库'): 12
+}
+
+total_distance = sum(distances.get((locations[i], locations[i+1]), 0) 
+                     for i in range(len(locations)-1))
+print(f"总里程: {total_distance} km")`,
+                tips: 'VRP（车辆路径问题）是物流优化的经典问题。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '物流网络的核心要素是？', options: ['只有仓库', '仓库和运输路线', '只有运输', '只有客户'], correct: 1 },
+              { type: 'single', question: '运输成本中占比最大的一般是？', options: ['固定成本', '燃油和人工', '保险费', '管理费'], correct: 1 },
+              { type: 'judge', question: '配送路径优化只能降低成本。', correct: false },
+              { type: 'fill', question: 'VRP是车辆______问题的缩写。', answer: '路径' },
+              { type: 'single', question: '物流网络设计的目标是？', options: ['增加仓库', '降低成本提高效率', '增加运输', '减少客户'], correct: 1 },
+              { type: 'judge', question: '运输方式选择要平衡成本和时效。', correct: true }
+            ]
+          },
+          {
+            title: '第五章：供应商数据分析',
+            knowledge: [
+              {
+                title: '5.1 供应商评估指标',
+                content: `<p>供应商评估是供应商管理的重要环节。</p>
+                <p><strong>评估维度：</strong></p>
+                <p>• 质量：产品合格率、质量认证</p>
+                <p>• 成本：价格竞争力、成本结构</p>
+                <p>• 交付：准时率、提前期</p>
+                <p>• 服务：响应速度、技术支持</p>`,
+                code: `# 供应商评分模型
+def evaluate_supplier(quality, cost, delivery, service):
+    """评估供应商综合得分"""
+    weights = {'质量': 0.4, '成本': 0.3, '交付': 0.2, '服务': 0.1}
+    scores = {'质量': quality, '成本': cost, '交付': delivery, '服务': service}
+    
+    total = sum(scores[k] * weights[k] for k in weights)
+    return round(total, 1)
+
+# 供应商A得分
+score = evaluate_supplier(quality=90, cost=85, delivery=88, service=80)
+print(f"供应商综合得分: {score}")`,
+                tips: '权重设置应根据企业战略和采购品类调整。'
+              },
+              {
+                title: '5.2 供应商分类管理',
+                content: `<p>根据重要性和风险对供应商分类管理。</p>
+                <p><strong>分类矩阵：</strong></p>
+                <p>• 战略供应商：高价值高风险</p>
+                <p>• 优选供应商：高价值低风险</p>
+                <p>• 合格供应商：低价值低风险</p>
+                <p>• 风险供应商：低价值高风险</p>`,
+                code: `# 供应商分类
+suppliers = [
+    {'name': '供应商A', 'value': '高', 'risk': '高', 'category': '战略'},
+    {'name': '供应商B', 'value': '高', 'risk': '低', 'category': '优选'},
+    {'name': '供应商C', 'value': '低', 'risk': '低', 'category': '合格'},
+    {'name': '供应商D', 'value': '低', 'risk': '高', 'category': '风险'}
+]
+
+for s in suppliers:
+    print(f"{s['name']}: {s['category']}供应商")`,
+                tips: '不同类型供应商应采用不同的管理策略。'
+              },
+              {
+                title: '5.3 供应商风险预警',
+                content: `<p>供应商风险预警有助于提前防范。</p>
+                <p><strong>风险类型：</strong></p>
+                <p>• 供应风险：产能不足、断供</p>
+                <p>• 质量风险：质量下降</p>
+                <p>• 财务风险：经营困难</p>
+                <p>• 合规风险：法规问题</p>`,
+                code: `# 供应商风险预警
+def risk_alert(supplier_data):
+    """风险预警检测"""
+    alerts = []
+    
+    if supplier_data['delivery_rate'] < 0.9:
+        alerts.append('交付率低于90%')
+    if supplier_data['quality_rate'] < 0.95:
+        alerts.append('质量率低于95%')
+    if supplier_data['financial_score'] < 60:
+        alerts.append('财务评分低于60')
+    
+    return alerts if alerts else ['正常']
+
+data = {'delivery_rate': 0.85, 'quality_rate': 0.97, 'financial_score': 75}
+print(f"预警信息: {risk_alert(data)}")`,
+                tips: '建立供应商风险监控机制，定期评估。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '供应商评估最重要的维度是？', options: ['只有价格', '质量、成本、交付、服务综合', '只有质量', '只有交付'], correct: 1 },
+              { type: 'single', question: '战略供应商的特点是？', options: ['低价值低风险', '高价值高风险', '高价值低风险', '低价值高风险'], correct: 1 },
+              { type: 'judge', question: '供应商分类管理可以提高管理效率。', correct: true },
+              { type: 'fill', question: '供应商风险包括供应风险、质量风险、财务风险和______风险。', answer: '合规' },
+              { type: 'single', question: '供应商交付率低于多少应该预警？', options: ['99%', '95%', '90%', '80%'], correct: 2 },
+              { type: 'judge', question: '所有供应商应该采用相同的管理策略。', correct: false }
+            ]
+          },
+          {
+            title: '第六章：供应链优化案例',
+            knowledge: [
+              {
+                title: '6.1 库存优化案例',
+                content: `<p>通过数据分析优化库存管理的实际案例。</p>
+                <p><strong>案例背景：</strong></p>
+                <p>某电商企业库存周转率低，资金占用大。</p>
+                <p><strong>优化措施：</strong></p>
+                <p>• ABC分类管理</p>
+                <p>• 安全库存优化</p>
+                <p>• 补货策略调整</p>`,
+                code: `# ABC分类示例
+products = [
+    {'name': '产品A', 'sales': 100000, 'category': ''},
+    {'name': '产品B', 'sales': 50000, 'category': ''},
+    {'name': '产品C', 'sales': 5000, 'category': ''}
+]
+
+total_sales = sum(p['sales'] for p in products)
+cumulative = 0
+
+for p in sorted(products, key=lambda x: x['sales'], reverse=True):
+    cumulative += p['sales']
+    ratio = cumulative / total_sales
+    p['category'] = 'A' if ratio <= 0.8 else 'B' if ratio <= 0.95 else 'C'
+    print(f"{p['name']}: {p['category']}类")`,
+                tips: 'A类商品重点管理，C类商品简化管理。'
+              },
+              {
+                title: '6.2 配送优化案例',
+                content: `<p>物流配送网络优化的实际案例。</p>
+                <p><strong>案例背景：</strong></p>
+                <p>某零售企业配送成本高，时效差。</p>
+                <p><strong>优化措施：</strong></p>
+                <p>• 仓库选址优化</p>
+                <p>• 路线规划优化</p>
+                <p>• 配送模式创新</p>`,
+                code: `# 配送成本对比
+before = {'仓库数': 5, '平均配送距离': 150, '配送成本': 100}
+after = {'仓库数': 3, '平均配送距离': 80, '配送成本': 65}
+
+print("优化前:")
+print(f"  仓库数: {before['仓库数']}")
+print(f"  平均配送距离: {before['平均配送距离']} km")
+print(f"  配送成本指数: {before['配送成本']}")
+
+print("\\n优化后:")
+print(f"  仓库数: {after['仓库数']}")
+print(f"  平均配送距离: {after['平均配送距离']} km")
+print(f"  配送成本指数: {after['配送成本']}")
+
+savings = (before['配送成本'] - after['配送成本']) / before['配送成本']
+print(f"\\n成本降低: {savings:.1%}")`,
+                tips: '配送优化需要综合考虑成本、时效和服务质量。'
+              },
+              {
+                title: '6.3 供应链数字化转型',
+                content: `<p>供应链数字化转型的趋势和实践。</p>
+                <p><strong>数字化技术：</strong></p>
+                <p>• 大数据：需求预测、风险预警</p>
+                <p>• 物联网：实时追踪、智能仓储</p>
+                <p>• 人工智能：智能决策、自动化</p>
+                <p>• 区块链：追溯、信任机制</p>`,
+                code: `# 数字化供应链架构
+digital_supply_chain = {
+    '数据层': ['数据采集', '数据存储', '数据治理'],
+    '分析层': ['需求预测', '库存优化', '风险预警'],
+    '应用层': ['智能采购', '智能仓储', '智能配送'],
+    '展示层': ['数据大屏', '移动应用', '决策支持']
+}
+
+for layer, functions in digital_supply_chain.items():
+    print(f"{layer}: {', '.join(functions)}")`,
+                tips: '数字化转型是供应链发展的必然趋势。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'ABC分类中A类商品的特点是？', options: ['数量多价值低', '数量少价值高', '数量中等', '无特点'], correct: 1 },
+              { type: 'single', question: '配送优化的目标是？', options: ['增加仓库', '降低成本提高时效', '减少客户', '增加库存'], correct: 1 },
+              { type: 'judge', question: '供应链数字化转型可以提高运营效率。', correct: true },
+              { type: 'fill', question: '供应链数字化技术包括大数据、物联网、人工智能和______。', answer: '区块链' },
+              { type: 'single', question: '库存优化案例中ABC分类依据是？', options: ['产品名称', '销售价值', '产品颜色', '供应商'], correct: 1 },
+              { type: 'judge', question: '供应链优化是一次性工作。', correct: false }
+            ]
+          }
         ],
         knowledgeGoals: ['掌握供应链管理的基本概念', '理解需求预测的方法和模型', '熟悉库存管理的分析方法', '了解供应链绩效评估指标'],
         abilityGoals: ['能够进行需求预测分析', '能够优化库存管理决策', '能够分析供应链绩效', '能够提出供应链改进建议']
@@ -2512,16 +3309,522 @@ for p in paragraphs:
         iconClass: 'yellow',
         title: '数据库原理与应用',
         subtitle: '数据存储与管理基础课程',
-        desc: '本课程教授数据库的基本原理和应用技术。',
+        desc: '本课程教授数据库的基本原理和应用技术，使学生能够设计、创建和管理数据库，掌握SQL语言进行数据操作。',
         tags: ['高职大二', '先修课程：无', '后续课程：数据分析技术'],
         skills: ['SQL语言', '数据库设计', '事务管理'],
         chapters: [
-          { title: '第一章：数据库系统概述', knowledge: [], quiz: [] },
-          { title: '第二章：关系数据库模型', knowledge: [], quiz: [] },
-          { title: '第三章：SQL语言基础', knowledge: [], quiz: [] },
-          { title: '第四章：数据库设计', knowledge: [], quiz: [] },
-          { title: '第五章：数据库管理与维护', knowledge: [], quiz: [] },
-          { title: '第六章：数据库应用开发', knowledge: [], quiz: [] }
+          {
+            title: '第一章：数据库系统概述',
+            knowledge: [
+              {
+                title: '1.1 数据库基本概念',
+                content: `<p>数据库是长期存储在计算机内的有组织、可共享的数据集合。</p>
+                <p><strong>基本术语：</strong></p>
+                <p>• 数据(Data)：描述事物的符号记录</p>
+                <p>• 数据库(DB)：数据的集合</p>
+                <p>• 数据库管理系统(DBMS)：管理数据库的软件</p>
+                <p>• 数据库系统(DBS)：整个系统</p>`,
+                code: `-- 数据库基本操作
+-- 创建数据库
+CREATE DATABASE mydb;
+
+-- 使用数据库
+USE mydb;
+
+-- 查看所有数据库
+SHOW DATABASES;
+
+-- 删除数据库
+DROP DATABASE mydb;`,
+                tips: 'DBMS是用户与数据库之间的接口。'
+              },
+              {
+                title: '1.2 数据模型',
+                content: `<p>数据模型是数据特征的抽象。</p>
+                <p><strong>主要数据模型：</strong></p>
+                <p>• 层次模型：树形结构</p>
+                <p>• 网状模型：图结构</p>
+                <p>• 关系模型：二维表结构</p>
+                <p>• 面向对象模型：对象结构</p>`,
+                code: `-- 关系模型示例
+-- 学生表
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    major VARCHAR(50)
+);
+
+-- 关系模型的特点：
+-- 1. 数据以表格形式存储
+-- 2. 表之间通过外键关联
+-- 3. 支持SQL查询语言`,
+                tips: '关系模型是目前最主流的数据模型。'
+              },
+              {
+                title: '1.3 数据库系统结构',
+                content: `<p>数据库系统采用三级模式结构。</p>
+                <p><strong>三级模式：</strong></p>
+                <p>• 外模式：用户视图</p>
+                <p>• 模式：逻辑结构</p>
+                <p>• 内模式：物理存储</p>
+                <p><strong>两级映像：</strong></p>
+                <p>• 外模式/模式映像</p>
+                <p>• 模式/内模式映像</p>`,
+                code: `-- 三级模式示例
+-- 模式（逻辑结构）
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    dept_id INT
+);
+
+-- 外模式（视图）
+CREATE VIEW emp_view AS
+SELECT emp_id, emp_name 
+FROM employee;
+
+-- 内模式由DBMS自动管理`,
+                tips: '三级模式保证了数据的逻辑独立性和物理独立性。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'DBMS的全称是？', options: ['数据库', '数据库管理系统', '数据库系统', '数据模型'], correct: 1 },
+              { type: 'single', question: '目前最主流的数据模型是？', options: ['层次模型', '网状模型', '关系模型', '面向对象模型'], correct: 2 },
+              { type: 'judge', question: '数据库就是数据库管理系统。', correct: false },
+              { type: 'fill', question: '数据库三级模式包括外模式、模式和______。', answer: '内模式' },
+              { type: 'single', question: '创建数据库用哪个SQL语句？', options: ['NEW DATABASE', 'CREATE DATABASE', 'MAKE DATABASE', 'ADD DATABASE'], correct: 1 },
+              { type: 'judge', question: '关系模型使用二维表存储数据。', correct: true }
+            ]
+          },
+          {
+            title: '第二章：关系数据库模型',
+            knowledge: [
+              {
+                title: '2.1 关系模型基础',
+                content: `<p>关系模型用二维表来表示实体和实体间的联系。</p>
+                <p><strong>基本概念：</strong></p>
+                <p>• 关系(Relation)：一张表</p>
+                <p>• 元组(Tuple)：一行记录</p>
+                <p>• 属性(Attribute)：一列</p>
+                <p>• 域(Domain)：属性的取值范围</p>`,
+                code: `-- 关系模型示例
+-- 学生关系
+CREATE TABLE student (
+    sno CHAR(10),      -- 学号（属性）
+    sname VARCHAR(20), -- 姓名
+    age INT,           -- 年龄
+    PRIMARY KEY (sno)  -- 主键
+);
+
+-- 插入元组
+INSERT INTO student VALUES 
+('S001', '张三', 20),
+('S002', '李四', 21);`,
+                tips: '主键唯一标识一个元组，不能为空。'
+              },
+              {
+                title: '2.2 关系完整性约束',
+                content: `<p>完整性约束保证数据的正确性和一致性。</p>
+                <p><strong>三类完整性：</strong></p>
+                <p>• 实体完整性：主键不能为空</p>
+                <p>• 参照完整性：外键必须存在</p>
+                <p>• 用户定义完整性：业务规则</p>`,
+                code: `-- 完整性约束示例
+CREATE TABLE course (
+    cno CHAR(5) PRIMARY KEY,  -- 实体完整性
+    cname VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE sc (
+    sno CHAR(10),
+    cno CHAR(5),
+    score DECIMAL(5,2),
+    PRIMARY KEY (sno, cno),
+    FOREIGN KEY (sno) REFERENCES student(sno),  -- 参照完整性
+    FOREIGN KEY (cno) REFERENCES course(cno),
+    CHECK (score >= 0 AND score <= 100)  -- 用户定义完整性
+);`,
+                tips: '外键约束保证表之间的引用关系。'
+              },
+              {
+                title: '2.3 关系代数',
+                content: `<p>关系代数是关系数据库的理论基础。</p>
+                <p><strong>基本运算：</strong></p>
+                <p>• 选择(σ)：筛选行</p>
+                <p>• 投影(π)：选择列</p>
+                <p>• 连接(⋈)：连接表</p>
+                <p>• 并(∪)、差(-)、笛卡尔积(×)</p>`,
+                code: `-- 关系代数与SQL对应
+-- 选择运算 σ
+SELECT * FROM student WHERE age > 20;
+
+-- 投影运算 π
+SELECT sname, age FROM student;
+
+-- 连接运算 ⋈
+SELECT student.sname, sc.score
+FROM student JOIN sc ON student.sno = sc.sno;
+
+-- 并运算 ∪
+SELECT * FROM student1
+UNION
+SELECT * FROM student2;`,
+                tips: '关系代数是SQL查询的理论基础。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '关系模型中的一行称为？', options: ['属性', '元组', '域', '关系'], correct: 1 },
+              { type: 'single', question: '主键的特点是？', options: ['可以重复', '可以为空', '唯一且不为空', '无限制'], correct: 2 },
+              { type: 'judge', question: '外键必须引用另一个表的主键。', correct: true },
+              { type: 'fill', question: '关系完整性包括实体完整性、参照完整性和______完整性。', answer: '用户定义' },
+              { type: 'single', question: '选择运算σ对应SQL的？', options: ['SELECT', 'WHERE', 'JOIN', 'GROUP BY'], correct: 1 },
+              { type: 'judge', question: '关系代数是SQL的理论基础。', correct: true }
+            ]
+          },
+          {
+            title: '第三章：SQL语言基础',
+            knowledge: [
+              {
+                title: '3.1 数据查询SELECT',
+                content: `<p>SELECT语句是SQL最常用的语句。</p>
+                <p><strong>基本语法：</strong></p>
+                <p>SELECT 列名 FROM 表名 WHERE 条件</p>
+                <p><strong>常用子句：</strong></p>
+                <p>• WHERE：筛选条件</p>
+                <p>• ORDER BY：排序</p>
+                <p>• GROUP BY：分组</p>
+                <p>• LIMIT：限制行数</p>`,
+                code: `-- 基本查询
+SELECT * FROM student;
+
+-- 条件查询
+SELECT * FROM student WHERE age > 20;
+
+-- 排序查询
+SELECT * FROM student ORDER BY age DESC;
+
+-- 分组统计
+SELECT major, COUNT(*) as cnt 
+FROM student 
+GROUP BY major;
+
+-- 限制结果
+SELECT * FROM student LIMIT 10;`,
+                tips: 'SELECT语句的执行顺序：FROM→WHERE→GROUP BY→SELECT→ORDER BY'
+              },
+              {
+                title: '3.2 数据操作DML',
+                content: `<p>DML包括插入、更新、删除操作。</p>
+                <p><strong>三种操作：</strong></p>
+                <p>• INSERT：插入数据</p>
+                <p>• UPDATE：更新数据</p>
+                <p>• DELETE：删除数据</p>`,
+                code: `-- 插入数据
+INSERT INTO student (sno, sname, age) 
+VALUES ('S003', '王五', 22);
+
+-- 批量插入
+INSERT INTO student VALUES 
+('S004', '赵六', 21),
+('S005', '孙七', 20);
+
+-- 更新数据
+UPDATE student 
+SET age = 23 
+WHERE sno = 'S001';
+
+-- 删除数据
+DELETE FROM student WHERE sno = 'S005';`,
+                tips: 'UPDATE和DELETE要加WHERE条件，否则影响全部记录。'
+              },
+              {
+                title: '3.3 多表连接查询',
+                content: `<p>连接查询用于从多个表中获取数据。</p>
+                <p><strong>连接类型：</strong></p>
+                <p>• INNER JOIN：内连接</p>
+                <p>• LEFT JOIN：左连接</p>
+                <p>• RIGHT JOIN：右连接</p>
+                <p>• FULL JOIN：全连接</p>`,
+                code: `-- 内连接
+SELECT s.sname, c.cname, sc.score
+FROM student s
+INNER JOIN sc ON s.sno = sc.sno
+INNER JOIN course c ON sc.cno = c.cno;
+
+-- 左连接（显示所有学生）
+SELECT s.sname, sc.score
+FROM student s
+LEFT JOIN sc ON s.sno = sc.sno;
+
+-- 自连接（员工-经理关系）
+SELECT e.ename, m.ename as manager
+FROM emp e
+LEFT JOIN emp m ON e.mgr = m.empno;`,
+                tips: '左连接保证左表所有记录都显示。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'SELECT语句中排序用哪个子句？', options: ['WHERE', 'ORDER BY', 'GROUP BY', 'HAVING'], correct: 1 },
+              { type: 'single', question: 'INSERT语句用于？', options: ['查询数据', '插入数据', '删除数据', '更新数据'], correct: 1 },
+              { type: 'judge', question: 'UPDATE语句不加WHERE会影响所有记录。', correct: true },
+              { type: 'fill', question: 'LEFT JOIN保证______表的所有记录都显示。', answer: '左' },
+              { type: 'single', question: 'GROUP BY的作用是？', options: ['排序', '分组', '筛选', '连接'], correct: 1 },
+              { type: 'judge', question: '内连接只返回匹配的记录。', correct: true }
+            ]
+          },
+          {
+            title: '第四章：数据库设计',
+            knowledge: [
+              {
+                title: '4.1 需求分析与概念设计',
+                content: `<p>数据库设计从需求分析开始。</p>
+                <p><strong>设计步骤：</strong></p>
+                <p>1. 需求分析：了解用户需求</p>
+                <p>2. 概念设计：E-R图</p>
+                <p>3. 逻辑设计：关系模式</p>
+                <p>4. 物理设计：存储结构</p>`,
+                code: `-- E-R图转换为关系模式
+-- 实体：学生(Student)
+Student(学号, 姓名, 年龄, 系别)
+
+-- 实体：课程(Course)  
+Course(课程号, 课程名, 学分)
+
+-- 联系：选课(SC)
+SC(学号, 课程号, 成绩)
+-- 学号是外键，引用Student
+-- 课程号是外键，引用Course`,
+                tips: 'E-R图是概念设计的核心工具。'
+              },
+              {
+                title: '4.2 范式理论',
+                content: `<p>范式是关系模式的规范化标准。</p>
+                <p><strong>主要范式：</strong></p>
+                <p>• 1NF：属性不可再分</p>
+                <p>• 2NF：消除非主属性对码的部分依赖</p>
+                <p>• 3NF：消除非主属性对码的传递依赖</p>
+                <p>• BCNF：消除所有属性对码的部分和传递依赖</p>`,
+                code: `-- 范式示例
+
+-- 不满足3NF的设计（存在传递依赖）
+学生(学号, 姓名, 系名, 系主任)
+-- 学号→系名→系主任（传递依赖）
+
+-- 满足3NF的设计
+学生(学号, 姓名, 系名)
+系部(系名, 系主任)
+
+-- 分解后消除了传递依赖`,
+                tips: '实际设计中通常达到3NF即可。'
+              },
+              {
+                title: '4.3 数据库规范化实践',
+                content: `<p>规范化是数据库设计的重要过程。</p>
+                <p><strong>规范化步骤：</strong></p>
+                <p>1. 确定函数依赖</p>
+                <p>2. 确定候选码和主码</p>
+                <p>3. 判断范式级别</p>
+                <p>4. 分解提高范式级别</p>`,
+                code: `-- 订单系统规范化示例
+
+-- 原始表（不满足3NF）
+订单(订单号, 客户号, 客户名, 商品号, 商品名, 数量, 单价)
+
+-- 规范化后
+客户(客户号, 客户名)
+商品(商品号, 商品名, 单价)
+订单(订单号, 客户号, 订单日期)
+订单明细(订单号, 商品号, 数量)`,
+                tips: '规范化可以减少数据冗余，但可能影响查询性能。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'E-R图用于哪个设计阶段？', options: ['需求分析', '概念设计', '逻辑设计', '物理设计'], correct: 1 },
+              { type: 'single', question: '3NF消除了什么依赖？', options: ['部分依赖', '传递依赖', '多值依赖', '连接依赖'], correct: 1 },
+              { type: 'judge', question: '范式级别越高越好。', correct: false },
+              { type: 'fill', question: '1NF要求属性______。', answer: '不可再分' },
+              { type: 'single', question: '规范化可以减少什么？', options: ['表的数量', '数据冗余', '查询速度', '字段数量'], correct: 1 },
+              { type: 'judge', question: '实际设计通常达到3NF即可。', correct: true }
+            ]
+          },
+          {
+            title: '第五章：数据库管理与维护',
+            knowledge: [
+              {
+                title: '5.1 索引管理',
+                content: `<p>索引是提高查询效率的重要手段。</p>
+                <p><strong>索引类型：</strong></p>
+                <p>• 主键索引：自动创建</p>
+                <p>• 唯一索引：值不能重复</p>
+                <p>• 普通索引：加速查询</p>
+                <p>• 组合索引：多列索引</p>`,
+                code: `-- 创建索引
+CREATE INDEX idx_name ON student(sname);
+
+-- 创建唯一索引
+CREATE UNIQUE INDEX idx_sno ON student(sno);
+
+-- 创建组合索引
+CREATE INDEX idx_dept_age ON employee(dept, age);
+
+-- 查看索引
+SHOW INDEX FROM student;
+
+-- 删除索引
+DROP INDEX idx_name ON student;`,
+                tips: '索引不是越多越好，会影响插入和更新性能。'
+              },
+              {
+                title: '5.2 事务管理',
+                content: `<p>事务是数据库操作的逻辑单元。</p>
+                <p><strong>ACID特性：</strong></p>
+                <p>• 原子性(A)：要么全做要么全不做</p>
+                <p>• 一致性(C)：数据保持一致</p>
+                <p>• 隔离性(I)：事务之间隔离</p>
+                <p>• 持久性(D)：提交后永久保存</p>`,
+                code: `-- 事务控制
+START TRANSACTION;  -- 开始事务
+
+UPDATE account SET balance = balance - 100 
+WHERE id = 1;
+
+UPDATE account SET balance = balance + 100 
+WHERE id = 2;
+
+COMMIT;   -- 提交事务
+-- 或 ROLLBACK;  -- 回滚事务
+
+-- 设置保存点
+SAVEPOINT sp1;
+ROLLBACK TO sp1;`,
+                tips: '转账操作是事务的典型应用场景。'
+              },
+              {
+                title: '5.3 数据库备份与恢复',
+                content: `<p>备份是数据安全的重要保障。</p>
+                <p><strong>备份类型：</strong></p>
+                <p>• 完全备份：备份全部数据</p>
+                <p>• 增量备份：只备份变化数据</p>
+                <p>• 日志备份：备份事务日志</p>`,
+                code: `-- MySQL备份命令
+-- 完全备份
+mysqldump -u root -p mydb > backup.sql
+
+-- 恢复数据
+mysql -u root -p mydb < backup.sql
+
+-- 备份单个表
+mysqldump -u root -p mydb student > student_backup.sql
+
+-- 定时备份脚本示例
+-- 0 2 * * * mysqldump -u root -ppassword mydb > /backup/daily.sql`,
+                tips: '建议定期备份并验证备份的可恢复性。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '索引的主要作用是？', options: ['节省空间', '提高查询效率', '增加数据', '减少字段'], correct: 1 },
+              { type: 'single', question: '事务的ACID中A表示？', options: ['一致性', '原子性', '隔离性', '持久性'], correct: 1 },
+              { type: 'judge', question: '索引越多越好。', correct: false },
+              { type: 'fill', question: 'ROLLBACK用于______事务。', answer: '回滚' },
+              { type: 'single', question: '完全备份的特点是？', options: ['速度快', '备份全部数据', '占用空间小', '只备份变化'], correct: 1 },
+              { type: 'judge', question: '事务提交后数据永久保存。', correct: true }
+            ]
+          },
+          {
+            title: '第六章：数据库应用开发',
+            knowledge: [
+              {
+                title: '6.1 数据库连接技术',
+                content: `<p>应用程序通过数据库连接访问数据库。</p>
+                <p><strong>常用连接方式：</strong></p>
+                <p>• JDBC：Java数据库连接</p>
+                <p>• ODBC：开放数据库连接</p>
+                <p>• ORM：对象关系映射</p>
+                <p>• 连接池：复用连接</p>`,
+                code: `# Python连接MySQL示例
+import pymysql
+
+# 建立连接
+conn = pymysql.connect(
+    host='localhost',
+    user='root',
+    password='123456',
+    database='mydb'
+)
+
+# 创建游标
+cursor = conn.cursor()
+
+# 执行查询
+cursor.execute("SELECT * FROM student")
+results = cursor.fetchall()
+
+# 关闭连接
+cursor.close()
+conn.close()`,
+                tips: '使用连接池可以提高数据库访问性能。'
+              },
+              {
+                title: '6.2 SQL注入防护',
+                content: `<p>SQL注入是常见的安全漏洞。</p>
+                <p><strong>防护措施：</strong></p>
+                <p>• 参数化查询</p>
+                <p>• 输入验证</p>
+                <p>• 最小权限原则</p>
+                <p>• 使用ORM框架</p>`,
+                code: `# 安全的参数化查询
+import pymysql
+
+conn = pymysql.connect(...)
+cursor = conn.cursor()
+
+# 不安全的方式（有注入风险）
+# sql = f"SELECT * FROM user WHERE name='{name}'"
+
+# 安全的参数化查询
+sql = "SELECT * FROM user WHERE name=%s"
+cursor.execute(sql, (name,))
+
+# 使用ORM更安全
+# User.objects.filter(name=name)`,
+                tips: '永远不要拼接SQL字符串，使用参数化查询。'
+              },
+              {
+                title: '6.3 数据库性能优化',
+                content: `<p>性能优化是数据库应用的重要课题。</p>
+                <p><strong>优化方向：</strong></p>
+                <p>• SQL优化：避免全表扫描</p>
+                <p>• 索引优化：合理创建索引</p>
+                <p>• 结构优化：分表分库</p>
+                <p>• 缓存优化：使用缓存</p>`,
+                code: `-- SQL优化示例
+
+-- 不好的写法（全表扫描）
+SELECT * FROM orders WHERE YEAR(create_time) = 2024;
+
+-- 好的写法（使用索引）
+SELECT * FROM orders 
+WHERE create_time >= '2024-01-01' 
+AND create_time < '2025-01-01';
+
+-- 使用EXPLAIN分析查询
+EXPLAIN SELECT * FROM student WHERE sname = '张三';
+
+-- 避免SELECT *
+SELECT sno, sname FROM student;`,
+                tips: '使用EXPLAIN分析SQL执行计划。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'JDBC是什么？', options: ['数据库', 'Java数据库连接', 'SQL语句', 'ORM框架'], correct: 1 },
+              { type: 'single', question: '防止SQL注入的最佳方法是？', options: ['拼接字符串', '参数化查询', '使用明文密码', '关闭数据库'], correct: 1 },
+              { type: 'judge', question: 'SELECT * 是高效的做法。', correct: false },
+              { type: 'fill', question: 'EXPLAIN用于分析SQL的______。', answer: '执行计划' },
+              { type: 'single', question: '数据库性能优化不包括？', options: ['索引优化', 'SQL优化', '增加数据量', '缓存优化'], correct: 2 },
+              { type: 'judge', question: '连接池可以复用数据库连接。', correct: true }
+            ]
+          }
         ],
         knowledgeGoals: ['掌握数据库的基本概念和原理', '理解关系数据库模型', '熟悉SQL语言的语法', '了解数据库设计的方法'],
         abilityGoals: ['能够设计规范的数据库', '能够使用SQL进行数据操作', '能够进行数据库的日常管理', '能够优化数据库查询性能']
@@ -2532,16 +3835,825 @@ for p in paragraphs:
         iconClass: 'mixed',
         title: '财务数据分析',
         subtitle: '财务分析应用课程',
-        desc: '本课程将数据分析技术应用于财务领域。',
+        desc: '本课程将数据分析技术应用于财务领域，培养学生分析财务报表、评估企业财务状况、支持财务决策的能力。',
         tags: ['高职大三', '先修课程：数据分析技术', '后续课程：毕业设计'],
         skills: ['财务报表分析', '财务指标', '数据可视化'],
         chapters: [
-          { title: '第一章：财务分析概述', knowledge: [], quiz: [] },
-          { title: '第二章：财务报表分析', knowledge: [], quiz: [] },
-          { title: '第三章：财务指标分析', knowledge: [], quiz: [] },
-          { title: '第四章：财务预测分析', knowledge: [], quiz: [] },
-          { title: '第五章：财务风险分析', knowledge: [], quiz: [] },
-          { title: '第六章：财务可视化报告', knowledge: [], quiz: [] }
+          {
+            title: '第一章：财务分析概述',
+            knowledge: [
+              {
+                title: '1.1 财务分析的定义与目的',
+                content: `<p>财务分析是对企业财务状况和经营成果的分析。</p>
+                <p><strong>分析目的：</strong></p>
+                <p>• 评价过去：了解历史经营状况</p>
+                <p>• 衡量现在：判断当前财务状况</p>
+                <p>• 预测未来：预测发展趋势</p>
+                <p>• 支持决策：为决策提供依据</p>`,
+                code: `# 财务分析框架
+analysis_framework = {
+    '偿债能力': ['流动比率', '速动比率', '资产负债率'],
+    '营运能力': ['应收账款周转率', '存货周转率', '总资产周转率'],
+    '盈利能力': ['毛利率', '净利率', 'ROE'],
+    '发展能力': ['营收增长率', '利润增长率', '资产增长率']
+}
+
+for category, indicators in analysis_framework.items():
+    print(f"{category}: {', '.join(indicators)}")`,
+                tips: '财务分析要结合行业特点和企业实际情况。'
+              },
+              {
+                title: '1.2 财务分析的方法',
+                content: `<p>财务分析有多种方法。</p>
+                <p><strong>常用方法：</strong></p>
+                <p>• 比较分析法：与历史、同行比较</p>
+                <p>• 比率分析法：计算财务比率</p>
+                <p>• 趋势分析法：分析变化趋势</p>
+                <p>• 因素分析法：分析影响因素</p>`,
+                code: `# 比较分析示例
+import pandas as pd
+
+# 企业财务数据
+data = {
+    '年度': ['2022', '2023', '2024'],
+    '营业收入': [1000, 1200, 1500],
+    '净利润': [100, 130, 180]
+}
+df = pd.DataFrame(data)
+
+# 计算增长率
+df['营收增长率'] = df['营业收入'].pct_change() * 100
+df['利润增长率'] = df['净利润'].pct_change() * 100
+
+print(df)`,
+                tips: '综合运用多种方法，全面分析企业财务状况。'
+              },
+              {
+                title: '1.3 财务分析的信息来源',
+                content: `<p>财务分析需要充分的信息支持。</p>
+                <p><strong>主要信息来源：</strong></p>
+                <p>• 财务报表：资产负债表、利润表、现金流量表</p>
+                <p>• 附注：会计政策、重要事项</p>
+                <p>• 审计报告：审计意见</p>
+                <p>• 行业数据：行业平均水平</p>`,
+                code: `# 财务报表数据结构
+financial_statements = {
+    '资产负债表': {
+        '资产': ['流动资产', '非流动资产'],
+        '负债': ['流动负债', '非流动负债'],
+        '所有者权益': ['实收资本', '留存收益']
+    },
+    '利润表': {
+        '收入': ['营业收入', '其他收入'],
+        '成本': ['营业成本', '期间费用'],
+        '利润': ['营业利润', '净利润']
+    },
+    '现金流量表': {
+        '经营活动': ['流入', '流出'],
+        '投资活动': ['流入', '流出'],
+        '筹资活动': ['流入', '流出']
+    }
+}
+
+for statement, items in financial_statements.items():
+    print(f"{statement}: {list(items.keys())}")`,
+                tips: '三大报表相互关联，要综合分析。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '财务分析的主要目的是？', options: ['编制报表', '支持决策', '记账', '审计'], correct: 1 },
+              { type: 'single', question: '比率分析法属于？', options: ['比较分析', '趋势分析', '定量分析', '定性分析'], correct: 2 },
+              { type: 'judge', question: '财务分析只需要看利润表。', correct: false },
+              { type: 'fill', question: '三大财务报表包括资产负债表、利润表和______。', answer: '现金流量表' },
+              { type: 'single', question: '财务分析的信息来源不包括？', options: ['财务报表', '审计报告', '个人猜测', '行业数据'], correct: 2 },
+              { type: 'judge', question: '财务分析要结合行业特点。', correct: true }
+            ]
+          },
+          {
+            title: '第二章：财务报表分析',
+            knowledge: [
+              {
+                title: '2.1 资产负债表分析',
+                content: `<p>资产负债表反映企业特定时点的财务状况。</p>
+                <p><strong>基本结构：</strong></p>
+                <p>资产 = 负债 + 所有者权益</p>
+                <p><strong>分析要点：</strong></p>
+                <p>• 资产结构：流动资产vs非流动资产</p>
+                <p>• 资本结构：负债vs所有者权益</p>
+                <p>• 偿债能力：流动比率、速动比率</p>`,
+                code: `# 资产负债表分析
+balance_sheet = {
+    '流动资产': 500, '非流动资产': 1000,
+    '流动负债': 200, '非流动负债': 300,
+    '所有者权益': 1000
+}
+
+# 计算关键指标
+current_ratio = balance_sheet['流动资产'] / balance_sheet['流动负债']
+debt_ratio = (balance_sheet['流动负债'] + balance_sheet['非流动负债']) / \
+             (balance_sheet['流动资产'] + balance_sheet['非流动资产'])
+
+print(f"流动比率: {current_ratio:.2f}")
+print(f"资产负债率: {debt_ratio:.1%}")`,
+                tips: '流动比率一般应大于2，速动比率大于1。'
+              },
+              {
+                title: '2.2 利润表分析',
+                content: `<p>利润表反映企业一定期间的经营成果。</p>
+                <p><strong>利润计算流程：</strong></p>
+                <p>营业收入 - 营业成本 = 毛利</p>
+                <p>毛利 - 期间费用 = 营业利润</p>
+                <p>营业利润 ± 营业外收支 = 利润总额</p>
+                <p>利润总额 - 所得税 = 净利润</p>`,
+                code: `# 利润表分析
+income_statement = {
+    '营业收入': 2000,
+    '营业成本': 1200,
+    '销售费用': 200,
+    '管理费用': 150,
+    '财务费用': 50,
+    '所得税': 100
+}
+
+# 计算利润指标
+gross_profit = income_statement['营业收入'] - income_statement['营业成本']
+operating_profit = gross_profit - income_statement['销售费用'] - \
+                   income_statement['管理费用'] - income_statement['财务费用']
+net_profit = operating_profit - income_statement['所得税']
+
+# 计算利润率
+gross_margin = gross_profit / income_statement['营业收入']
+net_margin = net_profit / income_statement['营业收入']
+
+print(f"毛利率: {gross_margin:.1%}")
+print(f"净利率: {net_margin:.1%}")`,
+                tips: '毛利率反映产品盈利能力，净利率反映整体盈利能力。'
+              },
+              {
+                title: '2.3 现金流量表分析',
+                content: `<p>现金流量表反映企业现金流入流出情况。</p>
+                <p><strong>三大活动：</strong></p>
+                <p>• 经营活动：日常经营产生</p>
+                <p>• 投资活动：长期资产购建</p>
+                <p>• 筹资活动：资本筹集与分配</p>`,
+                code: `# 现金流量分析
+cash_flow = {
+    '经营活动': {'流入': 3000, '流出': 2500},
+    '投资活动': {'流入': 200, '流出': 800},
+    '筹资活动': {'流入': 500, '流出': 300}
+}
+
+# 计算净现金流
+for activity, flows in cash_flow.items():
+    net = flows['流入'] - flows['流出']
+    print(f"{activity}净现金流: {net}")
+
+# 经营现金流与净利润比值
+operating_cf = cash_flow['经营活动']['流入'] - cash_flow['经营活动']['流出']
+net_profit = 400  # 假设净利润
+quality = operating_cf / net_profit
+print(f"\\n盈利质量: {quality:.2f}")`,
+                tips: '经营现金流为正是企业健康的重要标志。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '资产负债表的基本等式是？', options: ['收入=支出', '资产=负债+权益', '利润=收入-成本', '现金流=流入-流出'], correct: 1 },
+              { type: 'single', question: '毛利率的计算公式是？', options: ['净利润/收入', '(收入-成本)/收入', '成本/收入', '利润/成本'], correct: 1 },
+              { type: 'judge', question: '经营现金流为负一定不好。', correct: false },
+              { type: 'fill', question: '现金流量表包括经营活动、投资活动和______活动。', answer: '筹资' },
+              { type: 'single', question: '流动比率一般应大于？', options: ['1', '2', '3', '0.5'], correct: 1 },
+              { type: 'judge', question: '利润表反映的是某一时点的财务状况。', correct: false }
+            ]
+          },
+          {
+            title: '第三章：财务指标分析',
+            knowledge: [
+              {
+                title: '3.1 偿债能力指标',
+                content: `<p>偿债能力反映企业偿还债务的能力。</p>
+                <p><strong>短期偿债能力指标：</strong></p>
+                <p>• 流动比率 = 流动资产 / 流动负债</p>
+                <p>• 速动比率 = (流动资产 - 存货) / 流动负债</p>
+                <p>• 现金比率 = 现金 / 流动负债</p>
+                <p><strong>长期偿债能力指标：</strong></p>
+                <p>• 资产负债率 = 负债总额 / 资产总额</p>
+                <p>• 产权比率 = 负债总额 / 所有者权益</p>
+                <p>• 利息保障倍数 = EBIT / 利息费用</p>`,
+                code: `# 偿债能力分析
+def analyze_solvency(balance_sheet, ebit, interest):
+    """偿债能力分析"""
+    # 短期偿债能力
+    current_ratio = balance_sheet['流动资产'] / balance_sheet['流动负债']
+    quick_ratio = (balance_sheet['流动资产'] - balance_sheet['存货']) / balance_sheet['流动负债']
+    cash_ratio = balance_sheet['现金'] / balance_sheet['流动负债']
+    
+    # 长期偿债能力
+    total_assets = balance_sheet['流动资产'] + balance_sheet['非流动资产']
+    total_liabilities = balance_sheet['流动负债'] + balance_sheet['非流动负债']
+    debt_ratio = total_liabilities / total_assets
+    equity_ratio = total_liabilities / balance_sheet['所有者权益']
+    interest_coverage = ebit / interest
+    
+    return {
+        '流动比率': f'{current_ratio:.2f}',
+        '速动比率': f'{quick_ratio:.2f}',
+        '资产负债率': f'{debt_ratio:.1%}',
+        '利息保障倍数': f'{interest_coverage:.2f}'
+    }
+
+# 示例
+bs = {'流动资产': 500, '存货': 100, '现金': 80, '流动负债': 200, 
+      '非流动资产': 1000, '非流动负债': 300, '所有者权益': 1000}
+result = analyze_solvency(bs, 300, 50)
+for k, v in result.items():
+    print(f"{k}: {v}")`,
+                tips: '流动比率>2、速动比率>1通常被认为是安全的。'
+              },
+              {
+                title: '3.2 盈利能力指标',
+                content: `<p>盈利能力反映企业获取利润的能力。</p>
+                <p><strong>主要盈利指标：</strong></p>
+                <p>• 毛利率 = (营业收入 - 营业成本) / 营业收入</p>
+                <p>• 净利率 = 净利润 / 营业收入</p>
+                <p>• ROE = 净利润 / 所有者权益</p>
+                <p>• ROA = 净利润 / 总资产</p>
+                <p><strong>杜邦分析：</strong></p>
+                <p>ROE = 净利率 × 资产周转率 × 权益乘数</p>`,
+                code: `# 盈利能力分析与杜邦分解
+def dupont_analysis(income_stmt, balance_sheet):
+    """杜邦分析"""
+    net_profit = income_stmt['净利润']
+    revenue = income_stmt['营业收入']
+    total_assets = balance_sheet['总资产']
+    equity = balance_sheet['所有者权益']
+    
+    # 三因素分解
+    net_margin = net_profit / revenue  # 净利率
+    asset_turnover = revenue / total_assets  # 资产周转率
+    equity_multiplier = total_assets / equity  # 权益乘数
+    
+    # ROE
+    roe = net_margin * asset_turnover * equity_multiplier
+    
+    print("=== 杜邦分析 ===")
+    print(f"净利率: {net_margin:.2%}")
+    print(f"资产周转率: {asset_turnover:.2f}")
+    print(f"权益乘数: {equity_multiplier:.2f}")
+    print(f"ROE: {roe:.2%}")
+    
+    return roe
+
+# 示例数据
+income = {'营业收入': 2000, '净利润': 200}
+balance = {'总资产': 1500, '所有者权益': 1000}
+dupont_analysis(income, balance)`,
+                tips: 'ROE是衡量股东回报的核心指标，一般15%以上为优秀。'
+              },
+              {
+                title: '3.3 营运能力指标',
+                content: `<p>营运能力反映企业资产管理效率。</p>
+                <p><strong>主要周转指标：</strong></p>
+                <p>• 应收账款周转率 = 营业收入 / 平均应收账款</p>
+                <p>• 存货周转率 = 营业成本 / 平均存货</p>
+                <p>• 总资产周转率 = 营业收入 / 平均总资产</p>
+                <p><strong>周转天数：</strong></p>
+                <p>• 应收账款周转天数 = 365 / 周转率</p>
+                <p>• 存货周转天数 = 365 / 周转率</p>`,
+                code: `# 营运能力分析
+def analyze_operation(revenue, cost, avg_receivables, avg_inventory, avg_assets):
+    """营运能力分析"""
+    # 周转率
+    receivables_turnover = revenue / avg_receivables
+    inventory_turnover = cost / avg_inventory
+    asset_turnover = revenue / avg_assets
+    
+    # 周转天数
+    receivables_days = 365 / receivables_turnover
+    inventory_days = 365 / inventory_turnover
+    
+    print("=== 营运能力分析 ===")
+    print(f"应收账款周转率: {receivables_turnover:.2f}次")
+    print(f"应收账款周转天数: {receivables_days:.0f}天")
+    print(f"存货周转率: {inventory_turnover:.2f}次")
+    print(f"存货周转天数: {inventory_days:.0f}天")
+    print(f"总资产周转率: {asset_turnover:.2f}次")
+    
+    return {
+        '应收周转率': receivables_turnover,
+        '存货周转率': inventory_turnover,
+        '资产周转率': asset_turnover
+    }
+
+# 示例
+analyze_operation(
+    revenue=2000, cost=1200,
+    avg_receivables=200, avg_inventory=150, avg_assets=1500
+)`,
+                tips: '周转率越高越好，周转天数越短越好。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '流动比率的计算公式是？', options: ['流动负债/流动资产', '流动资产/流动负债', '资产/负债', '收入/成本'], correct: 1 },
+              { type: 'single', question: 'ROE表示什么？', options: ['资产收益率', '净资产收益率', '毛利率', '净利率'], correct: 1 },
+              { type: 'judge', question: '资产负债率越高越好。', correct: false },
+              { type: 'fill', question: '杜邦分析将ROE分解为净利率、资产周转率和______。', answer: '权益乘数' },
+              { type: 'single', question: '存货周转率的分子是？', options: ['营业收入', '营业成本', '净利润', '存货'], correct: 1 },
+              { type: 'judge', question: '应收账款周转天数越短越好。', correct: true }
+            ]
+          },
+          {
+            title: '第四章：财务预测分析',
+            knowledge: [
+              {
+                title: '4.1 销售预测方法',
+                content: `<p>销售预测是财务预测的起点。</p>
+                <p><strong>常用预测方法：</strong></p>
+                <p>• 时间序列法：移动平均、指数平滑</p>
+                <p>• 回归分析法：线性回归、多元回归</p>
+                <p>• 季节性分析：考虑季节因素</p>
+                <p>• 增长率法：基于历史增长率预测</p>`,
+                code: `# 销售预测 - 移动平均与指数平滑
+import numpy as np
+
+def moving_average(data, window=3):
+    """移动平均预测"""
+    predictions = []
+    for i in range(len(data) - window + 1):
+        avg = np.mean(data[i:i+window])
+        predictions.append(avg)
+    return predictions
+
+def exponential_smoothing(data, alpha=0.3):
+    """指数平滑预测"""
+    result = [data[0]]
+    for i in range(1, len(data)):
+        smoothed = alpha * data[i] + (1 - alpha) * result[-1]
+        result.append(smoothed)
+    return result
+
+# 历史销售数据
+sales = [100, 120, 115, 130, 145, 160, 155, 175]
+
+# 预测
+ma_pred = moving_average(sales, 3)
+es_pred = exponential_smoothing(sales, 0.3)
+
+print("移动平均预测:", [f"{x:.1f}" for x in ma_pred[-3:]])
+print("指数平滑预测:", [f"{x:.1f}" for x in es_pred[-3:]])
+print(f"下期预测: {es_pred[-1]:.1f}")`,
+                tips: '指数平滑的alpha值越大，近期数据权重越高。'
+              },
+              {
+                title: '4.2 财务预测模型',
+                content: `<p>财务预测模型用于预测未来财务状况。</p>
+                <p><strong>销售百分比法：</strong></p>
+                <p>• 假设资产、负债与销售收入成比例</p>
+                <p>• 计算外部融资需求</p>
+                <p><strong>可持续增长率：</strong></p>
+                <p>g = ROE × 留存收益率 / (1 - ROE × 留存收益率)</p>`,
+                code: `# 销售百分比法预测融资需求
+def forecast_financing(current_sales, forecast_sales, assets, liabilities, 
+                       retention_ratio, net_margin):
+    """预测外部融资需求"""
+    # 销售增长
+    sales_growth = forecast_sales - current_sales
+    
+    # 资产负债与销售的比例
+    asset_ratio = assets / current_sales
+    liability_ratio = liabilities / current_sales
+    
+    # 资产负债自发增长
+    asset_increase = asset_ratio * sales_growth
+    liability_increase = liability_ratio * sales_growth
+    
+    # 留存收益增加
+    profit = forecast_sales * net_margin
+    retained = profit * retention_ratio
+    
+    # 外部融资需求
+    efn = asset_increase - liability_increase - retained
+    
+    print(f"销售增长: {sales_growth}")
+    print(f"资产增加: {asset_increase:.0f}")
+    print(f"负债自发增长: {liability_increase:.0f}")
+    print(f"留存收益增加: {retained:.0f}")
+    print(f"外部融资需求: {efn:.0f}")
+    
+    return efn
+
+# 示例
+forecast_financing(
+    current_sales=1000, forecast_sales=1200,
+    assets=600, liabilities=200,
+    retention_ratio=0.6, net_margin=0.1
+)`,
+                tips: '外部融资需求为正时需要借款或发行股票。'
+              },
+              {
+                title: '4.3 情景分析与敏感性分析',
+                content: `<p>情景分析和敏感性分析用于评估不确定性。</p>
+                <p><strong>情景分析：</strong></p>
+                <p>• 乐观情景：假设有利条件</p>
+                <p>• 基准情景：假设正常条件</p>
+                <p>• 悲观情景：假设不利条件</p>
+                <p><strong>敏感性分析：</strong></p>
+                <p>• 改变单一变量观察结果变化</p>
+                <p>• 识别关键影响因素</p>`,
+                code: `# 情景分析
+def scenario_analysis(base_revenue, base_cost, base_price):
+    """情景分析"""
+    scenarios = {
+        '乐观': {'revenue_growth': 0.2, 'cost_change': -0.05, 'price_change': 0.1},
+        '基准': {'revenue_growth': 0.1, 'cost_change': 0, 'price_change': 0.05},
+        '悲观': {'revenue_growth': -0.05, 'cost_change': 0.1, 'price_change': -0.05}
+    }
+    
+    results = {}
+    for name, params in scenarios.items():
+        revenue = base_revenue * (1 + params['revenue_growth'])
+        cost = base_cost * (1 + params['cost_change'])
+        price = base_price * (1 + params['price_change'])
+        profit = revenue * price - cost
+        
+        results[name] = {
+            '收入': revenue,
+            '成本': cost,
+            '利润': profit
+        }
+        print(f"{name}情景: 利润 = {profit:.0f}")
+    
+    return results
+
+# 敏感性分析
+def sensitivity_analysis(base_profit, variable, change_range):
+    """敏感性分析"""
+    print(f"\\n{variable}敏感性分析:")
+    for change in change_range:
+        adjusted_profit = base_profit * (1 + change)
+        print(f"  {variable}{change:+.0%}: 利润 = {adjusted_profit:.0f}")
+
+# 示例
+scenario_analysis(base_revenue=1000, base_cost=600, base_price=1)
+sensitivity_analysis(base_profit=400, variable='价格', 
+                     change_range=[-0.1, -0.05, 0, 0.05, 0.1])`,
+                tips: '情景分析帮助决策者了解不同情况下的财务结果。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '销售预测的起点通常是？', options: ['成本预测', '利润预测', '销售预测', '投资预测'], correct: 2 },
+              { type: 'single', question: '指数平滑法中alpha越大？', options: ['近期权重越小', '近期权重越大', '远期权重越大', '无影响'], correct: 1 },
+              { type: 'judge', question: '销售百分比法假设资产负债与销售成比例。', correct: true },
+              { type: 'fill', question: '可持续增长率的计算需要ROE和______。', answer: '留存收益率' },
+              { type: 'single', question: '情景分析不包括？', options: ['乐观情景', '基准情景', '悲观情景', '随机情景'], correct: 3 },
+              { type: 'judge', question: '敏感性分析只改变单一变量。', correct: true }
+            ]
+          },
+          {
+            title: '第五章：财务风险分析',
+            knowledge: [
+              {
+                title: '5.1 财务风险类型',
+                content: `<p>财务风险是企业面临的重要风险类型。</p>
+                <p><strong>主要财务风险：</strong></p>
+                <p>• 筹资风险：债务到期无法偿还</p>
+                <p>• 投资风险：投资收益不确定</p>
+                <p>• 经营风险：经营收益不确定</p>
+                <p>• 流动性风险：无法及时变现</p>
+                <p><strong>风险特征：</strong></p>
+                <p>• 客观性：风险客观存在</p>
+                <p>• 不确定性：结果不确定</p>
+                <p>• 可测性：可以量化评估</p>`,
+                code: `# 财务风险识别与分类
+financial_risks = {
+    '筹资风险': {
+        '原因': ['负债过高', '期限错配', '利率波动'],
+        '指标': ['资产负债率', '利息保障倍数', '债务期限结构'],
+        '应对': ['优化资本结构', '分散融资渠道', '利率对冲']
+    },
+    '投资风险': {
+        '原因': ['项目失败', '市场变化', '技术风险'],
+        '指标': ['投资回报率', 'NPV', 'IRR'],
+        '应对': ['可行性研究', '组合投资', '风险分担']
+    },
+    '经营风险': {
+        '原因': ['市场竞争', '成本波动', '需求变化'],
+        '指标': ['经营杠杆', '毛利率', '市场份额'],
+        '应对': ['成本控制', '产品多元化', '市场拓展']
+    },
+    '流动性风险': {
+        '原因': ['资金周转困难', '资产变现难'],
+        '指标': ['流动比率', '速动比率', '现金流量'],
+        '应对': ['现金管理', '授信额度', '资产证券化']
+    }
+}
+
+for risk_type, info in financial_risks.items():
+    print(f"\\n{risk_type}:")
+    print(f"  指标: {', '.join(info['指标'])}")`,
+                tips: '不同类型风险需要不同的管理策略。'
+              },
+              {
+                title: '5.2 风险评估方法',
+                content: `<p>风险评估是风险管理的关键环节。</p>
+                <p><strong>定性方法：</strong></p>
+                <p>• 专家判断法：依靠专家经验</p>
+                <p>• 风险矩阵：概率×影响程度</p>
+                <p>• 情景分析：分析不同情景</p>
+                <p><strong>定量方法：</strong></p>
+                <p>• 方差/标准差：衡量波动性</p>
+                <p>• VaR：风险价值</p>
+                <p>• 敏感性分析：变量影响程度</p>`,
+                code: `# 风险评估 - VaR计算
+import numpy as np
+
+def calculate_var(returns, confidence=0.95):
+    """计算风险价值VaR"""
+    # 历史模拟法
+    sorted_returns = np.sort(returns)
+    index = int((1 - confidence) * len(sorted_returns))
+    var = -sorted_returns[index]
+    return var
+
+def calculate_cvar(returns, confidence=0.95):
+    """计算条件风险价值CVaR"""
+    sorted_returns = np.sort(returns)
+    index = int((1 - confidence) * len(sorted_returns))
+    cvar = -np.mean(sorted_returns[:index])
+    return cvar
+
+# 模拟收益率数据
+np.random.seed(42)
+returns = np.random.normal(0.05, 0.2, 1000)  # 年化收益5%，波动率20%
+
+var_95 = calculate_var(returns, 0.95)
+cvar_95 = calculate_cvar(returns, 0.95)
+
+print(f"VaR(95%): {var_95:.2%}")
+print(f"CVaR(95%): {cvar_95:.2%}")
+print(f"含义: 有95%的概率损失不超过{var_95:.2%}")`,
+                tips: 'VaR表示在给定置信水平下的最大可能损失。'
+              },
+              {
+                title: '5.3 财务预警模型',
+                content: `<p>财务预警模型用于预测企业财务困境。</p>
+                <p><strong>Z-score模型：</strong></p>
+                <p>Z = 1.2X1 + 1.4X2 + 3.3X3 + 0.6X4 + 1.0X5</p>
+                <p>• X1 = 营运资本/总资产</p>
+                <p>• X2 = 留存收益/总资产</p>
+                <p>• X3 = EBIT/总资产</p>
+                <p>• X4 = 股权市值/负债总额</p>
+                <p>• X5 = 销售额/总资产</p>
+                <p><strong>判断标准：</strong></p>
+                <p>• Z > 2.99：安全区</p>
+                <p>• 1.81 < Z < 2.99：灰色区</p>
+                <p>• Z < 1.81：危险区</p>`,
+                code: `# Altman Z-score 财务预警模型
+def altman_zscore(working_capital, retained_earnings, ebit, 
+                  market_cap, total_liabilities, sales, total_assets):
+    """计算Altman Z-score"""
+    X1 = working_capital / total_assets
+    X2 = retained_earnings / total_assets
+    X3 = ebit / total_assets
+    X4 = market_cap / total_liabilities
+    X5 = sales / total_assets
+    
+    Z = 1.2*X1 + 1.4*X2 + 3.3*X3 + 0.6*X4 + 1.0*X5
+    
+    # 判断风险等级
+    if Z > 2.99:
+        status = "安全区 - 破产风险很低"
+    elif Z > 1.81:
+        status = "灰色区 - 需要关注"
+    else:
+        status = "危险区 - 破产风险较高"
+    
+    print(f"Z-score: {Z:.2f}")
+    print(f"风险等级: {status}")
+    
+    return Z, status
+
+# 示例企业
+z, status = altman_zscore(
+    working_capital=200,
+    retained_earnings=300,
+    ebit=150,
+    market_cap=1200,
+    total_liabilities=500,
+    sales=2000,
+    total_assets=1500
+)`,
+                tips: 'Z-score模型适用于制造业上市公司，其他行业需要调整系数。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '财务风险不包括？', options: ['筹资风险', '投资风险', '技术风险', '流动性风险'], correct: 2 },
+              { type: 'single', question: 'VaR表示什么？', options: ['平均收益', '风险价值', '标准差', '期望值'], correct: 1 },
+              { type: 'judge', question: 'Z-score越高风险越大。', correct: false },
+              { type: 'fill', question: 'Z-score模型中，Z值小于______表示危险区。', answer: '1.81' },
+              { type: 'single', question: '风险评估的定性方法是？', options: ['方差分析', '风险矩阵', 'VaR计算', '回归分析'], correct: 1 },
+              { type: 'judge', question: '财务风险可以完全消除。', correct: false }
+            ]
+          },
+          {
+            title: '第六章：财务可视化报告',
+            knowledge: [
+              {
+                title: '6.1 财务图表设计原则',
+                content: `<p>财务可视化是将财务数据转化为直观图表的过程。</p>
+                <p><strong>设计原则：</strong></p>
+                <p>• 简洁性：避免过多装饰元素</p>
+                <p>• 准确性：数据表达要准确无误</p>
+                <p>• 可读性：图表易于理解</p>
+                <p>• 一致性：风格统一协调</p>
+                <p><strong>常用图表类型：</strong></p>
+                <p>• 柱状图：比较不同类别</p>
+                <p>• 折线图：展示趋势变化</p>
+                <p>• 饼图：显示占比结构</p>
+                <p>• 雷达图：多维度对比</p>`,
+                code: `# 财务可视化基础
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 设置中文字体
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+# 财务数据
+years = ['2020', '2021', '2022', '2023', '2024']
+revenue = [800, 950, 1100, 1300, 1500]
+profit = [80, 100, 130, 180, 220]
+
+# 创建双轴图
+fig, ax1 = plt.subplots(figsize=(10, 6))
+
+# 营业收入柱状图
+ax1.bar(years, revenue, color='#FFB6C1', label='营业收入')
+ax1.set_ylabel('营业收入(万元)', color='#FF69B4')
+ax1.tick_params(axis='y', labelcolor='#FF69B4')
+
+# 净利润折线图
+ax2 = ax1.twinx()
+ax2.plot(years, profit, 'o-', color='#FFD700', linewidth=2, markersize=8, label='净利润')
+ax2.set_ylabel('净利润(万元)', color='#DAA520')
+ax2.tick_params(axis='y', labelcolor='#DAA520')
+
+plt.title('营业收入与净利润趋势分析')
+plt.legend(loc='upper left')
+plt.tight_layout()
+plt.show()`,
+                tips: '选择合适的图表类型是有效传达信息的关键。'
+              },
+              {
+                title: '6.2 财务仪表板设计',
+                content: `<p>财务仪表板整合多个关键指标，提供全景视图。</p>
+                <p><strong>仪表板要素：</strong></p>
+                <p>• KPI卡片：关键指标数值</p>
+                <p>• 趋势图：历史变化趋势</p>
+                <p>• 对比图：与目标或同行对比</p>
+                <p>• 预警标识：异常指标提示</p>
+                <p><strong>设计要点：</strong></p>
+                <p>• 突出重点：核心指标放在显眼位置</p>
+                <p>• 层次分明：按重要性排列</p>
+                <p>• 交互友好：支持筛选和钻取</p>`,
+                code: `# 财务仪表板示例
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
+# 创建仪表板布局
+fig = plt.figure(figsize=(14, 10))
+gs = gridspec.GridSpec(3, 3, figure=fig)
+
+# KPI数据
+kpis = {
+    '营业收入': {'value': 1500, 'change': '+15%'},
+    '净利润': {'value': 220, 'change': '+22%'},
+    'ROE': {'value': '18.5%', 'change': '+2.1%'}
+}
+
+# KPI卡片
+for i, (name, data) in enumerate(kpis.items()):
+    ax = fig.add_subplot(gs[0, i])
+    ax.text(0.5, 0.6, f"¥{data['value']}", ha='center', va='center', 
+            fontsize=24, fontweight='bold', color='#FF69B4')
+    ax.text(0.5, 0.3, name, ha='center', va='center', fontsize=14)
+    ax.text(0.5, 0.1, data['change'], ha='center', va='center', 
+            fontsize=12, color='green')
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis('off')
+
+# 趋势图
+ax_trend = fig.add_subplot(gs[1, :])
+months = ['1月', '2月', '3月', '4月', '5月', '6月']
+sales = [120, 135, 142, 138, 155, 168]
+ax_trend.plot(months, sales, 'o-', color='#FFB6C1', linewidth=2)
+ax_trend.fill_between(months, sales, alpha=0.3, color='#FFB6C1')
+ax_trend.set_title('月度销售趋势')
+ax_trend.set_ylabel('销售额(万元)')
+
+# 结构分析饼图
+ax_pie = fig.add_subplot(gs[2, 0])
+products = ['产品A', '产品B', '产品C', '产品D']
+shares = [35, 28, 22, 15]
+colors = ['#FFB6C1', '#FFD700', '#98FB98', '#87CEEB']
+ax_pie.pie(shares, labels=products, colors=colors, autopct='%1.1f%%')
+ax_pie.set_title('产品收入结构')
+
+# 指标对比柱状图
+ax_bar = fig.add_subplot(gs[2, 1:])
+indicators = ['流动比率', '速动比率', '资产负债率', '毛利率']
+actual = [2.1, 1.3, 0.45, 0.32]
+target = [2.0, 1.0, 0.50, 0.30]
+x = range(len(indicators))
+ax_bar.bar([i-0.2 for i in x], actual, width=0.4, label='实际', color='#FFB6C1')
+ax_bar.bar([i+0.2 for i in x], target, width=0.4, label='目标', color='#FFD700')
+ax_bar.set_xticks(x)
+ax_bar.set_xticklabels(indicators)
+ax_bar.legend()
+ax_bar.set_title('关键指标对比')
+
+plt.tight_layout()
+plt.show()`,
+                tips: '仪表板设计要考虑用户需求和使用场景。'
+              },
+              {
+                title: '6.3 财务分析报告撰写',
+                content: `<p>财务分析报告是财务分析成果的书面呈现。</p>
+                <p><strong>报告结构：</strong></p>
+                <p>• 摘要：主要结论和建议</p>
+                <p>• 公司概况：基本信息介绍</p>
+                <p>• 财务分析：各维度分析内容</p>
+                <p>• 风险提示：潜在风险因素</p>
+                <p>• 结论建议：总结和改进建议</p>
+                <p><strong>撰写要点：</strong></p>
+                <p>• 数据准确：确保数据来源可靠</p>
+                <p>• 逻辑清晰：分析层层递进</p>
+                <p>• 图文并茂：适当使用图表</p>
+                <p>• 建议可行：提出切实可行的建议</p>`,
+                code: `# 自动生成财务分析报告
+def generate_financial_report(company_name, year, financial_data):
+    """生成财务分析报告"""
+    
+    # 计算关键指标
+    revenue = financial_data['营业收入']
+    net_profit = financial_data['净利润']
+    total_assets = financial_data['总资产']
+    total_equity = financial_data['所有者权益']
+    
+    net_margin = net_profit / revenue
+    roe = net_profit / total_equity
+    asset_turnover = revenue / total_assets
+    
+    # 生成报告
+    report = f"""
+    ========================================
+    {company_name}{year}年度财务分析报告
+    ========================================
+    
+    一、财务概况
+    本年度公司实现营业收入{revenue:,.0f}万元，
+    净利润{net_profit:,.0f}万元。
+    
+    二、盈利能力分析
+    净利率：{net_margin:.1%}
+    净资产收益率(ROE)：{roe:.1%}
+    
+    三、营运能力分析
+    总资产周转率：{asset_turnover:.2f}次
+    
+    四、综合评价
+    """
+    
+    # 添加评价
+    if roe > 0.15:
+        report += "公司盈利能力优秀，股东回报良好。\\n"
+    elif roe > 0.10:
+        report += "公司盈利能力良好，仍有提升空间。\\n"
+    else:
+        report += "公司盈利能力较弱，需要改进。\\n"
+    
+    return report
+
+# 示例
+data = {
+    '营业收入': 15000,
+    '净利润': 2200,
+    '总资产': 12000,
+    '所有者权益': 8000
+}
+print(generate_financial_report('XX科技有限公司', 2024, data))`,
+                tips: '报告要突出重点，避免冗长的数据罗列。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '财务可视化的首要原则是？', options: ['美观性', '简洁性', '复杂性', '装饰性'], correct: 1 },
+              { type: 'single', question: '展示趋势变化最适合的图表是？', options: ['饼图', '柱状图', '折线图', '雷达图'], correct: 2 },
+              { type: 'judge', question: '财务仪表板应该包含所有财务数据。', correct: false },
+              { type: 'fill', question: '财务分析报告的结构包括摘要、公司概况、财务分析、风险提示和______。', answer: '结论建议' },
+              { type: 'single', question: 'KPI卡片的作用是？', options: ['展示详细数据', '显示关键指标', '绘制趋势图', '制作饼图'], correct: 1 },
+              { type: 'judge', question: '财务报告应该图文并茂。', correct: true }
+            ]
+          }
         ],
         knowledgeGoals: ['掌握财务报表的基本结构', '理解财务指标的计算方法', '熟悉财务分析的框架', '了解财务风险的类型'],
         abilityGoals: ['能够解读和分析财务报表', '能够计算和分析财务指标', '能够进行财务预测', '能够识别和评估财务风险']
