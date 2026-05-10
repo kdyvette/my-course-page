@@ -7,12 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ========== Reset & Base ========== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --pink-light: #FFF0F5;
@@ -42,14 +37,11 @@
       overflow-x: hidden;
     }
 
-    /* ========== Decorative Background Glows ========== */
     body::before {
       content: '';
       position: fixed;
-      top: -120px;
-      right: -120px;
-      width: 400px;
-      height: 400px;
+      top: -120px; right: -120px;
+      width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(255, 230, 102, 0.3) 0%, transparent 70%);
       border-radius: 50%;
       z-index: 0;
@@ -59,10 +51,8 @@
     body::after {
       content: '';
       position: fixed;
-      bottom: -100px;
-      left: -100px;
-      width: 350px;
-      height: 350px;
+      bottom: -100px; left: -100px;
+      width: 350px; height: 350px;
       background: radial-gradient(circle, rgba(255, 182, 193, 0.25) 0%, transparent 70%);
       border-radius: 50%;
       z-index: 0;
@@ -72,9 +62,7 @@
     /* ========== Navigation ========== */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       background: rgba(255, 240, 245, 0.85);
       backdrop-filter: blur(20px);
@@ -82,7 +70,6 @@
       border-bottom: 1px solid rgba(255, 182, 193, 0.2);
       transition: var(--transition);
     }
-
     .navbar.scrolled { box-shadow: 0 2px 20px rgba(255, 182, 193, 0.15); }
 
     .nav-container {
@@ -102,7 +89,6 @@
       text-decoration: none;
       letter-spacing: 0.5px;
     }
-
     .nav-logo span { color: var(--text-primary); }
 
     .nav-links {
@@ -119,23 +105,19 @@
       transition: var(--transition);
       position: relative;
     }
-
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
       background: linear-gradient(90deg, var(--pink), var(--yellow-deep));
       border-radius: 2px;
       transition: width 0.3s ease;
     }
-
     .nav-links a:hover { color: var(--pink-deep); }
     .nav-links a:hover::after { width: 100%; }
 
-    /* ========== Hero Section ========== */
+    /* ========== Hero ========== */
     .hero {
       position: relative;
       z-index: 1;
@@ -164,7 +146,6 @@
       margin-bottom: 12px;
       letter-spacing: 2px;
     }
-
     .hero h1 .highlight {
       background: linear-gradient(135deg, var(--pink-deep), var(--yellow-deep));
       -webkit-background-clip: text;
@@ -176,7 +157,6 @@
       font-size: 1.1rem;
       color: var(--text-secondary);
       margin-bottom: 8px;
-      font-weight: 400;
     }
 
     .hero-desc {
@@ -187,7 +167,6 @@
       line-height: 1.8;
     }
 
-    /* ========== Stats ========== */
     .stats {
       display: flex;
       justify-content: center;
@@ -195,9 +174,7 @@
       flex-wrap: wrap;
       margin-bottom: 24px;
     }
-
     .stat-item { text-align: center; }
-
     .stat-number {
       font-size: 2.2rem;
       font-weight: 700;
@@ -206,7 +183,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .stat-label {
       font-size: 0.85rem;
       color: var(--text-secondary);
@@ -226,14 +202,12 @@
       text-align: center;
       margin-bottom: 48px;
     }
-
     .section-header h2 {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 12px;
     }
-
     .section-header p {
       font-size: 0.95rem;
       color: var(--text-secondary);
@@ -257,29 +231,23 @@
       overflow: hidden;
       border: 1px solid rgba(255, 182, 193, 0.1);
     }
-
     .course-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--pink), var(--yellow));
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-
     .course-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-hover);
     }
-
     .course-card:hover::before { opacity: 1; }
 
     .card-icon {
-      width: 56px;
-      height: 56px;
+      width: 56px; height: 56px;
       border-radius: 16px;
       display: flex;
       align-items: center;
@@ -287,7 +255,6 @@
       font-size: 1.6rem;
       margin-bottom: 20px;
     }
-
     .card-icon.pink { background: linear-gradient(135deg, #FFE4EC, #FFD1DC); }
     .card-icon.yellow { background: linear-gradient(135deg, #FFF8DC, #FFF0B0); }
     .card-icon.mixed { background: linear-gradient(135deg, #FFE4EC, #FFF3B0); }
@@ -298,7 +265,6 @@
       color: var(--text-primary);
       margin-bottom: 10px;
     }
-
     .course-card .desc {
       font-size: 0.9rem;
       color: var(--text-secondary);
@@ -312,7 +278,6 @@
       gap: 8px;
       margin-bottom: 16px;
     }
-
     .tag {
       display: inline-block;
       padding: 4px 12px;
@@ -320,23 +285,14 @@
       border-radius: 50px;
       font-weight: 500;
     }
-
-    .tag.pink {
-      background: rgba(255, 182, 193, 0.2);
-      color: var(--pink-deep);
-    }
-
-    .tag.yellow {
-      background: rgba(255, 224, 102, 0.3);
-      color: #C4A000;
-    }
+    .tag.pink { background: rgba(255, 182, 193, 0.2); color: var(--pink-deep); }
+    .tag.yellow { background: rgba(255, 224, 102, 0.3); color: #C4A000; }
 
     .card-actions {
       display: flex;
       gap: 12px;
       margin-top: 16px;
     }
-
     .card-btn {
       flex: 1;
       padding: 10px 16px;
@@ -348,25 +304,13 @@
       transition: var(--transition);
       font-family: inherit;
     }
-
     .card-btn-primary {
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
     }
-
     .card-btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
-    }
-
-    .card-btn-secondary {
-      background: var(--pink-light);
-      color: var(--pink-deep);
-    }
-
-    .card-btn-secondary:hover {
-      background: var(--pink);
-      color: var(--white);
     }
 
     /* ========== Practice Section ========== */
@@ -394,15 +338,13 @@
       border: 1px solid rgba(255, 182, 193, 0.1);
       cursor: pointer;
     }
-
     .practice-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-hover);
     }
 
     .practice-icon {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
@@ -419,7 +361,6 @@
       color: var(--text-primary);
       margin-bottom: 10px;
     }
-
     .practice-card p {
       font-size: 0.9rem;
       color: var(--text-secondary);
@@ -450,15 +391,13 @@
       transition: var(--transition);
       border: 1px solid rgba(255, 182, 193, 0.08);
     }
-
     .path-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 6px 24px rgba(255, 182, 193, 0.2);
     }
 
     .path-step {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
@@ -476,7 +415,6 @@
       color: var(--text-primary);
       margin-bottom: 6px;
     }
-
     .path-card p {
       font-size: 0.82rem;
       color: var(--text-secondary);
@@ -486,10 +424,7 @@
     /* ========== Modal Base ========== */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(5px);
       z-index: 200;
@@ -498,7 +433,6 @@
       justify-content: center;
       padding: 20px;
     }
-
     .modal-overlay.active { display: flex; }
 
     .modal-content {
@@ -511,7 +445,6 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
       animation: modalSlideIn 0.3s ease;
     }
-
     @keyframes modalSlideIn {
       from { opacity: 0; transform: translateY(30px) scale(0.95); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -528,16 +461,13 @@
       background: var(--white);
       z-index: 10;
     }
-
     .modal-header h3 {
       font-size: 1.3rem;
       font-weight: 600;
       color: var(--text-primary);
     }
-
     .modal-close {
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 50%;
       border: none;
       background: var(--pink-light);
@@ -546,7 +476,6 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
     .modal-close:hover {
       background: var(--pink);
       color: var(--white);
@@ -561,10 +490,8 @@
       text-align: center;
       margin-bottom: 32px;
     }
-
     .course-detail-icon {
-      width: 72px;
-      height: 72px;
+      width: 72px; height: 72px;
       border-radius: 20px;
       display: flex;
       align-items: center;
@@ -572,20 +499,17 @@
       font-size: 2rem;
       margin: 0 auto 20px;
     }
-
     .course-detail-header h2 {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
-
     .course-detail-header .subtitle {
       font-size: 1rem;
       color: var(--text-secondary);
       margin-bottom: 16px;
     }
-
     .course-detail-header .desc {
       font-size: 0.95rem;
       color: var(--text-secondary);
@@ -601,7 +525,6 @@
       margin-top: 20px;
       flex-wrap: wrap;
     }
-
     .course-tag {
       padding: 8px 20px;
       background: var(--pink-light);
@@ -614,7 +537,6 @@
     .course-section {
       margin-bottom: 32px;
     }
-
     .course-section h3 {
       font-size: 1.2rem;
       font-weight: 600;
@@ -628,7 +550,6 @@
       display: grid;
       gap: 12px;
     }
-
     .chapter-item {
       display: flex;
       align-items: center;
@@ -638,15 +559,12 @@
       border-radius: var(--radius-sm);
       transition: var(--transition);
     }
-
     .chapter-item:hover {
       transform: translateX(4px);
       background: rgba(255, 182, 193, 0.2);
     }
-
     .chapter-num {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
@@ -657,11 +575,27 @@
       font-size: 0.85rem;
       flex-shrink: 0;
     }
-
     .chapter-item h4 {
+      flex: 1;
       font-size: 0.95rem;
       font-weight: 500;
       color: var(--text-primary);
+    }
+    .chapter-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .chapter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
     }
 
     .objective-grid {
@@ -669,24 +603,18 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 24px;
     }
-
     .objective-card {
       padding: 20px;
       background: var(--pink-light);
       border-radius: var(--radius-sm);
     }
-
     .objective-card h4 {
       font-size: 1rem;
       font-weight: 600;
       color: var(--pink-deep);
       margin-bottom: 12px;
     }
-
-    .objective-card ul {
-      list-style: none;
-    }
-
+    .objective-card ul { list-style: none; }
     .objective-card li {
       font-size: 0.9rem;
       color: var(--text-secondary);
@@ -694,7 +622,6 @@
       padding-left: 20px;
       position: relative;
     }
-
     .objective-card li::before {
       content: '✓';
       position: absolute;
@@ -707,26 +634,171 @@
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 16px;
     }
-
     .assessment-item {
       text-align: center;
       padding: 20px;
       background: var(--pink-light);
       border-radius: var(--radius-sm);
     }
-
     .assessment-icon {
       font-size: 1.5rem;
       margin-bottom: 8px;
     }
-
     .assessment-item h4 {
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--text-primary);
     }
 
+    /* ========== Learning Modal ========== */
+    .learning-modal { max-width: 900px; }
+
+    .learning-progress {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 16px 20px;
+      background: var(--pink-light);
+      border-radius: var(--radius-sm);
+    }
+    .learning-progress-bar {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 182, 193, 0.3);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .learning-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--yellow));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .learning-progress-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .knowledge-section {
+      margin-bottom: 32px;
+    }
+    .knowledge-section h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 4px solid var(--pink-deep);
+    }
+    .knowledge-content {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      padding: 16px 20px;
+      background: var(--pink-light);
+      border-radius: var(--radius-sm);
+    }
+    .knowledge-content p { margin-bottom: 12px; }
+    .knowledge-content p:last-child { margin-bottom: 0; }
+
+    .code-block {
+      background: #1E1E1E;
+      border-radius: var(--radius-sm);
+      margin: 16px 0;
+      overflow: hidden;
+    }
+    .code-block-header {
+      background: #2D2D2D;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .code-block pre {
+      padding: 16px;
+      margin: 0;
+      color: #D4D4D4;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+    .code-comment { color: #6A9955; }
+    .code-keyword { color: #569CD6; }
+    .code-string { color: #CE9178; }
+    .code-func { color: #DCDCAA; }
+
+    .knowledge-tips {
+      background: var(--yellow-light);
+      border-left: 4px solid var(--yellow-deep);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-top: 16px;
+    }
+    .knowledge-tips h5 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .knowledge-tips p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .learning-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 182, 193, 0.2);
+    }
+    .learning-nav .btn {
+      flex: 1;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 182, 193, 0.4);
+    }
+    .btn-secondary {
+      background: var(--pink-light);
+      color: var(--text-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--pink);
+      color: var(--white);
+    }
+
     /* ========== Quiz Styles ========== */
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .quiz-header h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .quiz-header p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
     .quiz-timer {
       display: flex;
       align-items: center;
@@ -740,13 +812,11 @@
       background: var(--pink-light);
       border-radius: 50px;
     }
-
     .quiz-timer.warning {
       background: #FFE4E1;
       color: #FF6B6B;
       animation: pulse 1s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.02); }
@@ -758,20 +828,16 @@
       gap: 8px;
       margin-bottom: 28px;
     }
-
     .progress-dot {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 50%;
       background: rgba(255, 182, 193, 0.3);
       transition: var(--transition);
     }
-
     .progress-dot.active {
       background: var(--pink);
       transform: scale(1.2);
     }
-
     .progress-dot.correct { background: #90EE90; }
     .progress-dot.wrong { background: #FFB6C1; }
 
@@ -782,13 +848,22 @@
       margin-bottom: 20px;
       line-height: 1.7;
     }
+    .quiz-type-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
 
     .quiz-options {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
     .quiz-option {
       padding: 16px 20px;
       background: var(--pink-light);
@@ -801,25 +876,36 @@
       text-align: left;
       font-family: inherit;
     }
-
     .quiz-option:hover {
       border-color: var(--pink);
       transform: translateX(4px);
     }
-
     .quiz-option.selected {
       border-color: var(--pink-deep);
       background: rgba(255, 182, 193, 0.2);
     }
-
     .quiz-option.correct {
       border-color: #90EE90;
       background: rgba(144, 238, 144, 0.2);
     }
-
     .quiz-option.wrong {
       border-color: #FFB6C1;
       background: rgba(255, 182, 193, 0.3);
+    }
+
+    .fill-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid rgba(255, 182, 193, 0.3);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      transition: var(--transition);
+      outline: none;
+    }
+    .fill-input:focus {
+      border-color: var(--pink-deep);
+      background: var(--pink-light);
     }
 
     .quiz-actions {
@@ -828,43 +914,10 @@
       margin-top: 24px;
     }
 
-    .btn {
-      flex: 1;
-      padding: 14px 24px;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: inherit;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--pink), var(--yellow));
-      color: var(--white);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 182, 193, 0.4);
-    }
-
-    .btn-secondary {
-      background: var(--pink-light);
-      color: var(--text-primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--pink);
-      color: var(--white);
-    }
-
     .quiz-result {
       text-align: center;
       padding: 40px 20px;
     }
-
     .result-score {
       font-size: 4rem;
       font-weight: 700;
@@ -874,88 +927,16 @@
       background-clip: text;
       margin-bottom: 16px;
     }
-
     .result-message {
       font-size: 1.2rem;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
-
     .result-detail {
       font-size: 0.95rem;
       color: var(--text-secondary);
       margin-bottom: 28px;
     }
-
-    /* ========== Code Editor ========== */
-    .code-editor-container {
-      background: #1E1E1E;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-
-    .code-editor-header {
-      background: #2D2D2D;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .code-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
-    .code-dot.red { background: #FF5F56; }
-    .code-dot.yellow { background: #FFBD2E; }
-    .code-dot.green { background: #27C93F; }
-
-    .code-editor {
-      width: 100%;
-      min-height: 200px;
-      max-height: 300px;
-      background: #1E1E1E;
-      color: #D4D4D4;
-      border: none;
-      padding: 16px;
-      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      resize: vertical;
-      outline: none;
-    }
-
-    .code-output {
-      background: #252526;
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      min-height: 100px;
-      max-height: 200px;
-      overflow-y: auto;
-      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #D4D4D4;
-      white-space: pre-wrap;
-    }
-
-    .code-output.error { color: #F48771; }
-    .code-output.success { color: #89D185; }
-
-    .code-hint {
-      background: var(--yellow-light);
-      border-left: 4px solid var(--yellow-deep);
-      padding: 16px 20px;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin-bottom: 20px;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .code-hint strong { color: var(--text-primary); }
 
     /* ========== Footer ========== */
     .footer {
@@ -965,13 +946,11 @@
       border-top: 1px solid rgba(255, 182, 193, 0.15);
       padding: 48px 24px;
     }
-
     .footer-content {
       max-width: 1100px;
       margin: 0 auto;
       text-align: center;
     }
-
     .footer-links {
       display: flex;
       justify-content: center;
@@ -979,7 +958,6 @@
       margin-bottom: 24px;
       flex-wrap: wrap;
     }
-
     .footer-link {
       display: flex;
       align-items: center;
@@ -992,35 +970,28 @@
       background: var(--pink-light);
       transition: var(--transition);
     }
-
     .footer-link:hover {
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
       transform: translateY(-2px);
       box-shadow: 0 4px 16px rgba(255, 182, 193, 0.3);
     }
-
     .footer-link svg {
-      width: 18px;
-      height: 18px;
+      width: 18px; height: 18px;
       fill: currentColor;
     }
-
     .footer-copy {
       font-size: 0.8rem;
       color: var(--text-secondary);
       opacity: 0.6;
     }
-
     .footer-copy .heart { color: var(--pink-deep); }
 
     /* ========== Scroll to Top ========== */
     .scroll-top {
       position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 44px;
-      height: 44px;
+      bottom: 32px; right: 32px;
+      width: 44px; height: 44px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--pink), var(--yellow));
       color: var(--white);
@@ -1036,12 +1007,10 @@
       transform: translateY(20px);
       z-index: 99;
     }
-
     .scroll-top.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
     .scroll-top:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 24px rgba(255, 182, 193, 0.4);
@@ -1061,8 +1030,10 @@
         gap: 12px;
       }
       .modal-content { max-height: 95vh; }
-      .quiz-actions { flex-direction: column; }
+      .quiz-actions, .learning-nav { flex-direction: column; }
       .objective-grid { grid-template-columns: 1fr; }
+      .chapter-item { flex-wrap: wrap; }
+      .chapter-btn { margin-top: 8px; }
     }
 
     @media (max-width: 480px) {
@@ -1106,8 +1077,8 @@
         <div class="stat-label">专业课程</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">核心技能</div>
+        <div class="stat-number">36+</div>
+        <div class="stat-label">学习章节</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">∞</div>
@@ -1120,31 +1091,22 @@
   <section class="section" id="courses">
     <div class="section-header">
       <h2>📚 我的课程</h2>
-      <p>以下是我学习的核心课程，每门课程都包含详细的学习内容和相关技能</p>
+      <p>点击课程卡片查看详情，选择章节开始学习</p>
     </div>
-
-    <div class="courses-grid">
-      <!-- Course cards will be generated by JavaScript -->
-    </div>
+    <div class="courses-grid" id="coursesGrid"></div>
   </section>
 
   <!-- Practice Section -->
   <section class="practice-section" id="practice">
     <div class="section-header">
-      <h2>🎯 期末练习</h2>
-      <p>通过答题挑战和代码实践来检验你的学习成果</p>
+      <h2>🎯 综合练习</h2>
+      <p>通过综合答题检验整体学习成果</p>
     </div>
-
     <div class="practice-grid">
-      <div class="practice-card" onclick="openQuiz()">
+      <div class="practice-card" onclick="openGlobalQuiz()">
         <div class="practice-icon">📝</div>
-        <h3>知识答题挑战</h3>
-        <p>限时答题，检验对课程知识的掌握程度，挑战你的反应速度！</p>
-      </div>
-      <div class="practice-card" onclick="openCodeEditor()">
-        <div class="practice-icon">💻</div>
-        <h3>代码编程实践</h3>
-        <p>在线编写和运行Python代码，实时查看执行结果，提升编程能力！</p>
+        <h3>综合知识挑战</h3>
+        <p>随机抽取各课程知识点，限时答题挑战你的综合能力！</p>
       </div>
     </div>
   </section>
@@ -1155,7 +1117,6 @@
       <h2>🗺️ 学习路径</h2>
       <p>我的专业学习规划和技能发展路径</p>
     </div>
-
     <div class="path-grid">
       <div class="path-card">
         <div class="path-step">1</div>
@@ -1209,67 +1170,34 @@
         <h3 id="courseDetailTitle">课程详情</h3>
         <button class="modal-close" onclick="closeCourseDetail()">×</button>
       </div>
-      <div class="modal-body" id="courseDetailBody">
-        <!-- Course detail content will be injected here -->
-      </div>
+      <div class="modal-body" id="courseDetailBody"></div>
     </div>
   </div>
 
-  <!-- Quiz Modal -->
-  <div class="modal-overlay" id="quizModal">
+  <!-- Learning Modal -->
+  <div class="modal-overlay" id="learningModal">
+    <div class="modal-content learning-modal">
+      <div class="modal-header">
+        <h3 id="learningTitle">章节学习</h3>
+        <button class="modal-close" onclick="closeLearning()">×</button>
+      </div>
+      <div class="modal-body" id="learningBody"></div>
+    </div>
+  </div>
+
+  <!-- Chapter Quiz Modal -->
+  <div class="modal-overlay" id="chapterQuizModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>📝 知识答题挑战</h3>
-        <button class="modal-close" onclick="closeQuiz()">×</button>
+        <h3 id="chapterQuizTitle">章节练习</h3>
+        <button class="modal-close" onclick="closeChapterQuiz()">×</button>
       </div>
-      <div class="modal-body" id="quizBody"></div>
+      <div class="modal-body" id="chapterQuizBody"></div>
     </div>
   </div>
-
-  <!-- Code Editor Modal -->
-  <div class="modal-overlay" id="codeModal">
-    <div class="modal-content" style="max-width: 900px;">
-      <div class="modal-header">
-        <h3>💻 Python 代码编辑器</h3>
-        <button class="modal-close" onclick="closeCodeEditor()">×</button>
-      </div>
-      <div class="modal-body">
-        <div class="code-hint">
-          <strong>💡 提示：</strong>在下方编辑器中编写 Python 代码，点击"运行代码"按钮查看执行结果。
-        </div>
-        <div class="code-editor-container">
-          <div class="code-editor-header">
-            <div class="code-dot red"></div>
-            <div class="code-dot yellow"></div>
-            <div class="code-dot green"></div>
-            <span style="color: #888; margin-left: 8px; font-size: 0.85rem;">main.py</span>
-          </div>
-          <textarea class="code-editor" id="codeEditor"># 在这里编写你的 Python 代码
-print('Hello, World!')
-
-# 示例：计算1到10的和
-total = 0
-for i in range(1, 11):
-    total += i
-print(f'1到10的和是: {total}')</textarea>
-        </div>
-        <div class="quiz-actions">
-          <button class="btn btn-primary" onclick="runPythonCode()">▶ 运行代码</button>
-          <button class="btn btn-secondary" onclick="clearCode()">🗑 清空代码</button>
-        </div>
-        <div style="margin-top: 16px;">
-          <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">📤 输出结果：</div>
-          <div class="code-output" id="codeOutput">点击"运行代码"按钮查看执行结果...</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pyodide Script -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
 
   <script>
-    // ========== Course Data ==========
+    // ========== Course Data with Full Learning Content ==========
     const coursesData = [
       {
         id: 'python',
@@ -1277,29 +1205,503 @@ print(f'1到10的和是: {total}')</textarea>
         iconClass: 'pink',
         title: 'Python基础',
         subtitle: '商务数据分析与应用专业基础课程',
-        desc: '本课程旨在培养学生掌握Python编程语言的基础知识，为后续的数据分析学习打下坚实的基础，使学生能够使用Python进行简单的数据处理和分析。',
+        desc: '本课程旨在培养学生掌握Python编程语言的基础知识，为后续的数据分析学习打下坚实的基础。',
         tags: ['高职大二', '先修课程：无', '后续课程：数据分析技术'],
+        skills: ['Python语法', '数据结构', '函数与模块'],
         chapters: [
-          '第一章：Python语言基础',
-          '第二章：控制结构',
-          '第三章：数据结构',
-          '第四章：函数与模块',
-          '第五章：文件操作',
-          '第六章：面向对象编程'
+          {
+            title: '第一章：Python语言基础',
+            knowledge: [
+              {
+                title: '1.1 Python简介与安装',
+                content: `<p>Python是一种高级、解释型、通用的编程语言。由Guido van Rossum于1991年创建，以简洁、易读的语法著称。</p>
+                <p><strong>Python的特点：</strong></p>
+                <p>• 简洁易学：语法简洁，接近自然语言</p>
+                <p>• 跨平台：可在Windows、Mac、Linux上运行</p>
+                <p>• 丰富的库：拥有大量第三方库支持</p>`,
+                code: `# Python的第一个程序
+print("Hello, World!")
+
+# 查看Python版本
+import sys
+print(f"Python版本: {sys.version}")`,
+                tips: '建议使用Python 3.8及以上版本，可以使用Anaconda进行环境管理。'
+              },
+              {
+                title: '1.2 变量与数据类型',
+                content: `<p>变量是存储数据的容器。Python是动态类型语言，不需要声明变量类型。</p>
+                <p><strong>基本数据类型：</strong></p>
+                <p>• int：整数，如 10, -5, 0</p>
+                <p>• float：浮点数，如 3.14, -0.5</p>
+                <p>• str：字符串，如 "Hello", 'Python'</p>
+                <p>• bool：布尔值，True 或 False</p>`,
+                code: `# 变量定义
+name = "张三"        # 字符串
+age = 20             # 整数
+height = 1.75        # 浮点数
+is_student = True    # 布尔值
+
+# 查看数据类型
+print(type(name))    # <class 'str'>
+print(type(age))     # <class 'int'>
+print(type(height))  # <class 'float'>`,
+                tips: '使用 type() 函数可以查看变量的数据类型。'
+              },
+              {
+                title: '1.3 运算符',
+                content: `<p>Python支持多种运算符进行数据操作。</p>
+                <p><strong>算术运算符：</strong>+ - * / // % **</p>
+                <p><strong>比较运算符：</strong>== != > < >= <=</p>
+                <p><strong>逻辑运算符：</strong>and or not</p>`,
+                code: `# 算术运算
+a, b = 10, 3
+print(f"加法: {a + b}")      # 13
+print(f"整除: {a // b}")     # 3
+print(f"取余: {a % b}")      # 1
+print(f"幂运算: {a ** b}")   # 1000
+
+# 比较运算
+print(a > b)    # True
+print(a == b)   # False
+
+# 逻辑运算
+x, y = True, False
+print(x and y)  # False
+print(x or y)   # True`,
+                tips: '注意区分 /（普通除法）和 //（整除）的区别。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'Python中用于输出的函数是？', options: ['echo', 'print', 'console.log', 'write'], correct: 1 },
+              { type: 'single', question: '以下哪个是正确的变量名？', options: ['1name', 'my-name', 'my_name', 'class'], correct: 2 },
+              { type: 'judge', question: 'Python是静态类型语言。', correct: false },
+              { type: 'fill', question: '查看变量数据类型使用______()函数。', answer: 'type' },
+              { type: 'single', question: '10 // 3 的结果是？', options: ['3.33', '3', '4', '1'], correct: 1 },
+              { type: 'judge', question: 'Python中变量必须先声明类型才能使用。', correct: false }
+            ]
+          },
+          {
+            title: '第二章：控制结构',
+            knowledge: [
+              {
+                title: '2.1 条件语句',
+                content: `<p>条件语句用于根据条件执行不同的代码块。</p>
+                <p><strong>语法结构：</strong></p>
+                <p>if 条件1:<br>　　代码块1<br>elif 条件2:<br>　　代码块2<br>else:<br>　　代码块3</p>`,
+                code: `# if-elif-else 示例
+score = 85
+
+if score >= 90:
+    grade = "优秀"
+elif score >= 80:
+    grade = "良好"
+elif score >= 60:
+    grade = "及格"
+else:
+    grade = "不及格"
+
+print(f"成绩等级: {grade}")  # 良好`,
+                tips: '注意Python使用缩进来表示代码块，通常使用4个空格。'
+              },
+              {
+                title: '2.2 循环语句',
+                content: `<p>循环用于重复执行某段代码。</p>
+                <p><strong>for循环：</strong>遍历序列中的每个元素</p>
+                <p><strong>while循环：</strong>当条件为真时重复执行</p>`,
+                code: `# for循环示例
+for i in range(5):
+    print(i)  # 输出 0,1,2,3,4
+
+# 遍历列表
+fruits = ["苹果", "香蕉", "橙子"]
+for fruit in fruits:
+    print(f"我喜欢吃{fruit}")
+
+# while循环示例
+count = 0
+while count < 3:
+    print(f"计数: {count}")
+    count += 1`,
+                tips: 'range(n) 生成0到n-1的整数序列。'
+              },
+              {
+                title: '2.3 循环控制',
+                content: `<p>break和continue用于控制循环流程。</p>
+                <p><strong>break：</strong>跳出整个循环</p>
+                <p><strong>continue：</strong>跳过当前迭代，继续下一次</p>`,
+                code: `# break示例 - 找到第一个偶数后停止
+for i in range(1, 10):
+    if i % 2 == 0:
+        print(f"找到偶数: {i}")
+        break
+
+# continue示例 - 跳过奇数
+for i in range(1, 6):
+    if i % 2 == 1:
+        continue
+    print(f"偶数: {i}")  # 输出 2, 4`,
+                tips: 'break用于完全退出循环，continue仅跳过当前迭代。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: 'Python中表示代码块使用？', options: ['花括号{}', '缩进', 'begin/end', '方括号[]'], correct: 1 },
+              { type: 'single', question: 'range(3)生成的序列是？', options: ['[1,2,3]', '[0,1,2]', '[0,1,2,3]', '[1,2]'], correct: 1 },
+              { type: 'judge', question: 'break语句用于跳过当前循环迭代。', correct: false },
+              { type: 'fill', question: '______语句用于跳出整个循环。', answer: 'break' },
+              { type: 'single', question: '以下哪个是正确的if语句？', options: ['if x>0:', 'if x>0 then:', 'if (x>0):', 'if x>0 fi:'], correct: 0 },
+              { type: 'judge', question: 'Python中elif是else if的缩写。', correct: true }
+            ]
+          },
+          {
+            title: '第三章：数据结构',
+            knowledge: [
+              {
+                title: '3.1 列表(List)',
+                content: `<p>列表是Python中最常用的数据结构，可以存储多个元素。</p>
+                <p><strong>特点：</strong>有序、可变、允许重复</p>`,
+                code: `# 列表创建与操作
+fruits = ["苹果", "香蕉", "橙子"]
+
+# 访问元素
+print(fruits[0])     # 苹果
+print(fruits[-1])    # 橙子（最后一个）
+
+# 添加元素
+fruits.append("葡萄")
+fruits.insert(1, "西瓜")
+
+# 删除元素
+fruits.remove("香蕉")
+popped = fruits.pop()  # 删除并返回最后一个
+
+# 切片
+numbers = [0, 1, 2, 3, 4, 5]
+print(numbers[1:4])   # [1, 2, 3]
+print(numbers[::2])   # [0, 2, 4]`,
+                tips: '列表索引从0开始，-1表示最后一个元素。'
+              },
+              {
+                title: '3.2 字典(Dictionary)',
+                content: `<p>字典是键值对的集合，通过键来访问值。</p>
+                <p><strong>特点：</strong>无序、可变、键唯一</p>`,
+                code: `# 字典创建与操作
+student = {
+    "name": "张三",
+    "age": 20,
+    "major": "数据分析"
+}
+
+# 访问值
+print(student["name"])        # 张三
+print(student.get("age"))     # 20
+
+# 添加/修改
+student["gender"] = "男"
+student["age"] = 21
+
+# 删除
+del student["gender"]
+
+# 遍历
+for key, value in student.items():
+    print(f"{key}: {value}")`,
+                tips: '使用get()方法访问不存在的键不会报错，返回None。'
+              },
+              {
+                title: '3.3 元组与集合',
+                content: `<p><strong>元组(Tuple)：</strong>有序、不可变</p>
+                <p><strong>集合(Set)：</strong>无序、元素唯一</p>`,
+                code: `# 元组
+coordinates = (10, 20)
+x, y = coordinates  # 解包
+print(f"x={x}, y={y}")
+
+# 集合
+numbers = {1, 2, 3, 2, 1}
+print(numbers)  # {1, 2, 3} 自动去重
+
+# 集合运算
+a = {1, 2, 3}
+b = {2, 3, 4}
+print(a & b)  # 交集 {2, 3}
+print(a | b)  # 并集 {1, 2, 3, 4}`,
+                tips: '元组常用于存储不应被修改的数据，如坐标、配置信息等。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '列表使用什么符号定义？', options: ['()', '[]', '{}', '<>'], correct: 1 },
+              { type: 'single', question: '字典通过什么访问值？', options: ['索引', '键', '位置', '序号'], correct: 1 },
+              { type: 'judge', question: '元组是可变的数据结构。', correct: false },
+              { type: 'fill', question: '列表添加元素使用______()方法。', answer: 'append' },
+              { type: 'single', question: '集合的特点是？', options: ['有序可重复', '无序唯一', '有序唯一', '无序可重复'], correct: 1 },
+              { type: 'judge', question: '字典的键可以重复。', correct: false }
+            ]
+          },
+          {
+            title: '第四章：函数与模块',
+            knowledge: [
+              {
+                title: '4.1 函数定义与调用',
+                content: `<p>函数是组织好的、可重复使用的代码块。</p>
+                <p><strong>定义语法：</strong></p>
+                <p>def 函数名(参数):<br>　　函数体<br>　　return 返回值</p>`,
+                code: `# 定义函数
+def greet(name):
+    """问候函数"""
+    return f"你好，{name}！"
+
+# 调用函数
+message = greet("张三")
+print(message)  # 你好，张三！
+
+# 带默认参数的函数
+def power(base, exp=2):
+    return base ** exp
+
+print(power(3))     # 9
+print(power(2, 3))  # 8`,
+                tips: '使用三引号编写函数文档字符串，说明函数的功能。'
+              },
+              {
+                title: '4.2 参数类型',
+                content: `<p>Python支持多种参数类型：</p>
+                <p>• 位置参数：按顺序传递</p>
+                <p>• 关键字参数：按名称传递</p>
+                <p>• 默认参数：有默认值</p>
+                <p>• 可变参数：*args, **kwargs</p>`,
+                code: `# 可变参数示例
+def sum_all(*args):
+    return sum(args)
+
+print(sum_all(1, 2, 3, 4))  # 10
+
+# 关键字参数
+def print_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_info(name="张三", age=20)
+
+# 混合使用
+def func(a, b, *args, **kwargs):
+    print(f"a={a}, b={b}")
+    print(f"args={args}")
+    print(f"kwargs={kwargs}")`,
+                tips: '*args接收多余的位置参数，**kwargs接收多余的关键字参数。'
+              },
+              {
+                title: '4.3 模块导入',
+                content: `<p>模块是包含Python定义和语句的文件。</p>
+                <p><strong>导入方式：</strong></p>
+                <p>• import 模块名</p>
+                <p>• from 模块名 import 函数名</p>
+                <p>• import 模块名 as 别名</p>`,
+                code: `# 导入整个模块
+import math
+print(math.sqrt(16))  # 4.0
+
+# 导入特定函数
+from random import randint
+print(randint(1, 10))
+
+# 使用别名
+import pandas as pd
+import numpy as np
+
+# 常用标准库
+import os        # 操作系统接口
+import datetime  # 日期时间
+import json      # JSON处理`,
+                tips: '建议在文件开头统一导入所有需要的模块。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '定义函数使用什么关键字？', options: ['function', 'def', 'func', 'define'], correct: 1 },
+              { type: 'single', question: '*args的作用是？', options: ['接收关键字参数', '接收位置参数元组', '定义默认参数', '返回多个值'], correct: 1 },
+              { type: 'judge', question: '函数必须有return语句。', correct: false },
+              { type: 'fill', question: '导入math模块使用______ math。', answer: 'import' },
+              { type: 'single', question: '以下哪个是正确的导入方式？', options: ['import sqrt from math', 'from math import sqrt', 'include math.sqrt', 'using math.sqrt'], correct: 1 },
+              { type: 'judge', question: 'Python函数可以返回多个值。', correct: true }
+            ]
+          },
+          {
+            title: '第五章：文件操作',
+            knowledge: [
+              {
+                title: '5.1 文件读写基础',
+                content: `<p>Python使用open()函数打开文件，支持多种模式：</p>
+                <p>• 'r'：读取（默认）</p>
+                <p>• 'w'：写入（覆盖）</p>
+                <p>• 'a'：追加</p>
+                <p>• 'r+'：读写</p>`,
+                code: `# 写入文件
+with open('data.txt', 'w', encoding='utf-8') as f:
+    f.write("Hello, Python!\\n")
+    f.write("文件操作示例")
+
+# 读取文件
+with open('data.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+    print(content)
+
+# 逐行读取
+with open('data.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line.strip())`,
+                tips: '使用with语句可以自动关闭文件，推荐使用。'
+              },
+              {
+                title: '5.2 CSV文件处理',
+                content: `<p>CSV是常用的数据交换格式，Python内置csv模块处理。</p>`,
+                code: `import csv
+
+# 写入CSV
+data = [
+    ['姓名', '年龄', '城市'],
+    ['张三', 20, '北京'],
+    ['李四', 22, '上海']
+]
+
+with open('data.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerows(data)
+
+# 读取CSV
+with open('data.csv', 'r', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)`,
+                tips: 'newline=""参数防止Windows下出现空行。'
+              },
+              {
+                title: '5.3 JSON文件处理',
+                content: `<p>JSON是Web开发中常用的数据格式，Python内置json模块。</p>`,
+                code: `import json
+
+# Python对象转JSON字符串
+data = {"name": "张三", "age": 20, "hobbies": ["阅读", "编程"]}
+json_str = json.dumps(data, ensure_ascii=False, indent=2)
+print(json_str)
+
+# JSON字符串转Python对象
+parsed = json.loads(json_str)
+print(parsed["name"])
+
+# 读写JSON文件
+with open('data.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+with open('data.json', 'r', encoding='utf-8') as f:
+    loaded = json.load(f)`,
+                tips: 'ensure_ascii=False保留中文字符，indent使输出格式化。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '文件读取模式是？', options: ["'w'", "'r'", "'a'", "'x'"], correct: 1 },
+              { type: 'single', question: 'with语句的优点是？', options: ['读取更快', '自动关闭文件', '支持大文件', '编码自动'], correct: 1 },
+              { type: 'judge', question: 'CSV文件只能用Excel打开。', correct: false },
+              { type: 'fill', question: '处理JSON文件需要导入______模块。', answer: 'json' },
+              { type: 'single', question: 'f.read()的作用是？', options: ['读取一行', '读取全部内容', '写入内容', '关闭文件'], correct: 1 },
+              { type: 'judge', question: '写入模式"w"会覆盖原有内容。', correct: true }
+            ]
+          },
+          {
+            title: '第六章：面向对象编程',
+            knowledge: [
+              {
+                title: '6.1 类与对象',
+                content: `<p>面向对象编程(OOP)是一种编程范式，将数据和操作封装在对象中。</p>
+                <p><strong>类(Class)：</strong>对象的模板</p>
+                <p><strong>对象(Object)：</strong>类的实例</p>`,
+                code: `# 定义类
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        return f"我是{self.name}，今年{self.age}岁"
+
+# 创建对象
+student1 = Student("张三", 20)
+print(student1.introduce())
+
+# 访问属性
+print(student1.name)  # 张三`,
+                tips: '__init__是构造方法，self代表实例本身。'
+              },
+              {
+                title: '6.2 继承',
+                content: `<p>继承允许子类获得父类的属性和方法。</p>`,
+                code: `# 父类
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def speak(self):
+        pass
+
+# 子类
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name}说：汪汪！"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name}说：喵喵！"
+
+# 使用
+dog = Dog("小黄")
+cat = Cat("小白")
+print(dog.speak())  # 小黄说：汪汪！
+print(cat.speak())  # 小白说：喵喵！`,
+                tips: '子类可以重写父类的方法，实现多态。'
+              },
+              {
+                title: '6.3 封装与属性',
+                content: `<p>封装隐藏内部实现细节，提供公共访问接口。</p>
+                <p><strong>私有属性：</strong>以__开头</p>
+                <p><strong>属性装饰器：</strong>@property</p>`,
+                code: `class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance  # 私有属性
+    
+    @property
+    def balance(self):
+        return self.__balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            return True
+        return False
+    
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        return False
+
+account = BankAccount("张三", 1000)
+print(account.balance)  # 1000
+account.deposit(500)
+print(account.balance)  # 1500`,
+                tips: '私有属性不能直接访问，需要通过方法访问。'
+              }
+            ],
+            quiz: [
+              { type: 'single', question: '定义类使用什么关键字？', options: ['class', 'def', 'struct', 'object'], correct: 0 },
+              { type: 'single', question: '构造方法的名称是？', options: ['__init__', '__new__', '__create__', '__start__'], correct: 0 },
+              { type: 'judge', question: 'self代表类本身。', correct: false },
+              { type: 'fill', question: '子类继承父类使用______(父类名)。', answer: 'class 子类名' },
+              { type: 'single', question: '私有属性以什么开头？', options: ['_', '__', '#', '@'], correct: 1 },
+              { type: 'judge', question: 'Python支持多继承。', correct: true }
+            ]
+          }
         ],
-        knowledgeGoals: [
-          '掌握Python语言的基本语法和数据类型',
-          '理解Python的控制结构和数据结构',
-          '熟悉Python的函数和模块系统',
-          '了解面向对象编程的基本概念'
-        ],
-        abilityGoals: [
-          '能够编写基本的Python程序',
-          '能够使用Python处理和分析数据',
-          '能够使用Python读写文件',
-          '能够使用Python的标准库'
-        ],
-        skills: ['Python语法', '数据结构', '函数与模块']
+        knowledgeGoals: ['掌握Python语言的基本语法和数据类型', '理解Python的控制结构和数据结构', '熟悉Python的函数和模块系统', '了解面向对象编程的基本概念'],
+        abilityGoals: ['能够编写基本的Python程序', '能够使用Python处理和分析数据', '能够使用Python读写文件', '能够使用Python的标准库']
       },
       {
         id: 'data-analysis',
@@ -1307,29 +1709,19 @@ print(f'1到10的和是: {total}')</textarea>
         iconClass: 'yellow',
         title: '数据分析技术',
         subtitle: '商务数据分析核心课程',
-        desc: '本课程培养学生运用数据分析方法解决实际问题的能力，掌握数据清洗、统计分析、可视化等核心技能，为商务决策提供数据支持。',
+        desc: '本课程培养学生运用数据分析方法解决实际问题的能力。',
         tags: ['高职大二', '先修课程：Python基础', '后续课程：供应链数据分析'],
+        skills: ['数据清洗', '统计分析', '可视化', 'Pandas'],
         chapters: [
-          '第一章：数据分析概述',
-          '第二章：数据预处理技术',
-          '第三章：描述性统计分析',
-          '第四章：推断性统计分析',
-          '第五章：数据可视化',
-          '第六章：数据分析实战'
+          { title: '第一章：数据分析概述', knowledge: [], quiz: [] },
+          { title: '第二章：数据预处理技术', knowledge: [], quiz: [] },
+          { title: '第三章：描述性统计分析', knowledge: [], quiz: [] },
+          { title: '第四章：推断性统计分析', knowledge: [], quiz: [] },
+          { title: '第五章：数据可视化', knowledge: [], quiz: [] },
+          { title: '第六章：数据分析实战', knowledge: [], quiz: [] }
         ],
-        knowledgeGoals: [
-          '掌握数据分析的基本流程和方法',
-          '理解统计学的基本原理',
-          '熟悉常用数据分析工具',
-          '了解数据可视化的设计原则'
-        ],
-        abilityGoals: [
-          '能够进行数据清洗和预处理',
-          '能够运用统计方法分析数据',
-          '能够制作专业的数据可视化图表',
-          '能够撰写数据分析报告'
-        ],
-        skills: ['数据清洗', '统计分析', '可视化', 'Pandas']
+        knowledgeGoals: ['掌握数据分析的基本流程和方法', '理解统计学的基本原理', '熟悉常用数据分析工具', '了解数据可视化的设计原则'],
+        abilityGoals: ['能够进行数据清洗和预处理', '能够运用统计方法分析数据', '能够制作专业的数据可视化图表', '能够撰写数据分析报告']
       },
       {
         id: 'data-collection',
@@ -1337,29 +1729,19 @@ print(f'1到10的和是: {total}')</textarea>
         iconClass: 'mixed',
         title: '数据采集与处理',
         subtitle: '数据获取与处理技术课程',
-        desc: '本课程教授学生从多种渠道获取数据的方法，包括网络爬虫、API调用等技术，以及数据清洗、转换、存储等处理技术。',
+        desc: '本课程教授学生从多种渠道获取数据的方法。',
         tags: ['高职大二', '先修课程：Python基础', '后续课程：数据分析技术'],
+        skills: ['网络爬虫', 'API调用', '数据解析', 'ETL'],
         chapters: [
-          '第一章：数据采集概述',
-          '第二章：网络爬虫基础',
-          '第三章：API数据获取',
-          '第四章：数据清洗技术',
-          '第五章：数据转换与集成',
-          '第六章：数据存储与管理'
+          { title: '第一章：数据采集概述', knowledge: [], quiz: [] },
+          { title: '第二章：网络爬虫基础', knowledge: [], quiz: [] },
+          { title: '第三章：API数据获取', knowledge: [], quiz: [] },
+          { title: '第四章：数据清洗技术', knowledge: [], quiz: [] },
+          { title: '第五章：数据转换与集成', knowledge: [], quiz: [] },
+          { title: '第六章：数据存储与管理', knowledge: [], quiz: [] }
         ],
-        knowledgeGoals: [
-          '掌握网络爬虫的基本原理',
-          '理解API的工作机制',
-          '熟悉数据清洗的常用方法',
-          '了解ETL的基本流程'
-        ],
-        abilityGoals: [
-          '能够编写简单的网络爬虫',
-          '能够调用API获取数据',
-          '能够进行数据清洗和格式转换',
-          '能够设计数据采集方案'
-        ],
-        skills: ['网络爬虫', 'API调用', '数据解析', 'ETL']
+        knowledgeGoals: ['掌握网络爬虫的基本原理', '理解API的工作机制', '熟悉数据清洗的常用方法', '了解ETL的基本流程'],
+        abilityGoals: ['能够编写简单的网络爬虫', '能够调用API获取数据', '能够进行数据清洗和格式转换', '能够设计数据采集方案']
       },
       {
         id: 'supply-chain',
@@ -1367,29 +1749,19 @@ print(f'1到10的和是: {total}')</textarea>
         iconClass: 'pink',
         title: '供应链数据分析',
         subtitle: '行业应用专业课程',
-        desc: '本课程将数据分析技术应用于供应链管理领域，培养学生运用数据驱动的方法优化供应链决策的能力。',
+        desc: '本课程将数据分析技术应用于供应链管理领域。',
         tags: ['高职大三', '先修课程：数据分析技术', '后续课程：毕业设计'],
+        skills: ['供应链管理', '需求预测', '库存优化'],
         chapters: [
-          '第一章：供应链管理基础',
-          '第二章：需求预测分析',
-          '第三章：库存数据分析',
-          '第四章：物流数据分析',
-          '第五章：供应商数据分析',
-          '第六章：供应链优化案例'
+          { title: '第一章：供应链管理基础', knowledge: [], quiz: [] },
+          { title: '第二章：需求预测分析', knowledge: [], quiz: [] },
+          { title: '第三章：库存数据分析', knowledge: [], quiz: [] },
+          { title: '第四章：物流数据分析', knowledge: [], quiz: [] },
+          { title: '第五章：供应商数据分析', knowledge: [], quiz: [] },
+          { title: '第六章：供应链优化案例', knowledge: [], quiz: [] }
         ],
-        knowledgeGoals: [
-          '掌握供应链管理的基本概念',
-          '理解需求预测的方法和模型',
-          '熟悉库存管理的分析方法',
-          '了解供应链绩效评估指标'
-        ],
-        abilityGoals: [
-          '能够进行需求预测分析',
-          '能够优化库存管理决策',
-          '能够分析供应链绩效',
-          '能够提出供应链改进建议'
-        ],
-        skills: ['供应链管理', '需求预测', '库存优化']
+        knowledgeGoals: ['掌握供应链管理的基本概念', '理解需求预测的方法和模型', '熟悉库存管理的分析方法', '了解供应链绩效评估指标'],
+        abilityGoals: ['能够进行需求预测分析', '能够优化库存管理决策', '能够分析供应链绩效', '能够提出供应链改进建议']
       },
       {
         id: 'database',
@@ -1397,29 +1769,19 @@ print(f'1到10的和是: {total}')</textarea>
         iconClass: 'yellow',
         title: '数据库原理与应用',
         subtitle: '数据存储与管理基础课程',
-        desc: '本课程教授数据库的基本原理和应用技术，使学生能够设计、创建和管理数据库，掌握SQL语言进行数据操作。',
+        desc: '本课程教授数据库的基本原理和应用技术。',
         tags: ['高职大二', '先修课程：无', '后续课程：数据分析技术'],
+        skills: ['SQL语言', '数据库设计', '事务管理'],
         chapters: [
-          '第一章：数据库系统概述',
-          '第二章：关系数据库模型',
-          '第三章：SQL语言基础',
-          '第四章：数据库设计',
-          '第五章：数据库管理与维护',
-          '第六章：数据库应用开发'
+          { title: '第一章：数据库系统概述', knowledge: [], quiz: [] },
+          { title: '第二章：关系数据库模型', knowledge: [], quiz: [] },
+          { title: '第三章：SQL语言基础', knowledge: [], quiz: [] },
+          { title: '第四章：数据库设计', knowledge: [], quiz: [] },
+          { title: '第五章：数据库管理与维护', knowledge: [], quiz: [] },
+          { title: '第六章：数据库应用开发', knowledge: [], quiz: [] }
         ],
-        knowledgeGoals: [
-          '掌握数据库的基本概念和原理',
-          '理解关系数据库模型',
-          '熟悉SQL语言的语法',
-          '了解数据库设计的方法'
-        ],
-        abilityGoals: [
-          '能够设计规范的数据库',
-          '能够使用SQL进行数据操作',
-          '能够进行数据库的日常管理',
-          '能够优化数据库查询性能'
-        ],
-        skills: ['SQL语言', '数据库设计', '事务管理']
+        knowledgeGoals: ['掌握数据库的基本概念和原理', '理解关系数据库模型', '熟悉SQL语言的语法', '了解数据库设计的方法'],
+        abilityGoals: ['能够设计规范的数据库', '能够使用SQL进行数据操作', '能够进行数据库的日常管理', '能够优化数据库查询性能']
       },
       {
         id: 'finance',
@@ -1427,35 +1789,25 @@ print(f'1到10的和是: {total}')</textarea>
         iconClass: 'mixed',
         title: '财务数据分析',
         subtitle: '财务分析应用课程',
-        desc: '本课程将数据分析技术应用于财务领域，培养学生分析财务报表、评估企业财务状况、支持财务决策的能力。',
+        desc: '本课程将数据分析技术应用于财务领域。',
         tags: ['高职大三', '先修课程：数据分析技术', '后续课程：毕业设计'],
+        skills: ['财务报表分析', '财务指标', '数据可视化'],
         chapters: [
-          '第一章：财务分析概述',
-          '第二章：财务报表分析',
-          '第三章：财务指标分析',
-          '第四章：财务预测分析',
-          '第五章：财务风险分析',
-          '第六章：财务可视化报告'
+          { title: '第一章：财务分析概述', knowledge: [], quiz: [] },
+          { title: '第二章：财务报表分析', knowledge: [], quiz: [] },
+          { title: '第三章：财务指标分析', knowledge: [], quiz: [] },
+          { title: '第四章：财务预测分析', knowledge: [], quiz: [] },
+          { title: '第五章：财务风险分析', knowledge: [], quiz: [] },
+          { title: '第六章：财务可视化报告', knowledge: [], quiz: [] }
         ],
-        knowledgeGoals: [
-          '掌握财务报表的基本结构',
-          '理解财务指标的计算方法',
-          '熟悉财务分析的框架',
-          '了解财务风险的类型'
-        ],
-        abilityGoals: [
-          '能够解读和分析财务报表',
-          '能够计算和分析财务指标',
-          '能够进行财务预测',
-          '能够识别和评估财务风险'
-        ],
-        skills: ['财务报表分析', '财务指标', '数据可视化']
+        knowledgeGoals: ['掌握财务报表的基本结构', '理解财务指标的计算方法', '熟悉财务分析的框架', '了解财务风险的类型'],
+        abilityGoals: ['能够解读和分析财务报表', '能够计算和分析财务指标', '能够进行财务预测', '能够识别和评估财务风险']
       }
     ];
 
     // ========== Render Course Cards ==========
     function renderCourseCards() {
-      const grid = document.querySelector('.courses-grid');
+      const grid = document.getElementById('coursesGrid');
       grid.innerHTML = coursesData.map(course => `
         <div class="course-card">
           <div class="card-icon ${course.iconClass}">${course.icon}</div>
@@ -1489,12 +1841,13 @@ print(f'1到10的和是: {total}')</textarea>
         </div>
 
         <div class="course-section">
-          <h3>📚 课程大纲</h3>
+          <h3>📚 课程章节</h3>
           <div class="chapter-list">
             ${course.chapters.map((chapter, index) => `
               <div class="chapter-item">
                 <div class="chapter-num">${index + 1}</div>
-                <h4>${chapter}</h4>
+                <h4>${chapter.title}</h4>
+                <button class="chapter-btn" onclick="openChapterLearning('${courseId}', ${index})">开始学习</button>
               </div>
             `).join('')}
           </div>
@@ -1505,37 +1858,11 @@ print(f'1到10的和是: {total}')</textarea>
           <div class="objective-grid">
             <div class="objective-card">
               <h4>📖 知识目标</h4>
-              <ul>
-                ${course.knowledgeGoals.map(goal => `<li>${goal}</li>`).join('')}
-              </ul>
+              <ul>${course.knowledgeGoals.map(g => `<li>${g}</li>`).join('')}</ul>
             </div>
             <div class="objective-card">
               <h4>💪 能力目标</h4>
-              <ul>
-                ${course.abilityGoals.map(goal => `<li>${goal}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="course-section">
-          <h3>📊 评估方式</h3>
-          <div class="assessment-grid">
-            <div class="assessment-item">
-              <div class="assessment-icon">🙋</div>
-              <h4>课堂参与</h4>
-            </div>
-            <div class="assessment-item">
-              <div class="assessment-icon">🔬</div>
-              <h4>实验练习</h4>
-            </div>
-            <div class="assessment-item">
-              <div class="assessment-icon">📝</div>
-              <h4>期中考试</h4>
-            </div>
-            <div class="assessment-item">
-              <div class="assessment-icon">🎯</div>
-              <h4>期末项目</h4>
+              <ul>${course.abilityGoals.map(g => `<li>${g}</li>`).join('')}</ul>
             </div>
           </div>
         </div>
@@ -1548,156 +1875,234 @@ print(f'1到10的和是: {total}')</textarea>
       document.getElementById('courseDetailModal').classList.remove('active');
     }
 
-    // ========== Quiz Data & Functions ==========
-    const quizQuestions = [
-      { question: "在 Python 中，以下哪个函数用于获取列表的长度？", options: ["size()", "length()", "len()", "count()"], correct: 2 },
-      { question: "Pandas 中用于读取 CSV 文件的函数是？", options: ["read_csv()", "load_csv()", "import_csv()", "open_csv()"], correct: 0 },
-      { question: "在 SQL 中，用于查询数据的关键字是？", options: ["INSERT", "UPDATE", "SELECT", "DELETE"], correct: 2 },
-      { question: "以下哪个不是 Python 的基本数据类型？", options: ["int", "str", "array", "float"], correct: 2 },
-      { question: "在数据分析中，用于展示数据分布情况的图表是？", options: ["折线图", "饼图", "直方图", "散点图"], correct: 2 }
-    ];
+    // ========== Chapter Learning Modal ==========
+    let currentLearning = { courseId: null, chapterIndex: 0, knowledgeIndex: 0 };
 
-    let currentQuestion = 0, score = 0, quizTimer = null, timeLeft = 60, answers = [];
+    function openChapterLearning(courseId, chapterIndex) {
+      const course = coursesData.find(c => c.id === courseId);
+      if (!course || !course.chapters[chapterIndex]) return;
 
-    function openQuiz() {
-      document.getElementById('quizModal').classList.add('active');
-      startQuiz();
-    }
-
-    function closeQuiz() {
-      document.getElementById('quizModal').classList.remove('active');
-      clearInterval(quizTimer);
-    }
-
-    function startQuiz() {
-      currentQuestion = 0; score = 0; timeLeft = 60; answers = [];
-      showQuestion();
-    }
-
-    function showQuestion() {
-      const quizBody = document.getElementById('quizBody');
-      const question = quizQuestions[currentQuestion];
-
-      let progressHTML = '<div class="quiz-progress">';
-      for (let i = 0; i < quizQuestions.length; i++) {
-        let className = 'progress-dot';
-        if (i < currentQuestion) className += answers[i] === quizQuestions[i].correct ? ' correct' : ' wrong';
-        else if (i === currentQuestion) className += ' active';
-        progressHTML += `<div class="${className}"></div>`;
+      const chapter = course.chapters[chapterIndex];
+      
+      // 检查是否有知识点内容
+      if (!chapter.knowledge || chapter.knowledge.length === 0) {
+        alert('该章节内容正在完善中，敬请期待！');
+        return;
       }
-      progressHTML += '</div>';
 
-      quizBody.innerHTML = `
-        <div class="quiz-timer" id="quizTimer">⏱️ ${timeLeft}秒</div>
-        ${progressHTML}
-        <div class="quiz-question">${currentQuestion + 1}. ${question.question}</div>
-        <div class="quiz-options">
-          ${question.options.map((opt, idx) => `<button class="quiz-option" onclick="selectAnswer(${idx})">${opt}</button>`).join('')}
+      currentLearning = { courseId, chapterIndex, knowledgeIndex: 0 };
+      
+      document.getElementById('learningTitle').textContent = chapter.title;
+      renderLearningContent();
+      document.getElementById('learningModal').classList.add('active');
+    }
+
+    function renderLearningContent() {
+      const course = coursesData.find(c => c.id === currentLearning.courseId);
+      const chapter = course.chapters[currentLearning.chapterIndex];
+      const knowledge = chapter.knowledge;
+      const current = knowledge[currentLearning.knowledgeIndex];
+
+      const progress = ((currentLearning.knowledgeIndex + 1) / knowledge.length) * 100;
+
+      document.getElementById('learningBody').innerHTML = `
+        <div class="learning-progress">
+          <div class="learning-progress-bar">
+            <div class="learning-progress-fill" style="width: ${progress}%"></div>
+          </div>
+          <span class="learning-progress-text">${currentLearning.knowledgeIndex + 1}/${knowledge.length}</span>
         </div>
-        <div class="quiz-actions">
-          <button class="btn btn-secondary" onclick="closeQuiz()">退出</button>
+
+        <div class="knowledge-section">
+          <h4>${current.title}</h4>
+          <div class="knowledge-content">${current.content}</div>
+          ${current.code ? `
+            <div class="code-block">
+              <div class="code-block-header">Python 代码示例</div>
+              <pre>${escapeHtml(current.code)}</pre>
+            </div>
+          ` : ''}
+          ${current.tips ? `
+            <div class="knowledge-tips">
+              <h5>💡 小提示</h5>
+              <p>${current.tips}</p>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="learning-nav">
+          ${currentLearning.knowledgeIndex > 0 ? 
+            '<button class="btn btn-secondary" onclick="prevKnowledge()">← 上一个</button>' : 
+            '<button class="btn btn-secondary" disabled>← 上一个</button>'
+          }
+          ${currentLearning.knowledgeIndex < knowledge.length - 1 ? 
+            '<button class="btn btn-primary" onclick="nextKnowledge()">下一个 →</button>' : 
+            '<button class="btn btn-primary" onclick="startChapterQuiz()">开始答题 📝</button>'
+          }
         </div>
       `;
-      startTimer();
     }
 
-    function startTimer() {
-      clearInterval(quizTimer);
-      quizTimer = setInterval(() => {
-        timeLeft--;
-        const timerEl = document.getElementById('quizTimer');
-        if (timerEl) {
-          timerEl.textContent = `⏱️ ${timeLeft}秒`;
-          if (timeLeft <= 10) timerEl.classList.add('warning');
-        }
-        if (timeLeft <= 0) selectAnswer(-1);
-      }, 1000);
+    function nextKnowledge() {
+      const course = coursesData.find(c => c.id === currentLearning.courseId);
+      const chapter = course.chapters[currentLearning.chapterIndex];
+      if (currentLearning.knowledgeIndex < chapter.knowledge.length - 1) {
+        currentLearning.knowledgeIndex++;
+        renderLearningContent();
+      }
     }
 
-    function selectAnswer(answerIndex) {
-      clearInterval(quizTimer);
-      answers.push(answerIndex);
-      if (answerIndex === quizQuestions[currentQuestion].correct) score++;
+    function prevKnowledge() {
+      if (currentLearning.knowledgeIndex > 0) {
+        currentLearning.knowledgeIndex--;
+        renderLearningContent();
+      }
+    }
 
-      document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
-        if (idx === quizQuestions[currentQuestion].correct) opt.classList.add('correct');
-        else if (idx === answerIndex && answerIndex !== quizQuestions[currentQuestion].correct) opt.classList.add('wrong');
-      });
+    function closeLearning() {
+      document.getElementById('learningModal').classList.remove('active');
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // ========== Chapter Quiz ==========
+    let chapterQuizState = { questions: [], currentIndex: 0, score: 0, answers: [] };
+
+    function startChapterQuiz() {
+      const course = coursesData.find(c => c.id === currentLearning.courseId);
+      const chapter = course.chapters[currentLearning.chapterIndex];
+
+      if (!chapter.quiz || chapter.quiz.length === 0) {
+        alert('该章节习题正在完善中！');
+        return;
+      }
+
+      chapterQuizState = {
+        questions: chapter.quiz,
+        currentIndex: 0,
+        score: 0,
+        answers: []
+      };
+
+      document.getElementById('chapterQuizTitle').textContent = chapter.title + ' - 章节练习';
+      renderChapterQuizQuestion();
+      document.getElementById('chapterQuizModal').classList.add('active');
+    }
+
+    function renderChapterQuizQuestion() {
+      const q = chapterQuizState.questions[chapterQuizState.currentIndex];
+      
+      let optionsHtml = '';
+      if (q.type === 'single') {
+        optionsHtml = `<div class="quiz-options">
+          ${q.options.map((opt, i) => `<button class="quiz-option" onclick="selectChapterAnswer(${i})">${opt}</button>`).join('')}
+        </div>`;
+      } else if (q.type === 'judge') {
+        optionsHtml = `<div class="quiz-options">
+          <button class="quiz-option" onclick="selectChapterAnswer(true)">✓ 正确</button>
+          <button class="quiz-option" onclick="selectChapterAnswer(false)">✗ 错误</button>
+        </div>`;
+      } else if (q.type === 'fill') {
+        optionsHtml = `<div class="quiz-options">
+          <input type="text" class="fill-input" id="fillAnswer" placeholder="请输入答案...">
+          <button class="btn btn-primary" style="margin-top:12px" onclick="submitFillAnswer()">提交答案</button>
+        </div>`;
+      }
+
+      document.getElementById('chapterQuizBody').innerHTML = `
+        <div class="quiz-header">
+          <span class="quiz-type-badge">${q.type === 'single' ? '单选题' : q.type === 'judge' ? '判断题' : '填空题'}</span>
+          <h4>第 ${chapterQuizState.currentIndex + 1} 题 / 共 ${chapterQuizState.questions.length} 题</h4>
+        </div>
+        <div class="quiz-progress">
+          ${chapterQuizState.questions.map((_, i) => {
+            let cls = 'progress-dot';
+            if (i < chapterQuizState.currentIndex) cls += chapterQuizState.answers[i] ? ' correct' : ' wrong';
+            else if (i === chapterQuizState.currentIndex) cls += ' active';
+            return `<div class="${cls}"></div>`;
+          }).join('')}
+        </div>
+        <div class="quiz-question">${q.question}</div>
+        ${optionsHtml}
+      `;
+    }
+
+    function selectChapterAnswer(answer) {
+      const q = chapterQuizState.questions[chapterQuizState.currentIndex];
+      let isCorrect = false;
+
+      if (q.type === 'single') {
+        isCorrect = answer === q.correct;
+      } else if (q.type === 'judge') {
+        isCorrect = answer === q.correct;
+      }
+
+      chapterQuizState.answers.push(isCorrect);
+      if (isCorrect) chapterQuizState.score++;
+
+      // Show feedback
+      if (q.type !== 'fill') {
+        document.querySelectorAll('.quiz-option').forEach((opt, i) => {
+          if (q.type === 'single') {
+            if (i === q.correct) opt.classList.add('correct');
+            else if (i === answer && !isCorrect) opt.classList.add('wrong');
+          } else if (q.type === 'judge') {
+            if (answer === q.correct) opt.classList.add('correct');
+            else opt.classList.add('wrong');
+          }
+        });
+      }
 
       setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < quizQuestions.length) { timeLeft = 60; showQuestion(); }
-        else showResult();
-      }, 1000);
+        chapterQuizState.currentIndex++;
+        if (chapterQuizState.currentIndex < chapterQuizState.questions.length) {
+          renderChapterQuizQuestion();
+        } else {
+          showChapterQuizResult();
+        }
+      }, 800);
     }
 
-    function showResult() {
-      const percentage = Math.round((score / quizQuestions.length) * 100);
-      let message = percentage >= 80 ? '🎉 太棒了！你对知识掌握得很好！' : percentage >= 60 ? '👍 不错！继续加油！' : '💪 还需要多加练习哦！';
+    function submitFillAnswer() {
+      const input = document.getElementById('fillAnswer');
+      const answer = input.value.trim();
+      selectChapterAnswer(answer);
+    }
 
-      document.getElementById('quizBody').innerHTML = `
+    function showChapterQuizResult() {
+      const percentage = Math.round((chapterQuizState.score / chapterQuizState.questions.length) * 100);
+      let message = percentage >= 80 ? '🎉 太棒了！完全掌握！' : percentage >= 60 ? '👍 不错，继续加油！' : '💪 还需多加练习！';
+
+      document.getElementById('chapterQuizBody').innerHTML = `
         <div class="quiz-result">
           <div class="result-score">${percentage}%</div>
           <div class="result-message">${message}</div>
-          <div class="result-detail">答对 ${score}/${quizQuestions.length} 题</div>
+          <div class="result-detail">答对 ${chapterQuizState.score}/${chapterQuizState.questions.length} 题</div>
           <div class="quiz-actions">
-            <button class="btn btn-primary" onclick="startQuiz()">🔄 再试一次</button>
-            <button class="btn btn-secondary" onclick="closeQuiz()">关闭</button>
+            <button class="btn btn-primary" onclick="retakeChapterQuiz()">🔄 再做一次</button>
+            <button class="btn btn-secondary" onclick="closeChapterQuiz()">完成学习</button>
           </div>
         </div>
       `;
     }
 
-    // ========== Code Editor ==========
-    let pyodide = null, pyodideLoading = false;
-
-    async function initPyodide() {
-      if (pyodide) return;
-      if (pyodideLoading) { while (pyodideLoading) await new Promise(r => setTimeout(r, 100)); return; }
-      pyodideLoading = true;
-      const output = document.getElementById('codeOutput');
-      output.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-secondary)">正在加载 Python 运行环境...</div>';
-      try {
-        pyodide = await loadPyodide();
-        output.textContent = 'Python 环境已就绪！点击"运行代码"开始编程。';
-      } catch (error) {
-        output.innerHTML = '<span style="color:#F48771">加载失败，请刷新页面重试</span>';
-      } finally { pyodideLoading = false; }
+    function retakeChapterQuiz() {
+      chapterQuizState.currentIndex = 0;
+      chapterQuizState.score = 0;
+      chapterQuizState.answers = [];
+      renderChapterQuizQuestion();
     }
 
-    function openCodeEditor() {
-      document.getElementById('codeModal').classList.add('active');
-      initPyodide();
+    function closeChapterQuiz() {
+      document.getElementById('chapterQuizModal').classList.remove('active');
+      document.getElementById('learningModal').classList.remove('active');
     }
 
-    function closeCodeEditor() {
-      document.getElementById('codeModal').classList.remove('active');
-    }
-
-    async function runPythonCode() {
-      const code = document.getElementById('codeEditor').value;
-      const output = document.getElementById('codeOutput');
-      if (!pyodide) { output.innerHTML = '<span style="color:#F48771">Python 环境还在加载中...</span>'; return; }
-
-      output.className = 'code-output';
-      output.textContent = '运行中...';
-
-      try {
-        pyodide.setStdout({ batched: (text) => { output.textContent += text; } });
-        output.textContent = '';
-        await pyodide.runPythonAsync(code);
-        if (output.textContent === '') output.textContent = '(代码执行完成，无输出)';
-        output.classList.add('success');
-      } catch (error) {
-        output.textContent = error.message;
-        output.classList.add('error');
-      }
-    }
-
-    function clearCode() {
-      document.getElementById('codeEditor').value = '';
-      document.getElementById('codeOutput').textContent = '点击"运行代码"按钮查看执行结果...';
-      document.getElementById('codeOutput').className = 'code-output';
+    // ========== Global Quiz ==========
+    function openGlobalQuiz() {
+      alert('综合练习功能开发中，敬请期待！');
     }
 
     // ========== Navbar & Scroll ==========
@@ -1713,7 +2118,6 @@ print(f'1到10的和是: {total}')</textarea>
 
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1723,12 +2127,9 @@ print(f'1到10的和是: {total}')</textarea>
     });
 
     // Close modals on overlay click
-    ['courseDetailModal', 'quizModal', 'codeModal'].forEach(id => {
+    ['courseDetailModal', 'learningModal', 'chapterQuizModal'].forEach(id => {
       document.getElementById(id).addEventListener('click', function(e) {
-        if (e.target === this) {
-          this.classList.remove('active');
-          if (quizTimer) clearInterval(quizTimer);
-        }
+        if (e.target === this) this.classList.remove('active');
       });
     });
 
