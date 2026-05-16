@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>彭冬媚 - 个人课程页面</title>
+  <title>彭冬媚 - 商务数据分析与应用专业学习页面</title>
+  <meta name="description" content="广东科学技术职业学院商务数据分析与应用专业学生彭冬媚的个人课程学习页面，包含Python基础、数据分析技术、数据采集与处理、供应链数据分析、数据库原理与应用、财务数据分析等课程资料和学习路径。">
+  <meta name="author" content="彭冬媚">
+  <meta name="keywords" content="商务数据分析, Python, 数据分析, 数据采集, 供应链分析, 财务分析, 数据库, 学习笔记">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -606,7 +609,63 @@
       box-shadow: none;
     }
 
-    /* ========== Final Exam Styles ========== */
+    /* Course Checkbox */
+    .course-checkbox {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .course-checkbox input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 182, 193, 0.2);
+      border-radius: 6px;
+      border: 2px solid rgba(255, 182, 193, 0.4);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .course-checkbox:hover .checkmark {
+      background: rgba(255, 182, 193, 0.3);
+    }
+    .course-checkbox input:checked + .checkmark {
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      border-color: transparent;
+    }
+    .checkmark::after {
+      content: '✓';
+      position: absolute;
+      display: none;
+      color: white;
+      font-size: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+    }
+    .course-checkbox input:checked + .checkmark::after {
+      display: block;
+    }
+    .level-course.completed {
+      opacity: 0.7;
+      background: linear-gradient(135deg, rgba(144,238,144,0.1), rgba(152,251,152,0.1));
+    }
+    .level-course.completed .course-info h4 {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    /* ========== Final Exam Styles ==========*/
     .exam-container {
       padding: 20px;
     }
@@ -1044,6 +1103,46 @@
       content: '✓';
       position: absolute;
       left: 0;
+    }
+
+    /* Resources List */
+    .resources-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .resource-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, rgba(255,182,193,0.08), rgba(255,240,102,0.08));
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 182, 193, 0.15);
+    }
+    .resource-item:hover {
+      background: linear-gradient(135deg, rgba(255,182,193,0.15), rgba(255,240,102,0.15));
+      transform: translateX(4px);
+      border-color: rgba(255, 182, 193, 0.3);
+    }
+    .resource-icon {
+      font-size: 1.3rem;
+    }
+    .resource-name {
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .resource-type {
+      padding: 4px 10px;
+      background: rgba(255, 182, 193, 0.15);
+      border-radius: 12px;
+      font-size: 0.75rem;
+      color: var(--pink-deep);
+      text-transform: uppercase;
       color: var(--pink-deep);
     }
 
@@ -1509,7 +1608,7 @@
   <section class="section" id="courses">
     <div class="section-header">
       <h2>📚 我的课程</h2>
-      <p>点击课程卡片查看详情，选择章节开始学习</p>
+      <p>专业核心课程学习资料整理</p>
     </div>
     <div class="courses-grid" id="coursesGrid"></div>
   </section>
@@ -1558,7 +1657,7 @@
   <section class="path-section" id="path">
     <div class="section-header">
       <h2>🗺️ 学习路径</h2>
-      <p>闯关式学习路径，由易到难，每关都有知识点讲解和配套练习</p>
+      <p>勾选已完成的学习内容，记录你的学习进度</p>
     </div>
     <div class="path-levels">
       <div class="path-level" data-level="1">
@@ -1568,135 +1667,125 @@
           <p>掌握Python编程基础和数据库操作，建立数据分析的技术根基</p>
         </div>
         <div class="level-courses">
-          <div class="level-course" onclick="openPathQuiz('python-basic')">
+          <div class="level-course" data-course="python-basic">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('python-basic')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">🐍</div>
             <div class="course-info">
-              <h4>Python基础闯关</h4>
-              <p>变量、数据类型、控制结构、函数</p>
-              <div class="course-progress">
-                <span class="progress-dot active"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-text">第1关 / 共4关</span>
-              </div>
+              <h4>Python基础</h4>
+              <p>变量、数据类型、控制结构、函数、文件操作</p>
             </div>
-            <button class="start-btn">开始闯关</button>
+            <button class="start-btn" onclick="openCourseDetail('python')">查看资料</button>
           </div>
-          <div class="level-course" onclick="openPathQuiz('sql-basic')">
+          <div class="level-course" data-course="sql-basic">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('sql-basic')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">🗄️</div>
             <div class="course-info">
-              <h4>数据库基础闯关</h4>
-              <p>SQL语句、表操作、查询、连接</p>
-              <div class="course-progress">
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-text">未开始</span>
-              </div>
+              <h4>数据库基础</h4>
+              <p>SQL语句、表操作、查询、连接、聚合函数</p>
             </div>
-            <button class="start-btn">开始闯关</button>
+            <button class="start-btn" onclick="openCourseDetail('sql')">查看资料</button>
           </div>
         </div>
       </div>
       
-      <div class="path-level locked" data-level="2">
+      <div class="path-level" data-level="2">
         <div class="level-header">
           <div class="level-badge">进阶</div>
           <h3>📈 技能提升阶段</h3>
           <p>学习数据分析方法和数据采集技术，提升数据处理实战能力</p>
-          <div class="unlock-hint">🔒 完成基础阶段解锁</div>
         </div>
         <div class="level-courses">
-          <div class="level-course" onclick="openPathQuiz('data-analysis')">
+          <div class="level-course" data-course="data-analysis">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('data-analysis')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">📊</div>
             <div class="course-info">
-              <h4>数据分析技术闯关</h4>
-              <p>Pandas、数据清洗、统计分析、可视化</p>
-              <div class="course-progress">
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-text">未解锁</span>
-              </div>
+              <h4>数据分析技术</h4>
+              <p>Pandas、NumPy、数据清洗、统计分析、可视化</p>
             </div>
-            <button class="start-btn" disabled>未解锁</button>
+            <button class="start-btn" onclick="openCourseDetail('data-analysis')">查看资料</button>
           </div>
-          <div class="level-course" onclick="openPathQuiz('data-collection')">
+          <div class="level-course" data-course="data-collection">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('data-collection')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">🕷️</div>
             <div class="course-info">
-              <h4>数据采集闯关</h4>
-              <p>爬虫技术、API调用、数据存储</p>
-              <div class="course-progress">
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-text">未解锁</span>
-              </div>
+              <h4>数据采集与处理</h4>
+              <p>爬虫技术、API调用、数据存储、数据清洗</p>
             </div>
-            <button class="start-btn" disabled>未解锁</button>
+            <button class="start-btn" onclick="openCourseDetail('data-collection')">查看资料</button>
           </div>
         </div>
       </div>
       
-      <div class="path-level locked" data-level="3">
+      <div class="path-level" data-level="3">
         <div class="level-header">
           <div class="level-badge">应用</div>
           <h3>🎯 业务应用阶段</h3>
           <p>将数据分析应用于供应链和财务领域，解决实际业务问题</p>
-          <div class="unlock-hint">🔒 完成进阶阶段解锁</div>
         </div>
         <div class="level-courses">
-          <div class="level-course" onclick="openPathQuiz('supply-chain')">
+          <div class="level-course" data-course="supply-chain">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('supply-chain')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">🚚</div>
             <div class="course-info">
-              <h4>供应链分析闯关</h4>
-              <p>库存优化、需求预测、供应商评估</p>
-              <div class="course-progress">
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-text">未解锁</span>
-              </div>
+              <h4>供应链数据分析</h4>
+              <p>库存优化、需求预测、供应商评估、物流分析</p>
             </div>
-            <button class="start-btn" disabled>未解锁</button>
+            <button class="start-btn" onclick="openCourseDetail('supply-chain')">查看资料</button>
           </div>
-          <div class="level-course" onclick="openPathQuiz('finance')">
+          <div class="level-course" data-course="finance">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('finance')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">💰</div>
             <div class="course-info">
-              <h4>财务分析闯关</h4>
-              <p>财务报表、财务指标、风险评估</p>
-              <div class="course-progress">
-                <span class="progress-dot"></span>
-                <span class="progress-dot"></span>
-                <span class="progress-text">未解锁</span>
-              </div>
+              <h4>财务数据分析</h4>
+              <p>财务报表、财务指标、风险评估、可视化报告</p>
             </div>
-            <button class="start-btn" disabled>未解锁</button>
+            <button class="start-btn" onclick="openCourseDetail('finance')">查看资料</button>
           </div>
         </div>
       </div>
       
-      <div class="path-level locked" data-level="4">
+      <div class="path-level" data-level="4">
         <div class="level-header">
-          <div class="level-badge">大师</div>
+          <div class="level-badge">综合</div>
           <h3>🏆 综合实战阶段</h3>
           <p>综合运用所有知识，完成企业级数据分析项目</p>
-          <div class="unlock-hint">🔒 完成应用阶段解锁</div>
         </div>
         <div class="level-courses">
-          <div class="level-course" onclick="openPathQuiz('capstone')">
+          <div class="level-course" data-course="comprehensive">
+            <label class="course-checkbox">
+              <input type="checkbox" onchange="toggleCourseComplete('comprehensive')">
+              <span class="checkmark"></span>
+            </label>
             <div class="course-icon">🎓</div>
             <div class="course-info">
-              <h4>毕业设计闯关</h4>
+              <h4>综合项目实战</h4>
               <p>完整项目：从需求分析到报告呈现</p>
-              <div class="course-progress">
-                <span class="progress-dot"></span>
-                <span class="progress-text">未解锁</span>
-              </div>
             </div>
-            <button class="start-btn" disabled>未解锁</button>
+            <button class="start-btn" onclick="openProjectChallenge()">查看项目</button>
           </div>
         </div>
       </div>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <button class="exam-btn exam-btn-prev" onclick="clearAllProgress()">清除所有进度</button>
     </div>
   </section>
 
@@ -5259,9 +5348,115 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
           }
         ],
         knowledgeGoals: ['掌握财务报表的基本结构', '理解财务指标的计算方法', '熟悉财务分析的框架', '了解财务风险的类型'],
-        abilityGoals: ['能够解读和分析财务报表', '能够计算和分析财务指标', '能够进行财务预测', '能够识别和评估财务风险']
+        abilityGoals: ['能够解读和分析财务报表', '能够计算和分析财务指标', '能够进行财务预测', '能够识别和评估财务风险'],
+        resources: [
+          { name: 'B站-财务报表分析入门', url: 'https://www.bilibili.com/video/BV1xx411x7X1', type: 'video' },
+          { name: '中国大学MOOC-财务分析', url: 'https://www.icourse163.org/course/xxx', type: 'course' },
+          { name: '东方财富网-财务指标查询', url: 'https://emweb.securities.eastmoney.com/', type: 'tool' }
+        ]
       }
     ];
+
+    // 为其他课程添加学习资源
+    coursesData[0].resources = [
+      { name: 'B站-Python教程(黑马程序员)', url: 'https://www.bilibili.com/video/BV1ex411x7Em', type: 'video' },
+      { name: '菜鸟教程-Python基础', url: 'https://www.runoob.com/python3/python3-tutorial.html', type: 'tutorial' },
+      { name: 'Python官方文档', url: 'https://docs.python.org/zh-cn/3/', type: 'doc' },
+      { name: '廖雪峰Python教程', url: 'https://www.liaoxuefeng.com/wiki/1016959663602400', type: 'tutorial' }
+    ];
+    coursesData[1].resources = [
+      { name: 'B站-Pandas数据分析', url: 'https://www.bilibili.com/video/BV1xx411x7X1', type: 'video' },
+      { name: '和鲸社区-Kaggle实战', url: 'https://www.heywhale.com/home', type: 'practice' },
+      { name: 'DataCamp(英文)', url: 'https://www.datacamp.com/', type: 'course' }
+    ];
+    coursesData[2].resources = [
+      { name: 'B站-Python爬虫教程', url: 'https://www.bilibili.com/video/BV1Yh411o7Sz', type: 'video' },
+      { name: 'Scrapy官方文档', url: 'https://docs.scrapy.org/', type: 'doc' },
+      { name: 'Requests库文档', url: 'https://docs.python-requests.org/', type: 'doc' }
+    ];
+    coursesData[3].resources = [
+      { name: 'B站-MySQL数据库教程', url: 'https://www.bilibili.com/video/BV1iq4y1u7vj', type: 'video' },
+      { name: 'SQLBolt-交互式SQL学习', url: 'https://sqlbolt.com/', type: 'practice' },
+      { name: 'W3School-SQL教程', url: 'https://www.w3school.com.cn/sql/', type: 'tutorial' }
+    ];
+    coursesData[4].resources = [
+      { name: 'B站-供应链管理基础', url: 'https://www.bilibili.com/video/BV1xx411x7X1', type: 'video' },
+      { name: '中国物流与采购联合会', url: 'http://www.chinawuliu.com.cn/', type: 'website' }
+    ];
+
+    // ========== LocalStorage Functions ==========
+    function getCompletedCourses() {
+      try {
+        const data = localStorage.getItem('completedCourses');
+        return data ? JSON.parse(data) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCompletedCourses(courses) {
+      try {
+        localStorage.setItem('completedCourses', JSON.stringify(courses));
+      } catch (e) {
+        console.log('localStorage not available');
+      }
+    }
+
+    function toggleCourseComplete(courseId) {
+      const completed = getCompletedCourses();
+      const index = completed.indexOf(courseId);
+      
+      if (index > -1) {
+        completed.splice(index, 1);
+      } else {
+        completed.push(courseId);
+      }
+      
+      saveCompletedCourses(completed);
+      updateCourseVisualState(courseId);
+    }
+
+    function updateCourseVisualState(courseId) {
+      const courseEl = document.querySelector(`.level-course[data-course="${courseId}"]`);
+      if (!courseEl) return;
+      
+      const completed = getCompletedCourses();
+      const isCompleted = completed.includes(courseId);
+      
+      const checkbox = courseEl.querySelector('input[type="checkbox"]');
+      if (checkbox) {
+        checkbox.checked = isCompleted;
+      }
+      
+      if (isCompleted) {
+        courseEl.classList.add('completed');
+      } else {
+        courseEl.classList.remove('completed');
+      }
+    }
+
+    function initCourseProgress() {
+      const completed = getCompletedCourses();
+      document.querySelectorAll('.level-course').forEach(el => {
+        const courseId = el.getAttribute('data-course');
+        if (courseId && completed.includes(courseId)) {
+          el.classList.add('completed');
+          const checkbox = el.querySelector('input[type="checkbox"]');
+          if (checkbox) checkbox.checked = true;
+        }
+      });
+    }
+
+    function clearAllProgress() {
+      if (confirm('确定要清除所有学习进度吗？')) {
+        localStorage.removeItem('completedCourses');
+        document.querySelectorAll('.level-course').forEach(el => {
+          el.classList.remove('completed');
+          const checkbox = el.querySelector('input[type="checkbox"]');
+          if (checkbox) checkbox.checked = false;
+        });
+      }
+    }
 
     // ========== Render Course Cards ==========
     function renderCourseCards() {
@@ -5275,7 +5470,7 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
             ${course.skills.map(skill => `<span class="tag ${Math.random() > 0.5 ? 'pink' : 'yellow'}">${skill}</span>`).join('')}
           </div>
           <div class="card-actions">
-            <button class="card-btn card-btn-primary" onclick="openCourseDetail('${course.id}')">查看详情</button>
+            <button class="card-btn card-btn-primary" onclick="openCourseDetail('${course.id}')">查看资料</button>
           </div>
         </div>
       `).join('');
@@ -5324,6 +5519,21 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
             </div>
           </div>
         </div>
+
+        ${course.resources ? `
+        <div class="course-section">
+          <h3>🔗 学习资源</h3>
+          <div class="resources-list">
+            ${course.resources.map(r => `
+              <a href="${r.url}" target="_blank" class="resource-item">
+                <span class="resource-icon">${r.type === 'video' ? '🎬' : r.type === 'tutorial' ? '📖' : r.type === 'doc' ? '📄' : r.type === 'practice' ? '💻' : r.type === 'tool' ? '🛠️' : '🌐'}</span>
+                <span class="resource-name">${r.name}</span>
+                <span class="resource-type">${r.type}</span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
       `;
 
       document.getElementById('courseDetailModal').classList.add('active');
@@ -7180,6 +7390,7 @@ print(generate_financial_report('XX科技有限公司', 2024, data))`,
 
     // Initialize
     renderCourseCards();
+    initCourseProgress();
   </script>
 </body>
 </html>
